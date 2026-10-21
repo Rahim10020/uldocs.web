@@ -1,137 +1,139 @@
-# Project Guidelines
+# Règles du projet UL Docs
 
-## Monorepo Structure
+## 🎯 Contexte
 
-This is a pnpm + Turborepo monorepo. All apps live in `apps/` and shared packages in `packages/`.
+Monorepo pnpm + Turborepo pour une plateforme de partage de documents.
 
-- `apps/api/` — Express API server (TypeScript)
-- `apps/web/` — Next.js frontend
-- `packages/shared/` — Shared TypeScript types used across all apps
+- **Frontend** : `apps/web` — Next.js App Router, TypeScript, Tailwind CSS pur.
+- **Backend** : `apps/api` — Express, Prisma.
+- **Mon rôle** : je code **uniquement le frontend**. Ne touche pas à `apps/api`.
+- `packages/shared/` — types partagés : à importer, jamais à modifier sans demande explicite.
 
-## Naming Conventions
+## 📚 Documentation de référence (À LIRE OBLIGATOIREMENT)
 
-- **Files and folders**: `kebab-case` (e.g., `user-profile.ts`, `auth-provider/`)
-- **Components**: `kebab-case` file names, `PascalCase` exports (e.g., `user-card.tsx` exports `UserCard`)
-- **Functions and variables**: `camelCase`
-- **Types and interfaces**: `PascalCase`, no `I` prefix (e.g., `User`, not `IUser`)
-- **Constants**: `UPPER_SNAKE_CASE` for true constants, `camelCase` for config objects
-- **API routes**: `kebab-case` (e.g., `/api/user-profile`)
+Avant de générer du code, lis :
 
-## Code Style
+- `docs/mvp-scope.md` — le périmètre. Ne code pas les fonctionnalités marquées
+  « Could » ou « Won't » pour l'instant.
 
-- **Formatter/Linter**: Biome (not ESLint/Prettier). Run `pnpm check` to lint, `pnpm format` to fix.
-- **Indentation**: Tabs
-- **Quotes**: Double quotes
-- **Semicolons**: Yes
-- **Imports**: Use `import type` for type-only imports. Biome auto-organizes imports.
+## 🛠️ Stack technique (frontend)
 
-## API Structure (`apps/api/`)
+- **UI** : Tailwind CSS pur. **Pas de shadcn/ui, pas de Material UI, pas de
+  Bootstrap.** Les composants sont codés à la main.
+- **Icônes** : `lucide-react`.
+- **Formulaires** : `react-hook-form` + `zod`.
+- **Data fetching** : `@tanstack/react-query`.
+- **PDF** : `react-pdf`.
 
-- **`routes/`** — One file per resource (`<resource>.route.ts`). Keep handlers thin — call services for business logic.
-- **`middleware/`** — Cross-cutting concerns (auth, validation, error handling)
-- **`services/`** — Business logic and external service integrations
-- **`config/`** — Environment config, database connections
-- **`utils/`** — Pure helper functions
-- **`migrations/`** — Database migration scripts (if using a database)
-- Use the shared types from `packages/shared` for all request/response shapes
-- Error handling: use the `errorHandler` middleware for unhandled errors; throw typed errors from services
-- Auth: apply auth middleware at the router level, not per-handler
+## 📐 Architecture frontend (`apps/web`)
 
-## Shared Types
+- `app/` — pages et layouts (App Router uniquement).
+- `components/ui/` — composants UI réutilisables (primitives génériques).
+- `components/shared/` — composants de layout (Header, Footer, etc.).
+- `app/<route>/components/` — composants spécifiques à une route.
+- `lib/utils.ts` — utilitaires, dont `cn` pour fusionner les classes Tailwind.
+- `lib/api.ts` — appels API centralisés. Ne jamais appeler `fetch` directement
+  dans un composant si possible.
+- `lib/mock-data.ts` — mocks des données backend, à créer avant d'implémenter
+  l'appel réel.
+- `hooks/` — hooks React personnalisés, nommés `use-<feature>.ts`.
+- `types/` — types et interfaces TypeScript.
+- `public/` — assets statiques.
 
-All API request/response types live in `packages/shared/`. Import them in any app:
+Jamais de fichier de types ou d'utilitaires dans `app/` ou `components/`.
+Pas de CSS custom : uniquement des classes Tailwind.
+Ne crée pas de nouveaux dossiers sans raison.
 
-```ts
-import type { ApiResponse, PaginatedResponse } from "shared";
-```
+## 🧱 Conventions de nommage
 
-When adding a new API endpoint, define the response type in `packages/shared/src/api.ts` first.
+- **Fichiers / dossiers** : `kebab-case` (`user-card.tsx`, `auth-provider/`).
+- **Composants** : fichier `kebab-case`, export `PascalCase`
+  (`user-card.tsx` → `UserCard`).
+- **Fonctions / variables** : `camelCase`.
+- **Types / interfaces** : `PascalCase`, sans préfixe `I` (`User`, pas `IUser`).
+- **Constantes** : `UPPER_SNAKE_CASE` pour les vraies constantes, `camelCase`
+  pour les objets de configuration.
+- **Routes API** : `kebab-case` (`/api/user-profile`).
 
-## Testing
+## ✍️ Style de code
 
-- **Approach**: Test-Driven Development (TDD) — write failing tests before implementing.
-- **Test runner**: Vitest. Run `pnpm test` from the root or an app directory.
-- **File location**: `__tests__/` directory mirroring the source structure, `.test.ts` / `.test.tsx` suffix.
-- **TDD workflow**:
-  1. Write a failing test that defines the expected behavior.
-  2. Implement the minimum code to make the test pass.
-  3. Refactor while keeping tests green.
+- **Linter / formateur** : Biome (pas ESLint ni Prettier). `pnpm check` pour
+  vérifier, `pnpm format` pour corriger.
+- Indentation : **tabulations**. Guillemets : **doubles**. Point-virgules : **oui**.
+- Imports de types : `import type`. Biome organise les imports automatiquement.
 
-### API (`apps/api/`)
+## 🎨 Styling
 
-- Test route handlers (status codes, response shapes, error cases) using `supertest` against the exported `app`
-- Test service functions for business logic and edge cases
-- Mock external dependencies (databases, third-party APIs) with `vi.mock` / `vi.fn`; keep logic under test real
+- Toujours via `className`. **Jamais** de `style={{}}`.
+- Les tokens de design (couleurs, polices, espacements) sont déclarés dans
+  `app/globals.css` via `@theme` (Tailwind v4 — pas de `tailwind.config.js`).
+- Pas de valeur hexadécimale en dur dans un composant.
+- Pour ce que Tailwind ne gère pas nativement : valeurs arbitraires
+  (`text-[15px]`, `tracking-[-0.5px]`, `leading-[21px]`).
 
-### Mobile App (`apps/app/`)
+## 🧩 Décomposition des écrans & composants
 
-- Test utility functions, custom hooks (state changes, async behavior)
-- Test components with `@testing-library/react-native` (rendering, interactions, conditional UI)
-- Mock navigation, async storage, and native modules
+- Les pages restent fines : elles composent des composants et des hooks.
+- Composant utilisé sur plusieurs écrans → `components/shared/`.
+- Composant propre à un écran → `app/<route>/components/`.
+- Sous-composant petit et utilisé une seule fois → peut rester inline.
 
-### General
+## 🪝 Hooks personnalisés
 
-- Don't test framework internals, third-party behavior, or trivial getters/setters
+- Extraire dans un hook dès qu'un écran gère un état non trivial, des effets de
+  bord ou des appels API.
+- Nommage : `use-<feature>.ts` en `kebab-case`.
+- Dans un hook : état de formulaire, wrappers de mutation API, valeurs dérivées,
+  état de chargement.
+- Pas dans un hook : navigation et transitions d'écran.
+- **Query hooks** : wrappers fins de TanStack Query (`useQuery` / `useMutation`).
+- **Flow hooks** : composent plusieurs query hooks avec un état local.
+- Composer les hooks plutôt que construire des monolithes.
 
-## Commands
+## 🧪 Tests (TDD)
 
-- `pnpm dev` — Start all apps concurrently (Turborepo)
-- `pnpm build` — Build all packages and apps
-- `pnpm test` — Run all tests
-- `pnpm typecheck` — Type-check all packages
-- `pnpm check` — Lint with Biome
-- `pnpm format` — Lint and auto-fix with Biome
+- Écrire d'abord un test qui échoue, puis le code minimal, puis refactorer.
+- Runner : **Vitest**, via `pnpm test` (racine ou app).
+- Emplacement : `__tests__/`, miroir de la structure source, suffixe
+  `.test.ts` / `.test.tsx`.
+- Tester les utilitaires, les hooks (état, async) et les composants avec
+  `@testing-library/react`.
+- Ne pas tester les internals de framework, le comportement de tiers ni les
+  getters triviaux.
 
-## AI Workflow Tips
+## ⚙️ Commandes
 
-- **Write a build guide first**: Before asking AI to implement a feature, write a step-by-step spec (file paths, API shapes, SQL schemas). AI follows precise instructions far better than it infers vague intent.
-- **Break tasks into focused prompts**: Instead of "build the entire auth system", use sequential prompts: routes → service layer → frontend hooks → tests. Each builds on verified output.
-- **Specify value mappings explicitly**: When frontend and backend use different naming (e.g., `"light"` vs `"lightly_active"`), list the mappings. AI won't guess.
-- **Restate code style in prompts**: AI tools default to spaces, single quotes, no semicolons. Even with this file, restating "tabs, double quotes, semicolons" prevents drift — especially with subagents.
-- **Use TDD prompts**: Instead of "build feature X", try "write failing tests for feature X, then implement it." This produces more focused, testable code and catches bugs immediately.
+- `pnpm dev` — lance toutes les apps (Turborepo).
+- `pnpm build` — build de tous les packages et apps.
+- `pnpm test` — tous les tests.
+- `pnpm typecheck` — vérification des types.
+- `pnpm check` — lint Biome.
+- `pnpm format` — lint + correction automatique.
 
-## Web App Folder Structure (`apps/web/`)
+## 🤖 Astuces de workflow IA
 
-- **`types/`** — TypeScript type definitions and interfaces
-- **`utils/`** — Utility functions and helpers (pure logic, no components)
-- **`hooks/`** — Custom React hooks
-- **`app/`** — Next.js App Router pages and layouts
-- **`app/<route>/components/`** — Components specific to that route (co-located)
-- **`components/`** — Shared, reusable components used across multiple routes
-- **`components/ui/`** — Generic UI primitives (not tied to any page)
-- **`lib/`** — Client-side libraries and configurations
-- **`public/`** — Static assets
+- **Écrire un guide de build d'abord** : avant de demander une implémentation,
+  écris une spec pas à pas (chemins de fichiers, formes d'API, schémas SQL).
+  L'IA suit des instructions précises bien mieux que des intentions vagues.
+- **Découper en prompts ciblés** : plutôt que « construis tout le système
+  d'auth », enchaîne routes → services → hooks frontend → tests. Chaque étape
+  s'appuie sur un résultat vérifié.
+- **Expliciter les correspondances de valeurs** : quand le front et le back
+  utilisent des noms différents (ex. `"light"` vs `"lightly_active"`), liste
+  les correspondances. L'IA ne les devinera pas.
+- **Rappeler le style de code dans les prompts** : les outils IA partent par
+  défaut sur des espaces, des guillemets simples et sans point-virgule. Même
+  avec ce fichier, rappeler « tabulations, guillemets doubles, point-virgules »
+  évite la dérive, surtout avec des sous-agents.
+- **Utiliser des prompts TDD** : plutôt que « construis la fonctionnalité X »,
+  essaie « écris les tests qui échouent pour la fonctionnalité X, puis
+  implémente-la ». Cela produit du code plus ciblé et testable, et attrape les
+  bugs immédiatement.
 
-Never put type or utility files inside `app/` or `components/`. They belong in `types/` and `utils/`.
+## 🧭 Principes généraux
 
-## Screen & Component Decomposition
-
-- **Screens/pages should be thin** — they compose components and hooks, not implement everything inline.
-- **Shared components** (used across multiple screens/pages) go in the top-level `components/` folder.
-- **Screen-specific components** live in a `components/` folder co-located inside the screen's route directory (e.g., `screens/profile/components/avatar.tsx`).
-- **Small, single-use sub-components** can stay inline in the screen file. Move them out only when they grow or get reused elsewhere.
-
-## Custom Hooks
-
-- **Extract reusable logic into custom hooks** when a screen manages non-trivial state, side effects, or API interactions.
-- **Naming**: `use-<feature>.ts` in kebab-case (e.g., `use-auth-flow.ts`, `use-form.ts`).
-- **What belongs in a hook**: form state, API mutation wrappers, derived/computed values, loading state.
-- **What does NOT belong in a hook**: navigation/screen transitions — these stay in the parent component.
-- **Hook categories**:
-  - **Query hooks** — Thin TanStack Query wrappers around service functions (`useQuery` / `useMutation`).
-  - **Flow hooks** — Compose multiple query hooks with local state to manage a complete user flow.
-- Prefer composing hooks over building monoliths.
-
-## Styling
-
-- **Always use Tailwind CSS `className`** for all styling. Never use inline `style={{}}` objects.
-- Use `className` for all layout, spacing, typography, colors, borders, shadows, and sizing.
-- Add design tokens to `tailwind.config.js` `theme.extend` rather than hardcoding hex values in components.
-- For values Tailwind doesn't support natively, use arbitrary values (e.g., `text-[15px]`, `tracking-[-0.5px]`, `leading-[21px]`).
-
-## General Principles
-
-- Prefer simple, explicit code over clever abstractions
-- Don't over-engineer — solve the current problem, not hypothetical future ones
-- Use `workspace:*` to depend on internal packages
-- Run `pnpm dev` from the root to start all apps concurrently via Turborepo
+- Code simple et explicite plutôt qu'abstractions astucieuses.
+- Ne pas sur-concevoir : résoudre le problème actuel, pas des besoins futurs
+  hypothétiques.
+- Dépendances internes en `workspace:*`.
+- Lancer les apps depuis la racine pour profiter de Turborepo.
