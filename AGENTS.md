@@ -81,10 +81,21 @@ Ne crée pas de nouveaux dossiers sans raison.
 
 ## 🎨 Styling
 
+- **RÈGLE ABSOLUE** : respecter scrupuleusement les couleurs définies dans
+  `apps/web/app/globals.css`. Toute couleur utilisée doit venir de ce fichier :
+  `primary`, `black`, `white`, `success`, `warning`, `error`, et leurs variantes
+  alpha (`primary-90` … `primary-5`, `black-90` … `black-5`).
+- **Aucune couleur inventée**, aucune valeur hexadécimale, aucun token hors de
+  `globals.css`. Ne pas utiliser la palette par défaut de Tailwind
+  (`blue-600`, `gray-800`, `red-500`, etc.) ni une couleur arbitraire
+  (`text-[#123456]`).
 - Toujours via `className`. **Jamais** de `style={{}}`.
-- Les tokens de design (couleurs, polices, espacements) sont déclarés dans
-  `app/globals.css` via `@theme` (Tailwind v4 — pas de `tailwind.config.js`).
-- Pas de valeur hexadécimale en dur dans un composant.
+- Les tokens de design (couleurs, polices) sont déclarés dans `app/globals.css`
+  via `@theme` (Tailwind v4 — pas de `tailwind.config.js`).
+- Police du projet : **Satoshi** (variable, 300–900), chargée via
+  `next/font/local` et exposée par `font-sans`.
+- Rappel : `primary-*` et `black-*` sont des **opacités** de la couleur de base,
+  pas des nuances plus claires ou plus foncées.
 
 ## 🧩 Décomposition des écrans & composants
 
