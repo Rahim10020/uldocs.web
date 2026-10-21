@@ -1,9 +1,51 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# AGENTS.md - Règles du projet UL Docs
 
-## This is NOT the Next.js you know
+## 🎯 Contexte du projet
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+Plateforme de partage de documents pour l'Université de Lomé.
+Stack : Next.js (App Router), TypeScript, Tailwind CSS, Express, Prisma.
+Architecture : Monorepo (apps/web pour le front, apps/api pour le back).
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+## 🎨 DESIGN SYSTEM (RÈGLE ABSOLUE)
 
-<!-- END:nextjs-agent-rules -->
+Toutes les interfaces doivent suivre strictement les tokens ci-dessous.
+**INTERDICTION** d'inventer des couleurs, des polices ou des espacements.
+
+### Couleurs (Tailwind)
+
+- Primaire (Primary) : `bg-blue-600` / `text-blue-600` (Adapter avec tes vrais codes hex)
+- Secondaire (Secondary) : `bg-gray-800`
+- Fond (Background) : `bg-white` ou `bg-gray-50`
+- Texte (Foreground) : `text-gray-900`
+- Erreur : `text-red-600`
+- Succès : `text-green-600`
+
+### Typographie
+
+- Police principale : `Inter` (ou la tienne, ex: Poppins)
+- Titres (H1) : `text-3xl font-bold`
+- Sous-titres (H2) : `text-2xl font-semibold`
+- Corps de texte : `text-base text-gray-700`
+- Petits textes : `text-sm text-gray-500`
+
+### Espacements (Tailwind)
+
+- Sections : `py-12` ou `py-16`
+- Entre les éléments d'un formulaire : `space-y-4`
+- Padding des cartes : `p-6`
+- Gap grille : `gap-6`
+
+## 🏗️ Architecture Frontend (apps/web)
+
+- Utilise **exclusivement** le App Router (`app/`).
+- Les composants UI réutilisables vont dans `components/ui/`.
+- Les composants de layout (Header, Footer) vont dans `components/shared/`.
+- Les appels API se font depuis `lib/api.ts`. **Ne jamais** appeler `fetch` directement dans les composants si possible.
+- Utilise `lucide-react` pour les icônes.
+
+## 🚫 Règles pour l'IA
+
+- Ne génère pas de CSS custom, utilise **uniquement** les classes Tailwind.
+- Ne crée pas de nouveaux dossiers sans raison.
+- Si tu as besoin d'une donnée qui vient du backend, crée d'abord un mock dans `lib/mock-data.ts` avant d'implémenter l'appel réel.
+- Respecte scrupuleusement le design system ci-dessus.
