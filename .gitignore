@@ -1,0 +1,34 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Turbo
+.turbo
+
+# Build outputs
+dist
+build
+.next
+out
+coverage
+*.tsbuildinfo
+
+# Env (keep the examples)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel
+.vercel
+
+# Misc
+.DS_Store
+*.pem

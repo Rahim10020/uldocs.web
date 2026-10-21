@@ -1,0 +1,19 @@
+{
+  "name": "uldocs",
+  "description": "Lome university docs plateform created by students for students",
+  "private": true,
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=24.19.0"
+  },
+  "devDependencies": {
+    "turbo": "2.10.11",
+    "@biomejs/biome": "latest"
+  },
+  "scripts": {
+    "test": "turbo test",
+    "typecheck": "turbo typecheck",
+    "check": "biome check .",
+    "format": "biome check . --write"
+  }
+}
