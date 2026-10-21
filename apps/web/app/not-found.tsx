@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { routes } from "@/lib/routes";
 
 export default function NotFound() {
   return (
@@ -8,7 +9,7 @@ export default function NotFound() {
         La page que tu cherches n'existe pas ou a été déplacée.
       </p>
       <Link
-        href="/"
+        href={routes.home}
         className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-90"
       >
         Retour à l'accueil
