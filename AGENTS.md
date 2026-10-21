@@ -14,6 +14,7 @@ Monorepo pnpm + Turborepo pour une plateforme de partage de documents.
 
 Avant de générer du code, lis :
 
+- `docs/product-brief.md` : **LA VISION DU PRODUIT**. Comprends pour qui on code et pourquoi.
 - `docs/mvp-scope.md` — le périmètre. Ne code pas les fonctionnalités marquées
   « Could » ou « Won't » pour l'instant.
 - `docs/dependencies.md` — la liste **exhaustive** des dépendances autorisées.
