@@ -1,1 +1,1 @@
--- commencer le codage du frontend
+-- mettre a jour le fichier liste fac le fournir a opencode et continuer
