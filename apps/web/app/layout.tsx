@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Providers } from "@/components/shared/providers";
 import "./globals.css";
 
 const satoshi = localFont({
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 	return (
 		<html lang="fr" className={`${satoshi.variable} h-full antialiased`}>
 			<body className="min-h-full flex flex-col bg-background text-foreground">
-				{children}
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);
