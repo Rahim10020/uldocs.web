@@ -5,7 +5,8 @@
 Monorepo pnpm + Turborepo pour une plateforme de partage de documents.
 
 - **Frontend** : `apps/web` — Next.js App Router, TypeScript, Tailwind CSS pur.
-- **Backend** : `apps/api` — Express, Prisma.
+- **Backend** : `apps/api` — Express, Prisma. Le schéma de référence est
+  `docs/database.sql`.
 - **Mon rôle** : je code **uniquement le frontend**. Ne touche pas à `apps/api`.
 - `packages/shared/` — types partagés : à importer, jamais à modifier sans demande explicite.
 
@@ -15,15 +16,29 @@ Avant de générer du code, lis :
 
 - `docs/mvp-scope.md` — le périmètre. Ne code pas les fonctionnalités marquées
   « Could » ou « Won't » pour l'instant.
+- `docs/dependencies.md` — la liste **exhaustive** des dépendances autorisées.
+- `docs/database.sql` — le schéma de référence de la base de données (modèle de
+  données du backend, dont découlent les types exposés au frontend).
 
 ## 🛠️ Stack technique (frontend)
 
 - **UI** : Tailwind CSS pur. **Pas de shadcn/ui, pas de Material UI, pas de
   Bootstrap.** Les composants sont codés à la main.
 - **Icônes** : `lucide-react`.
-- **Formulaires** : `react-hook-form` + `zod`.
+- **Formulaires** : `react-hook-form` + `zod` + `@hookform/resolvers`.
 - **Data fetching** : `@tanstack/react-query`.
 - **PDF** : `react-pdf`.
+- **Utilitaires** : `clsx` + `tailwind-merge` (pour la fonction `cn`).
+
+## 📦 Dépendances
+
+La liste des dépendances autorisées est dans `docs/dependencies.md`. Elle fait
+foi : rien d'autre ne doit être installé.
+
+- **Ne jamais installer une dépendance absente de cette liste.**
+- Si une tâche en nécessite une, demande d'abord la permission de l'ajouter à
+  la liste.
+- Pas de librairie de composants externe : les composants sont écrits à la main.
 
 ## 📐 Architecture frontend (`apps/web`)
 
@@ -31,7 +46,8 @@ Avant de générer du code, lis :
 - `components/ui/` — composants UI réutilisables (primitives génériques).
 - `components/shared/` — composants de layout (Header, Footer, etc.).
 - `app/<route>/components/` — composants spécifiques à une route.
-- `lib/utils.ts` — utilitaires, dont `cn` pour fusionner les classes Tailwind.
+- `lib/utils.ts` — utilitaires, dont `cn` (fusion `clsx` + `tailwind-merge`)
+  pour fusionner les classes Tailwind.
 - `lib/api.ts` — appels API centralisés. Ne jamais appeler `fetch` directement
   dans un composant si possible.
 - `lib/mock-data.ts` — mocks des données backend, à créer avant d'implémenter
@@ -68,8 +84,6 @@ Ne crée pas de nouveaux dossiers sans raison.
 - Les tokens de design (couleurs, polices, espacements) sont déclarés dans
   `app/globals.css` via `@theme` (Tailwind v4 — pas de `tailwind.config.js`).
 - Pas de valeur hexadécimale en dur dans un composant.
-- Pour ce que Tailwind ne gère pas nativement : valeurs arbitraires
-  (`text-[15px]`, `tracking-[-0.5px]`, `leading-[21px]`).
 
 ## 🧩 Décomposition des écrans & composants
 
