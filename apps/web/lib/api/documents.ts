@@ -1,11 +1,16 @@
-import type { Document, DocumentListParams, Paginated } from "shared";
+import type {
+	DocumentDetail,
+	DocumentListItem,
+	DocumentSearchParams,
+	Paginated,
+} from "shared";
 import { apiFetch, apiFetchPaginated } from "./client";
 import { endpoints } from "./endpoints";
 
 /** GET /documents */
 export function listDocuments(
-	params: DocumentListParams = {},
-): Promise<Paginated<Document>> {
+	params: DocumentSearchParams = {},
+): Promise<Paginated<DocumentListItem>> {
 	const query = new URLSearchParams();
 
 	for (const [key, value] of Object.entries(params)) {
@@ -16,19 +21,19 @@ export function listDocuments(
 
 	const search = query.toString();
 
-	return apiFetchPaginated<Document>(
+	return apiFetchPaginated<DocumentListItem>(
 		search ? `${endpoints.documents.list}?${search}` : endpoints.documents.list,
 	);
 }
 
 /** GET /documents/:id */
-export function getDocument(id: number): Promise<Document> {
-	return apiFetch<Document>(endpoints.documents.byId(id));
+export function getDocument(id: number): Promise<DocumentDetail> {
+	return apiFetch<DocumentDetail>(endpoints.documents.byId(id));
 }
 
 /** POST /documents (multipart/form-data) */
-export function createDocument(formData: FormData): Promise<Document> {
-	return apiFetch<Document>(endpoints.documents.create, {
+export function createDocument(formData: FormData): Promise<DocumentDetail> {
+	return apiFetch<DocumentDetail>(endpoints.documents.create, {
 		method: "POST",
 		body: formData,
 	});

@@ -1,3 +1,12 @@
+import type { Faculte, Filiere, Niveau, Semestre, UE } from "./entities.js";
+import type {
+	CategorieFaculte,
+	FormatDocument,
+	StatutDocument,
+	TriDocuments,
+	TypeDocument,
+} from "./enums.js";
+
 /** Standard API response wrapper */
 export type ApiResponse<T> =
 	| { ok: true; data: T }
@@ -32,55 +41,6 @@ export type Paginated<T> = {
 	pageSize: number;
 };
 
-/** Rôles utilisateur (table UTILISATEUR) */
-export type Role = "etudiant" | "moderateur" | "admin";
-
-/** Statut d'un compte utilisateur */
-export type StatutUtilisateur = "actif" | "suspendu" | "supprime";
-
-/** Statut d'un document */
-export type StatutDocument = "en_attente" | "valide" | "signale" | "retire";
-
-/** Utilisateur exposé par l'API (colonnes de UTILISATEUR en camelCase) */
-export type Utilisateur = {
-	id: number;
-	nom: string;
-	email: string;
-	avatarUrl: string | null;
-	role: Role;
-	statut: StatutUtilisateur;
-	faculteId: number | null;
-	filiereId: number | null;
-	niveauId: number | null;
-	emailVerifie: boolean;
-	points: number;
-	dateInscription: string;
-	derniereConnexion: string | null;
-};
-
-/** Document exposé par l'API (colonnes de DOCUMENT en camelCase) */
-export type Document = {
-	id: number;
-	titre: string;
-	description: string | null;
-	type: string;
-	matiereId: number;
-	enseignantId: number | null;
-	anneeAcademique: string;
-	fichierUrl: string;
-	format: string;
-	tailleKo: number;
-	nbPages: number | null;
-	langue: string;
-	uploaderId: number;
-	statut: StatutDocument;
-	nbVues: number;
-	nbTelechargements: number;
-	noteMoyenne: number;
-	dateUpload: string;
-	dateMiseAJour: string;
-};
-
 /** POST /auth/login */
 export type LoginPayload = {
 	email: string;
@@ -97,19 +57,71 @@ export type RegisterPayload = {
 	niveauId?: number;
 };
 
-/** Tri des résultats de recherche */
-export type TriDocuments = "pertinence" | "recent" | "populaire" | "mieux_note";
+/**
+ * Document dénormalisé pour les cartes (GET /documents).
+ * Un seul appel suffit : pas de jointure côté client.
+ */
+export type DocumentListItem = {
+	id: number;
+	titre: string;
+	type: TypeDocument;
+	format: FormatDocument;
+	anneeAcademique: string;
+	fichierUrl: string;
+	nbVues: number;
+	nbTelechargements: number;
+	noteMoyenne: number;
+	dateUpload: string;
+	ue: { id: number; nom: string };
+	niveau: string;
+	semestre: string;
+	filiere: { id: number; nom: string };
+	faculte: {
+		id: number;
+		nom: string;
+		categorie: CategorieFaculte;
+		code: string;
+	};
+	uploader: { id: number; nom: string };
+};
 
-/** GET /documents */
-export type DocumentListParams = {
+/** Document complet (GET /documents/:id). */
+export type DocumentDetail = DocumentListItem & {
+	description: string | null;
+	tailleKo: number;
+	nbPages: number | null;
+	langue: string;
+	statut: StatutDocument;
+	dateMiseAJour: string;
+	enseignant: { id: number; nom: string } | null;
+	tags: { id: number; nom: string }[];
+};
+
+/** Paramètres de GET /documents. */
+export type DocumentSearchParams = {
 	q?: string;
 	faculteId?: number;
 	filiereId?: number;
-	niveauId?: number;
-	matiereId?: number;
-	type?: string;
+	/** Libellé du niveau, ex. "L1" (les ids diffèrent d'une filière à l'autre). */
+	niveau?: string;
+	/** Libellé du semestre, ex. "S1". */
+	semestre?: string;
+	ueId?: number;
+	type?: TypeDocument;
+	format?: FormatDocument;
 	anneeAcademique?: string;
 	tri?: TriDocuments;
 	page?: number;
 	pageSize?: number;
+};
+
+/** Réponse de GET /academic/tree. */
+export type FaculteTree = Faculte & {
+	filieres: (Filiere & {
+		niveaux: (Niveau & {
+			semestres: (Semestre & {
+				ues: UE[];
+			})[];
+		})[];
+	})[];
 };
