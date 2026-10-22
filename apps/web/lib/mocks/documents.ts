@@ -1,0 +1,404 @@
+import type {
+  DocumentDetail,
+  DocumentListItem,
+  DocumentSearchParams,
+  Paginated,
+  StatutDocument,
+  TypeDocument,
+} from "shared";
+import { getUeContextByName } from "./academic";
+import { CURRENT_USER, MOCK_USERS } from "./users";
+
+/**
+ * Documents de démonstration.
+ * Les UE, filières et facultés proviennent exclusivement du seed officiel.
+ */
+
+const BASE_UPLOAD = Date.UTC(2026, 9, 18, 9, 0, 0);
+const DAY_MS = 86_400_000;
+const DEFAULT_PAGE_SIZE = 20;
+const MAX_PAGE_SIZE = 50;
+
+const TYPE_LABEL: Record<TypeDocument, string> = {
+  cours: "cours",
+  annale: "annale",
+  corrige: "corrigé",
+  td: "travaux dirigés",
+  memoire: "mémoire",
+  autre: "document",
+};
+
+type DocumentSpec = {
+  ue: string;
+  type: TypeDocument;
+  annee: string;
+  uploader: number;
+  titre?: string;
+  statut?: StatutDocument;
+};
+
+const SPECS: DocumentSpec[] = [
+  // Droit
+  {
+    ue: "Droit Civil",
+    type: "annale",
+    annee: "2024-2025",
+    uploader: 1,
+    titre: "Annale de Droit Civil — Session 1",
+  },
+  { ue: "Droit Civil", type: "cours", annee: "2025-2026", uploader: 0 },
+  { ue: "Droit Civil", type: "td", annee: "2025-2026", uploader: 0 },
+  { ue: "Droit Civil", type: "corrige", annee: "2024-2025", uploader: 1 },
+  { ue: "Droit Pénal", type: "annale", annee: "2025-2026", uploader: 2 },
+  {
+    ue: "Droit Pénal",
+    type: "cours",
+    annee: "2024-2025",
+    uploader: 0,
+    statut: "en_attente",
+  },
+  { ue: "Procédure Civile", type: "annale", annee: "2023-2024", uploader: 1 },
+  { ue: "Droit des Obligations", type: "td", annee: "2025-2026", uploader: 4 },
+  {
+    ue: "Droit Constitutionnel",
+    type: "cours",
+    annee: "2024-2025",
+    uploader: 2,
+  },
+  {
+    ue: "Droit Constitutionnel",
+    type: "annale",
+    annee: "2025-2026",
+    uploader: 4,
+  },
+  {
+    ue: "Droit Administratif",
+    type: "annale",
+    annee: "2025-2026",
+    uploader: 3,
+  },
+  {
+    ue: "Droit International Public",
+    type: "cours",
+    annee: "2024-2025",
+    uploader: 2,
+  },
+
+  // Sciences
+  { ue: "Algorithmique", type: "cours", annee: "2025-2026", uploader: 2 },
+  { ue: "Algorithmique", type: "td", annee: "2025-2026", uploader: 3 },
+  { ue: "Algorithmique", type: "annale", annee: "2024-2025", uploader: 3 },
+  { ue: "Bases de Données", type: "cours", annee: "2025-2026", uploader: 2 },
+  { ue: "Bases de Données", type: "td", annee: "2025-2026", uploader: 3 },
+  { ue: "Réseaux", type: "annale", annee: "2024-2025", uploader: 4 },
+  { ue: "Développement Web", type: "cours", annee: "2026-2027", uploader: 2 },
+  { ue: "Développement Web", type: "td", annee: "2025-2026", uploader: 3 },
+
+  // Économie et gestion
+  { ue: "Microéconomie", type: "annale", annee: "2024-2025", uploader: 1 },
+  { ue: "Microéconomie", type: "cours", annee: "2025-2026", uploader: 1 },
+  { ue: "Macroéconomie", type: "cours", annee: "2024-2025", uploader: 1 },
+  { ue: "Statistiques", type: "td", annee: "2025-2026", uploader: 1 },
+  { ue: "Statistiques", type: "annale", annee: "2024-2025", uploader: 4 },
+  { ue: "Économétrie", type: "cours", annee: "2025-2026", uploader: 2 },
+  {
+    ue: "Comptabilité Générale",
+    type: "cours",
+    annee: "2025-2026",
+    uploader: 1,
+  },
+  { ue: "Comptabilité Générale", type: "td", annee: "2025-2026", uploader: 1 },
+  { ue: "Audit Financier", type: "annale", annee: "2024-2025", uploader: 5 },
+  { ue: "Fiscalité", type: "cours", annee: "2025-2026", uploader: 1 },
+
+  // Polytechnique
+  { ue: "Génie Logiciel", type: "cours", annee: "2025-2026", uploader: 2 },
+  { ue: "Génie Logiciel", type: "td", annee: "2025-2026", uploader: 2 },
+  {
+    ue: "Architecture Logicielle",
+    type: "cours",
+    annee: "2025-2026",
+    uploader: 2,
+  },
+  {
+    ue: "Programmation Orientée Objet",
+    type: "td",
+    annee: "2024-2025",
+    uploader: 3,
+  },
+  {
+    ue: "Programmation Orientée Objet",
+    type: "annale",
+    annee: "2025-2026",
+    uploader: 3,
+  },
+  { ue: "Gestion de Projet", type: "cours", annee: "2026-2027", uploader: 2 },
+  { ue: "Machine Learning", type: "cours", annee: "2025-2026", uploader: 2 },
+  { ue: "Deep Learning", type: "annale", annee: "2025-2026", uploader: 4 },
+
+  // IUT
+  {
+    ue: "Comptabilité Analytique",
+    type: "td",
+    annee: "2025-2026",
+    uploader: 5,
+  },
+
+  // Lettres
+  { ue: "Grammaire Anglaise", type: "cours", annee: "2025-2026", uploader: 4 },
+  { ue: "Traduction", type: "annale", annee: "2024-2025", uploader: 4 },
+
+  // Santé et sciences humaines
+  { ue: "Biochimie", type: "td", annee: "2025-2026", uploader: 5 },
+  {
+    ue: "Sociologie Générale",
+    type: "annale",
+    annee: "2025-2026",
+    uploader: 6,
+  },
+
+  // Uploads récents de l'utilisateur courant
+  {
+    ue: "Réseaux",
+    type: "cours",
+    annee: "2026-2027",
+    uploader: 0,
+    statut: "en_attente",
+  },
+];
+
+/** PRNG déterministe : mêmes métriques à chaque exécution. */
+function mulberry32(seed: number): () => number {
+  let value = seed;
+
+  return () => {
+    value |= 0;
+    value = (value + 0x6d2b79f5) | 0;
+    let t = Math.imul(value ^ (value >>> 15), 1 | value);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function defaultTitle(spec: DocumentSpec): string {
+  switch (spec.type) {
+    case "annale":
+      return `Annale ${spec.ue} — ${spec.annee}`;
+    case "corrige":
+      return `Corrigé ${spec.ue} — ${spec.annee}`;
+    case "cours":
+      return `Cours de ${spec.ue}`;
+    case "td":
+      return `TD ${spec.ue}`;
+    case "memoire":
+      return `Mémoire — ${spec.ue}`;
+    default:
+      return spec.ue;
+  }
+}
+
+function buildDocuments(): DocumentDetail[] {
+  return SPECS.map((spec, index) => {
+    const context = getUeContextByName(spec.ue);
+
+    if (!context) {
+      throw new Error(`UE inconnue dans les mocks : ${spec.ue}`);
+    }
+
+    const random = mulberry32(index + 1);
+    const uploader = MOCK_USERS[spec.uploader] ?? CURRENT_USER;
+    const nbVues = 80 + Math.floor(random() * 4200);
+    const nbTelechargements = Math.min(nbVues, 15 + Math.floor(random() * 800));
+
+    const dateUpload = new Date(
+      BASE_UPLOAD - index * 1.6 * DAY_MS,
+    ).toISOString();
+
+    return {
+      id: index + 1,
+      titre: spec.titre ?? defaultTitle(spec),
+      description: `Support de ${TYPE_LABEL[spec.type]} pour l'UE « ${context.ue.nom} », année académique ${spec.annee}.`,
+      type: spec.type,
+      format: "pdf",
+      anneeAcademique: spec.annee,
+      fichierUrl: "/documents/exemple.pdf",
+      tailleKo: 250 + Math.floor(random() * 7500),
+      nbPages: 6 + Math.floor(random() * 110),
+      langue: "fr",
+      nbVues,
+      nbTelechargements,
+      noteMoyenne: Math.round((3 + random() * 2) * 100) / 100,
+      dateUpload,
+      dateMiseAJour: dateUpload,
+      statut: spec.statut ?? "valide",
+      ue: { id: context.ue.id, nom: context.ue.nom },
+      niveau: context.niveau.nom,
+      semestre: context.semestre.nom,
+      filiere: { id: context.filiere.id, nom: context.filiere.nom },
+      faculte: {
+        id: context.faculte.id,
+        nom: context.faculte.nom,
+        categorie: context.faculte.categorie,
+        code: context.faculte.code,
+      },
+      uploader: { id: uploader.id, nom: uploader.nom },
+      enseignant: null,
+      tags: [],
+    };
+  });
+}
+
+export const MOCK_DOCUMENTS: DocumentDetail[] = buildDocuments();
+
+export function toDocumentListItem(doc: DocumentDetail): DocumentListItem {
+  return {
+    id: doc.id,
+    titre: doc.titre,
+    type: doc.type,
+    format: doc.format,
+    anneeAcademique: doc.anneeAcademique,
+    fichierUrl: doc.fichierUrl,
+    nbVues: doc.nbVues,
+    nbTelechargements: doc.nbTelechargements,
+    noteMoyenne: doc.noteMoyenne,
+    dateUpload: doc.dateUpload,
+    ue: doc.ue,
+    niveau: doc.niveau,
+    semestre: doc.semestre,
+    filiere: doc.filiere,
+    faculte: doc.faculte,
+    uploader: doc.uploader,
+  };
+}
+
+export function getMockDocument(id: number): DocumentDetail | undefined {
+  return MOCK_DOCUMENTS.find((doc) => doc.id === id);
+}
+
+function relevance(doc: DocumentDetail, query: string): number {
+  let score = 0;
+
+  if (doc.titre.toLowerCase().includes(query)) {
+    score += 3;
+  }
+
+  if (doc.ue.nom.toLowerCase().includes(query)) {
+    score += 2;
+  }
+
+  if (doc.description?.toLowerCase().includes(query)) {
+    score += 1;
+  }
+
+  return score;
+}
+
+function compare(
+  a: DocumentDetail,
+  b: DocumentDetail,
+  params: DocumentSearchParams,
+): number {
+  const tri = params.tri ?? (params.q ? "pertinence" : "recent");
+
+  switch (tri) {
+    case "populaire":
+      return b.nbTelechargements - a.nbTelechargements || b.id - a.id;
+    case "mieux_note":
+      return b.noteMoyenne - a.noteMoyenne || b.id - a.id;
+    case "pertinence": {
+      const query = params.q?.trim().toLowerCase() ?? "";
+      return (
+        relevance(b, query) - relevance(a, query) ||
+        b.dateUpload.localeCompare(a.dateUpload) ||
+        b.id - a.id
+      );
+    }
+    default:
+      return b.dateUpload.localeCompare(a.dateUpload) || b.id - a.id;
+  }
+}
+
+function paginate(
+  documents: DocumentDetail[],
+  page: number,
+  pageSize: number,
+): Paginated<DocumentListItem> {
+  const safePage = Math.max(1, page);
+  const safeSize = Math.min(MAX_PAGE_SIZE, Math.max(1, pageSize));
+  const start = (safePage - 1) * safeSize;
+
+  return {
+    data: documents.slice(start, start + safeSize).map(toDocumentListItem),
+    total: documents.length,
+    page: safePage,
+    pageSize: safeSize,
+  };
+}
+
+/** GET /documents — uniquement les documents validés. */
+export function searchMockDocuments(
+  params: DocumentSearchParams = {},
+): Paginated<DocumentListItem> {
+  const query = params.q?.trim().toLowerCase();
+
+  let results = MOCK_DOCUMENTS.filter((doc) => doc.statut === "valide");
+
+  if (query) {
+    results = results.filter((doc) => relevance(doc, query) > 0);
+  }
+
+  if (params.faculteId !== undefined) {
+    results = results.filter((doc) => doc.faculte.id === params.faculteId);
+  }
+
+  if (params.filiereId !== undefined) {
+    results = results.filter((doc) => doc.filiere.id === params.filiereId);
+  }
+
+  if (params.niveau !== undefined) {
+    results = results.filter((doc) => doc.niveau === params.niveau);
+  }
+
+  if (params.semestre !== undefined) {
+    results = results.filter((doc) => doc.semestre === params.semestre);
+  }
+
+  if (params.ueId !== undefined) {
+    results = results.filter((doc) => doc.ue.id === params.ueId);
+  }
+
+  if (params.type !== undefined) {
+    results = results.filter((doc) => doc.type === params.type);
+  }
+
+  if (params.format !== undefined) {
+    results = results.filter((doc) => doc.format === params.format);
+  }
+
+  if (params.anneeAcademique !== undefined) {
+    results = results.filter(
+      (doc) => doc.anneeAcademique === params.anneeAcademique,
+    );
+  }
+
+  results = [...results].sort((a, b) => compare(a, b, params));
+
+  return paginate(
+    results,
+    params.page ?? 1,
+    params.pageSize ?? DEFAULT_PAGE_SIZE,
+  );
+}
+
+/** GET /documents/mine — tous les documents de l'utilisateur, quel que soit le statut. */
+export function listMockDocumentsByUploader(
+  uploaderId: number,
+  page = 1,
+  pageSize = DEFAULT_PAGE_SIZE,
+): Paginated<DocumentListItem> {
+  const results = MOCK_DOCUMENTS.filter(
+    (doc) => doc.uploader.id === uploaderId,
+  ).sort((a, b) => b.dateUpload.localeCompare(a.dateUpload));
+
+  return paginate(results, page, pageSize);
+}

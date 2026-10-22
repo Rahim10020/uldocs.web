@@ -18,6 +18,9 @@ Avant de générer du code, lis :
 - `docs/mvp-scope.md` — le périmètre. Ne code pas les fonctionnalités marquées
   « Could » ou « Won't » pour l'instant.
 - `docs/dependencies.md` — la liste **exhaustive** des dépendances autorisées.
+- `docs/api-contract.md` — **LE CONTRAT D'API**. Source de vérité des endpoints,
+  DTO, enums et règles de recherche. Toute évolution se fait ici d'abord, puis
+  dans `packages/shared`.
 - `docs/academic-data.md` : **LES DONNÉES DE L'UL**. Utilise ce fichier pour générer les mocks (facultés, filières, niveaux) et ne jamais inventer de données.
 - `docs/database.sql` — le schéma de référence de la base de données (modèle de
   données du backend, dont découlent les types exposés au frontend).
