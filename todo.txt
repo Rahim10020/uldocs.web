@@ -1,1 +1,3 @@
--- mettre a jour le fichier liste fac le fournir a opencode et continuer
+-- commencer le codage des composants reutilisables apres avoir mis en place la structure de 
+l'application. rappeler a opencode qu'il n'a pas besoin de coder les tests pour le moment
+etre focus sur un template a la fois et ne pas permettre a opencode de faire du n'importe quoi.
