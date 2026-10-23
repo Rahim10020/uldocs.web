@@ -71,81 +71,85 @@ export function MobileMenu() {
           <aside
             id={panelId}
             aria-label="Navigation mobile"
-            className="fixed bottom-0 left-0 top-0 z-20 flex w-[min(20rem,85vw)] flex-col overflow-y-auto bg-white px-4 pb-6 shadow-lg lg:hidden"
+            className="fixed bottom-0 left-0 top-0 z-20 flex w-[min(20rem,85vw)] flex-col overflow-y-auto bg-white pb-6 shadow-lg lg:hidden"
           >
-            <div className="flex h-14 shrink-0 items-center justify-between border-b border-black-10">
-              <Link
-                href={routes.home}
-                onClick={closeMenu}
-                aria-label="ulDocs — Accueil"
-              >
-                <Image
-                  src="/logo.svg"
-                  alt="ulDocs"
-                  width={92}
-                  height={25}
-                  unoptimized
-                  className="h-4 w-auto"
-                />
-              </Link>
-              <button
-                type="button"
-                aria-label="Fermer le menu"
-                onClick={closeMenu}
-                className="flex size-9 items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
-              >
-                <X aria-hidden className="size-6" />
-              </button>
+            <div className="shrink-0 bg-surface border-b border-black-30">
+              <div className="flex items-center justify-between px-4 h-14">
+                <Link
+                  href={routes.home}
+                  onClick={closeMenu}
+                  aria-label="ulDocs — Accueil"
+                >
+                  <Image
+                    src="/logo.svg"
+                    alt="ulDocs"
+                    width={92}
+                    height={25}
+                    unoptimized
+                    className="h-4 w-auto"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  aria-label="Fermer le menu"
+                  onClick={closeMenu}
+                  className="flex size-9 items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                >
+                  <X aria-hidden className="size-6" />
+                </button>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-4 border-b border-black-10 py-4">
-              <ButtonLink
-                href={routes.newDocument}
-                onClick={closeMenu}
-                className="w-full"
-              >
-                Contribuer
-              </ButtonLink>
-              <Link
-                href={routes.login}
-                onClick={closeMenu}
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-xs border border-black-20 bg-white px-6 text-base font-semibold text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
-              >
-                <UserRound aria-hidden className="size-4" />
-                Se connecter
-              </Link>
-            </div>
+            <div className="px-4">
+              <div className="flex flex-col gap-2 border-b border-black-30 py-6">
+                <ButtonLink
+                  href={routes.newDocument}
+                  onClick={closeMenu}
+                  className="w-full"
+                >
+                  Contribuer
+                </ButtonLink>
+                <Link
+                  href={routes.login}
+                  onClick={closeMenu}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-xs border border-black-20 bg-white px-6 text-base font-semibold text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                >
+                  <UserRound aria-hidden className="size-4" />
+                  Se connecter
+                </Link>
+              </div>
 
-            <nav className="flex flex-col gap-2 py-2">
-              {MOBILE_NAV_LINKS.slice(0, 1).map((item) => (
+              <nav className="flex flex-col gap-2 py-2">
+                {MOBILE_NAV_LINKS.slice(0, 1).map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  href={routes.newDocument}
                   onClick={closeMenu}
-                  className="rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                  className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
                 >
-                  {item.label}
+                  <Upload aria-hidden className="size-5" />
+                  Importer
                 </Link>
-              ))}
-              <Link
-                href={routes.newDocument}
-                onClick={closeMenu}
-                className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
-              >
-                <Upload aria-hidden className="size-5" />
-                Importer
-              </Link>
-              {MOBILE_NAV_LINKS.slice(1).map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMenu}
-                  className="rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+                {MOBILE_NAV_LINKS.slice(1).map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </aside>
         </>
       ) : null}
