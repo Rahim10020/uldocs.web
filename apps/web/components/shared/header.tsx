@@ -10,7 +10,7 @@ import { routes } from "@/lib/routes";
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-black-10 bg-white">
-      <Container className="flex h-[60px] items-center gap-3 sm:gap-6">
+      <Container className="flex h-16 items-center gap-3 sm:gap-6">
         <MobileMenu />
 
         <Link
