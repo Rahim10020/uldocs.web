@@ -12,7 +12,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
 };
 
 const SIZES: Record<ButtonSize, string> = {
-  md: "h-10 px-6 text-base",
+  md: "h-9 px-6 text-base",
   sm: "h-9 px-3 text-sm",
 };
 
@@ -29,7 +29,7 @@ export function buttonStyles({
   className,
 }: ButtonStylesOptions = {}) {
   return cn(
-    "inline-flex shrink-0 rounded-xs items-center justify-center gap-2 whitespace-nowrap font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex shrink-0 rounded-sm items-center justify-center gap-2 whitespace-nowrap font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     VARIANTS[variant],
     SIZES[size],
     className,

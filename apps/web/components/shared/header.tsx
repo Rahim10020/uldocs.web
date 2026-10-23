@@ -46,7 +46,7 @@ export function Header() {
             Importer
           </Link>
           <DesktopAccountMenu />
-          <ButtonLink href={routes.newDocument} className="ml-1 text-md">
+          <ButtonLink href={routes.newDocument} className="ml-1 text-sm">
             Contribuer
           </ButtonLink>
         </nav>
