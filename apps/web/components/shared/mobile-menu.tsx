@@ -56,7 +56,7 @@ export function MobileMenu() {
         {open ? (
           <X aria-hidden className="size-6" />
         ) : (
-          <Menu aria-hidden className="size-6" />
+          <Menu aria-hidden className="size-5" />
         )}
       </button>
 
