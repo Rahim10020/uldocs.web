@@ -25,7 +25,7 @@ export function Header() {
             height={25}
             priority
             unoptimized
-            className="h-6 w-auto"
+            className="h-4 lg:h-6 w-auto"
           />
         </Link>
 
