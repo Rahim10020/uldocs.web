@@ -66,14 +66,14 @@ export function MobileMenu() {
             type="button"
             aria-label="Fermer le menu"
             onClick={closeMenu}
-            className="fixed inset-x-0 bottom-0 top-14 z-10 bg-black-60 lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-0 z-10 bg-black-60 lg:hidden"
           />
           <aside
             id={panelId}
             aria-label="Navigation mobile"
-            className="fixed bottom-0 left-0 top-14 z-20 flex w-[min(20rem,85vw)] flex-col overflow-y-auto bg-white px-4 pb-6 shadow-lg lg:hidden"
+            className="fixed bottom-0 left-0 top-0 z-20 flex w-[min(20rem,85vw)] flex-col overflow-y-auto bg-white px-4 pb-6 shadow-lg lg:hidden"
           >
-            <div className="flex h-12 shrink-0 items-center justify-between border-b border-black-10">
+            <div className="flex h-14 shrink-0 items-center justify-between border-b border-black-10">
               <Link
                 href={routes.home}
                 onClick={closeMenu}
@@ -85,7 +85,7 @@ export function MobileMenu() {
                   width={92}
                   height={25}
                   unoptimized
-                  className="h-5 w-auto"
+                  className="h-4 w-auto"
                 />
               </Link>
               <button
@@ -94,7 +94,7 @@ export function MobileMenu() {
                 onClick={closeMenu}
                 className="flex size-9 items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
               >
-                <X aria-hidden className="size-5" />
+                <X aria-hidden className="size-6" />
               </button>
             </div>
 
@@ -113,13 +113,6 @@ export function MobileMenu() {
               >
                 <UserRound aria-hidden className="size-4" />
                 Se connecter
-              </Link>
-              <Link
-                href={routes.register}
-                onClick={closeMenu}
-                className="inline-flex h-10 items-center justify-center rounded-xs px-6 text-base font-semibold text-black-80 transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
-              >
-                Créer un compte
               </Link>
             </div>
 

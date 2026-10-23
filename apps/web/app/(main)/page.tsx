@@ -1,28 +1,5 @@
-import { CategorySection } from "./components/home/category-section";
-import { ContributeSection } from "./components/home/contribute-section";
-import { DocumentSection } from "./components/home/document-section";
-import { FaqSection } from "./components/home/faq-section";
-import { Hero } from "./components/home/hero";
+import { HomeContent } from "./components/home/home-content";
 
 export default function HomePage() {
-  return (
-    <>
-      <Hero />
-      <CategorySection />
-      <DocumentSection
-        title="Derniers ajouts"
-        subtitle="Derniers documents ajoutés"
-        tri="recent"
-      />
-      <DocumentSection
-        title="Les plus téléchargés"
-        subtitle="Les plus téléchargés cette semaine"
-        tri="populaire"
-      />
-      <ContributeSection />
-      <div className="mb-12 lg:mb-24">
-        <FaqSection />
-      </div>
-    </>
-  );
+  return <HomeContent />;
 }

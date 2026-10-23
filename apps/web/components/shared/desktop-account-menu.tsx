@@ -52,7 +52,7 @@ export function DesktopAccountMenu() {
         aria-controls={menuId}
         aria-haspopup="true"
         onClick={() => setOpen(true)}
-        className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-md font-semibold text-black-80 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+        className="inline-flex cursor-pointer h-8 items-center gap-2 rounded-md px-3 text-md font-semibold text-black-80 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
       >
         <UserRound aria-hidden className="size-4" />
         Se connecter
@@ -63,7 +63,7 @@ export function DesktopAccountMenu() {
           id={menuId}
           className="absolute right-0 top-full z-50 mt-1 w-64 overflow-hidden rounded-md border border-black-10 bg-white shadow-lg"
         >
-          <p className="border-b border-black-10 px-5 py-4 text-center text-base font-semibold text-black">
+          <p className="border-b border-black-10 px-5 py-4 text-lg font-semibold text-black">
             Bienvenue sur ulDocs !
           </p>
           <nav aria-label="Authentification" className="flex flex-col p-2">
