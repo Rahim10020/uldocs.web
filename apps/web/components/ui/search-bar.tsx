@@ -29,7 +29,7 @@ export function SearchBar({
           className={cn(
             "w-full rounded-md bg-white text-left text-black placeholder:text-black-50 focus:border-black-90 focus:outline-none focus:ring focus:ring-black-90",
             isHero
-              ? "h-18 border border-transparent pl-5 pr-14 text-base shadow-lg"
+              ? "h-18 border border-transparent pl-5 pr-14 text-lg shadow-lg"
               : "h-10 border border-black-60 pl-4 pr-10 text-sm",
           )}
         />
