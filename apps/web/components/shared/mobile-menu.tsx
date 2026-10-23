@@ -98,7 +98,7 @@ export function MobileMenu() {
               </button>
             </div>
 
-            <div className="flex flex-col gap-2 border-b border-black-10 py-4">
+            <div className="flex flex-col gap-4 border-b border-black-10 py-4">
               <ButtonLink
                 href={routes.newDocument}
                 onClick={closeMenu}
@@ -116,13 +116,13 @@ export function MobileMenu() {
               </Link>
             </div>
 
-            <nav className="flex flex-col py-2">
+            <nav className="flex flex-col gap-2 py-2">
               {MOBILE_NAV_LINKS.slice(0, 1).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={closeMenu}
-                  className="rounded-md px-3 py-3 text-base font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                  className="rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
                 >
                   {item.label}
                 </Link>
@@ -130,9 +130,9 @@ export function MobileMenu() {
               <Link
                 href={routes.newDocument}
                 onClick={closeMenu}
-                className="inline-flex items-center gap-2 rounded-md px-3 py-3 text-base font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
               >
-                <Upload aria-hidden className="size-4" />
+                <Upload aria-hidden className="size-5" />
                 Importer
               </Link>
               {MOBILE_NAV_LINKS.slice(1).map((item) => (
@@ -140,7 +140,7 @@ export function MobileMenu() {
                   key={item.href}
                   href={item.href}
                   onClick={closeMenu}
-                  className="rounded-md px-3 py-3 text-base font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                  className="rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
                 >
                   {item.label}
                 </Link>
