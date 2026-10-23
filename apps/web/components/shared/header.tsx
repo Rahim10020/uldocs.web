@@ -29,7 +29,7 @@ export function Header() {
           />
         </Link>
 
-        <div className="min-w-0 flex-1 lg:w-[450px] lg:flex-none">
+        <div className="min-w-0 flex-1 lg:w-112.5 lg:flex-none">
           <SearchBar placeholder="Recherche" />
         </div>
 
@@ -39,19 +39,19 @@ export function Header() {
         >
           <Link
             href={routes.newDocument}
-            className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-semibold text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+            className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-md font-semibold text-black-80 transition-colors hover:text-black-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <Upload aria-hidden className="size-4" />
             Importer
           </Link>
           <Link
             href={routes.login}
-            className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-semibold text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+            className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-md font-semibold text-black-80 transition-colors hover:text-black-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <UserRound aria-hidden className="size-4" />
             Se connecter
           </Link>
-          <ButtonLink href={routes.newDocument} className="ml-1 text-sm">
+          <ButtonLink href={routes.newDocument} className="ml-1 text-md">
             Contribuer
           </ButtonLink>
         </nav>
