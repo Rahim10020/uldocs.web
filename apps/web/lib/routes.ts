@@ -5,6 +5,8 @@
 export const routes = {
 	home: "/",
 	about: "/a-propos",
+	charter: "/charte-de-contribution",
+	report: "/signaler-un-probleme",
 
 	documents: "/documents",
 	newDocument: "/documents/nouveau",

@@ -3,6 +3,7 @@
 @theme {
 	/* --- Base --- */
 	--color-white: #ffffff;
+	--color-surface: #faf9f5;
 	--color-black: #0a1118;
 	--color-primary: #0069ca;
 	--color-success: #255b25;

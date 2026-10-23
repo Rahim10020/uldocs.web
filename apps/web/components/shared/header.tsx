@@ -1,46 +1,61 @@
+import { Upload, UserRound } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { MobileMenu } from "@/components/shared/mobile-menu";
+import { ButtonLink } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { SearchBar } from "@/components/ui/search-bar";
 import { routes } from "@/lib/routes";
 
-const navigation = [
-  { href: routes.documents, label: "Documents" },
-  { href: routes.about, label: "À propos" },
-];
-
 export function Header() {
-  return (
-    <header className="border-b border-black-10 bg-white">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
-        <Link href={routes.home} className="text-lg font-bold text-primary">
-          UL Docs
-        </Link>
+	return (
+		<header className="sticky top-0 z-50 border-b border-black-10 bg-white">
+			<Container className="flex h-[60px] items-center gap-3 sm:gap-6">
+				<MobileMenu />
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-black-70 sm:flex">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-primary"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+				<Link
+					href={routes.home}
+					aria-label="ulDocs — Accueil"
+					className="shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+				>
+					<Image
+						src="/logo.svg"
+						alt="ulDocs"
+						width={92}
+						height={25}
+						priority
+						unoptimized
+						className="h-6 w-auto"
+					/>
+				</Link>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href={routes.login}
-            className="text-sm font-medium text-black-70 transition-colors hover:text-primary"
-          >
-            Connexion
-          </Link>
-          <Link
-            href={routes.register}
-            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-90"
-          >
-            S'inscrire
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
+				<div className="min-w-0 flex-1 lg:w-[450px] lg:flex-none">
+					<SearchBar placeholder="Recherche" />
+				</div>
+
+				<nav
+					aria-label="Actions du compte"
+					className="ml-auto hidden items-center gap-2 lg:flex"
+				>
+					<Link
+						href={routes.newDocument}
+						className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-semibold text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+					>
+						<Upload aria-hidden className="size-4" />
+						Importer
+					</Link>
+					<Link
+						href={routes.login}
+						className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-sm font-semibold text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+					>
+						<UserRound aria-hidden className="size-4" />
+						Se connecter
+					</Link>
+					<ButtonLink href={routes.newDocument} className="ml-1 text-sm">
+						Contribuer
+					</ButtonLink>
+				</nav>
+			</Container>
+		</header>
+	);
 }

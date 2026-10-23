@@ -1,1 +1,4 @@
+--utiliser le mcp de iconscout pour changer toutes les icones utilisees, a voir avec opencode 
+la meilleure maniere de le faire
+
 -- s'assurer que tout est propre desktop + mobile avant de virer au prochain template.
