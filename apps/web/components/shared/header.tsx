@@ -1,6 +1,7 @@
-import { Upload, UserRound } from "lucide-react";
+import { Upload } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { DesktopAccountMenu } from "@/components/shared/desktop-account-menu";
 import { MobileMenu } from "@/components/shared/mobile-menu";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -44,13 +45,7 @@ export function Header() {
             <Upload aria-hidden className="size-4" />
             Importer
           </Link>
-          <Link
-            href={routes.login}
-            className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-md font-semibold text-black-80 transition-colors hover:text-black-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
-          >
-            <UserRound aria-hidden className="size-4" />
-            Se connecter
-          </Link>
+          <DesktopAccountMenu />
           <ButtonLink href={routes.newDocument} className="ml-1 text-md">
             Contribuer
           </ButtonLink>
