@@ -1,8 +1,1 @@
-- voila ce qu'on va garder de scribd:
-    1- la structure
-    2- le header, le style des boutons sauf qu'on va mettre ma couleur primaire
-    3- La searchbar
-    4- le faq
-    5- la partie ou on upload les documents sur la home page (scribd.html)
-    6- le footer.
-    comme tu le sais bien evidemment, on ne vas pas mettre les contenu textuels de scribd
+-- s'assurer que tout est propre desktop + mobile avant de virer au prochain template.
