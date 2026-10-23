@@ -20,7 +20,9 @@ export default function HomePage() {
         tri="populaire"
       />
       <ContributeSection />
-      <FaqSection />
+      <div className="mb-12 lg:mb-24">
+        <FaqSection />
+      </div>
     </>
   );
 }
