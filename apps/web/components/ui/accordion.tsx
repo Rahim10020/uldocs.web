@@ -41,7 +41,7 @@ export function Accordion({
                 <Plus
                   aria-hidden
                   className={cn(
-                    "size-8 shrink-0 text-black transition-transform",
+                    "size-6 shrink-0 text-black transition-transform",
                     isOpen && "rotate-45",
                   )}
                 />
