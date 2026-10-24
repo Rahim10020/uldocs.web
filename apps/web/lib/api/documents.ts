@@ -43,3 +43,22 @@ export function createDocument(formData: FormData): Promise<DocumentDetail> {
 export function deleteDocument(id: number): Promise<void> {
 	return apiFetch<void>(endpoints.documents.byId(id), { method: "DELETE" });
 }
+
+/** POST /documents/:id/favorite */
+export function addFavorite(id: number): Promise<void> {
+	return apiFetch<void>(endpoints.documents.favorite(id), { method: "POST" });
+}
+
+/** DELETE /documents/:id/favorite */
+export function removeFavorite(id: number): Promise<void> {
+	return apiFetch<void>(endpoints.documents.favorite(id), {
+		method: "DELETE",
+	});
+}
+
+/** POST /documents/:id/download */
+export function downloadDocument(id: number): Promise<{ url: string }> {
+	return apiFetch<{ url: string }>(endpoints.documents.download(id), {
+		method: "POST",
+	});
+}

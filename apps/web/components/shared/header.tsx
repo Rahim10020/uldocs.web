@@ -1,7 +1,9 @@
 import { Upload } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { DesktopAccountMenu } from "@/components/shared/desktop-account-menu";
+import { HeaderSearch } from "@/components/shared/header-search";
 import { MobileMenu } from "@/components/shared/mobile-menu";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -31,7 +33,9 @@ export function Header() {
         </Link>
 
         <div className="min-w-0 flex-1 lg:w-112.5 lg:flex-none">
-          <SearchBar placeholder="Recherche" />
+          <Suspense fallback={<SearchBar placeholder="Recherche" />}>
+            <HeaderSearch />
+          </Suspense>
         </div>
 
         <nav

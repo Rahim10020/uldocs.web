@@ -23,6 +23,7 @@ export function DocumentSection({
 }: DocumentSectionProps) {
   const { data, isPending, isError } = useDocuments({ tri, pageSize: 12 });
   const documents = data?.data ?? [];
+  const meta = tri === "populaire" ? "downloads" : "rating";
 
   return (
     <section className="py-10 sm:py-12">
@@ -30,9 +31,9 @@ export function DocumentSection({
         <SectionHeading title={title} subtitle={subtitle} />
 
         {isPending ? (
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-6">
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5">
             {Array.from(
-              { length: 6 },
+              { length: 5 },
               (_, index) => `document-skeleton-${index}`,
             ).map((key) => (
               <DocumentCardSkeleton key={key} />
@@ -49,7 +50,7 @@ export function DocumentSection({
         ) : (
           <Carousel ariaLabel={title} className="mt-8">
             {documents.map((document) => (
-              <DocumentCard key={document.id} document={document} />
+              <DocumentCard key={document.id} document={document} meta={meta} />
             ))}
           </Carousel>
         )}

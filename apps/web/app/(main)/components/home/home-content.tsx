@@ -1,11 +1,11 @@
 "use client";
 
+import { CategorySection } from "@/components/shared/category-section";
+import { DocumentSection } from "@/components/shared/document-section";
 import { Container } from "@/components/ui/container";
 import { useAcademicTree } from "@/hooks/use-academic-tree";
 import { useDocuments } from "@/hooks/use-documents";
-import { CategorySection } from "./category-section";
 import { ContributeSection } from "./contribute-section";
-import { DocumentSection } from "./document-section";
 import { FaqSection } from "./faq-section";
 import { Hero } from "./hero";
 

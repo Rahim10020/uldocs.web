@@ -39,9 +39,9 @@ export function CategorySection() {
         />
 
         {isPending ? (
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-6">
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5">
             {Array.from(
-              { length: 6 },
+              { length: 5 },
               (_, index) => `category-skeleton-${index}`,
             ).map((key) => (
               <CategoryCardSkeleton key={key} />

@@ -64,6 +64,7 @@ export type RegisterPayload = {
 export type DocumentListItem = {
 	id: number;
 	titre: string;
+	description: string | null;
 	type: TypeDocument;
 	format: FormatDocument;
 	anneeAcademique: string;
@@ -71,6 +72,8 @@ export type DocumentListItem = {
 	nbVues: number;
 	nbTelechargements: number;
 	noteMoyenne: number;
+	/** `true` si l'utilisateur connecté a mis le document en favori. */
+	estFavori: boolean;
 	dateUpload: string;
 	ue: { id: number; nom: string };
 	niveau: string;
@@ -87,7 +90,6 @@ export type DocumentListItem = {
 
 /** Document complet (GET /documents/:id). */
 export type DocumentDetail = DocumentListItem & {
-	description: string | null;
 	tailleKo: number;
 	nbPages: number | null;
 	langue: string;

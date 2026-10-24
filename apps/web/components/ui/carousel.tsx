@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Carrousel horizontal responsive.
- * 2 cartes en mobile, 3 en md, 4 en lg, 6 en xl (métriques Scribd).
+ * 2 cartes en mobile, 3 en md, 4 en lg, 5 en xl.
  */
 export function Carousel({
   children,
@@ -79,7 +79,7 @@ export function Carousel({
       <div
         ref={scrollRef}
         onScroll={update}
-        className="grid snap-x snap-mandatory auto-cols-[calc((100%-1rem)/2)] grid-flow-col gap-4 overflow-x-auto pb-1 scrollbar-none md:auto-cols-[calc((100%-3rem)/3)] md:gap-6 lg:auto-cols-[calc((100%-4.5rem)/4)] xl:auto-cols-[calc((100%-7.5rem)/6)] [&::-webkit-scrollbar]:hidden *:snap-start"
+        className="grid snap-x snap-mandatory auto-cols-[calc((100%-1rem)/2)] grid-flow-col gap-4 overflow-x-auto pb-1 scrollbar-none md:auto-cols-[calc((100%-3rem)/3)] md:gap-6 lg:auto-cols-[calc((100%-4.5rem)/4)] xl:auto-cols-[calc((100%-6rem)/5)] [&::-webkit-scrollbar]:hidden *:snap-start"
       >
         {children}
       </div>

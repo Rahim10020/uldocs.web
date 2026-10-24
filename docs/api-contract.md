@@ -118,6 +118,7 @@ jointures côté client.
 export type DocumentListItem = {
   id: number;
   titre: string;
+  description: string | null;
   type: TypeDocument;
   format: FormatDocument;
   anneeAcademique: string;
@@ -125,6 +126,8 @@ export type DocumentListItem = {
   nbVues: number;
   nbTelechargements: number;
   noteMoyenne: number;
+  /** `true` si l'utilisateur connecté a mis le document en favori. */
+  estFavori: boolean;
   dateUpload: string;
   ue: { id: number; nom: string };
   niveau: string; // libellé, ex. "L1"
@@ -144,7 +147,6 @@ export type DocumentListItem = {
 
 ```ts
 export type DocumentDetail = DocumentListItem & {
-  description: string | null;
   tailleKo: number;
   nbPages: number | null;
   langue: string;
@@ -238,12 +240,17 @@ long).
 | `PATCH`  | `/documents/:id`          | `DocumentUpdatePayload`   | `DocumentDetail`              |
 | `DELETE` | `/documents/:id`          | —                         | `204`                         |
 | `POST`   | `/documents/:id/download` | —                         | `{ url: string }`             |
+| `POST`   | `/documents/:id/favorite` | —                         | `204`                         |
+| `DELETE` | `/documents/:id/favorite` | —                         | `204`                         |
 | `POST`   | `/documents/:id/report`   | `{ motif, commentaire? }` | `Signalement`                 |
 
 - Les listes publiques ne renvoient que `statut = "valide"`.
 - L'auteur voit aussi ses documents `en_attente` dans `/documents/mine`.
 - `POST /documents/:id/download` exige une session (401 sinon) et enregistre
   une ligne `TELECHARGEMENT`. L'aperçu reste public.
+- `estFavori` vaut `false` pour un visiteur non connecté.
+- `POST` / `DELETE /documents/:id/favorite` exigent une session (401 sinon) et
+  sont idempotents.
 - Upload : `pdf`, `docx`, `pptx`, `image`, **20 Mo max**, champ
   `certification = true` obligatoire. Le document est créé en `en_attente`.
 
