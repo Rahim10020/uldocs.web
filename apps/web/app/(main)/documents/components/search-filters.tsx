@@ -390,7 +390,7 @@ function MobileFilterSheet({
           >
             Réinitialiser
           </Button>
-          <Button onClick={onClose} className="flex-[2]">
+          <Button onClick={onClose} className="flex-2">
             Voir les résultats
           </Button>
         </div>
