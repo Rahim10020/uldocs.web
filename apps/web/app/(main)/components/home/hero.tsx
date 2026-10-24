@@ -5,7 +5,7 @@ import { SearchBar } from "@/components/ui/search-bar";
 export function Hero() {
   return (
     <section className="bg-black">
-      <Container className="pb-16 sm:pb-20">
+      <Container className="pb-16 sm:pb-24">
         <div className="relative mx-auto max-w-7xl">
           <div className="relative h-50 overflow-hidden sm:h-75 lg:h-87.5">
             <Image
@@ -25,7 +25,7 @@ export function Hero() {
             />
           </div>
         </div>
-        <div className="mt-16 mx-auto max-w-4xl">
+        <div className="mt-18 mx-auto max-w-4xl">
           <h1 className="text-balance text-3xl font-bold text-center leading-tight text-white sm:text-4xl lg:text-5xl">
             Tous les documents de l&apos;Université de Lomé, au même endroit.
           </h1>

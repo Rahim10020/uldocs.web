@@ -144,7 +144,7 @@ export function SearchSelect({
           id={listboxId}
           role="listbox"
           aria-label={label}
-          className="absolute left-0 top-full z-50 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-black-10 bg-white p-1 shadow-lg scrollbar-thin [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black-20"
+					className="absolute left-0 top-full z-50 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-black-10 bg-white p-1 shadow-lg [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black-20"
         >
           {allOptions.map((option, index) => {
             const selected = option.value === value;
