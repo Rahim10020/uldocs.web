@@ -26,10 +26,10 @@ export function Hero() {
           </div>
         </div>
         <div className="mt-16 mx-auto max-w-4xl">
-          <h1 className="text-balance text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h1 className="text-balance text-3xl font-bold text-center leading-tight text-white sm:text-4xl lg:text-5xl">
             Tous les documents de l&apos;Université de Lomé, au même endroit.
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/70 sm:text-lg">
+          <p className="mt-4 mx-auto max-w-sm lg:max-w-lg text-base text-center text-white/70 sm:text-lg">
             Cours, sujets corrigés, anciennes épreuves et résumés partagés par
             les étudiants, pour les étudiants.
           </p>
