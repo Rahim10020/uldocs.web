@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
-* {
-  scrollbar-width: thin;
-}
-
-*::-webkit-scrollbar {
-  width: 4px;
-  height: 6px;
+@layer base {
+  * {
+    scrollbar-width: thin;
+  }
+  *::-webkit-scrollbar {
+    width: 4px;
+    height: 6px;
+  }
 }
 
 @theme {
