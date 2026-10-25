@@ -236,6 +236,7 @@ long).
 | `GET`    | `/documents`              | `DocumentSearchParams`    | `Paginated<DocumentListItem>` |
 | `GET`    | `/documents/:id`          | —                         | `DocumentDetail`              |
 | `GET`    | `/documents/mine`         | `page`, `pageSize`        | `Paginated<DocumentListItem>` |
+| `GET`    | `/documents/favorites`    | `page`, `pageSize`        | `Paginated<DocumentListItem>` |
 | `POST`   | `/documents`              | `multipart/form-data`     | `DocumentDetail`              |
 | `PATCH`  | `/documents/:id`          | `DocumentUpdatePayload`   | `DocumentDetail`              |
 | `DELETE` | `/documents/:id`          | —                         | `204`                         |
@@ -246,6 +247,8 @@ long).
 
 - Les listes publiques ne renvoient que `statut = "valide"`.
 - L'auteur voit aussi ses documents `en_attente` dans `/documents/mine`.
+- `GET /documents/favorites` exige une session (401 sinon) et ne renvoie que
+  les documents validés, triés du plus récent au plus ancien.
 - `POST /documents/:id/download` exige une session (401 sinon) et enregistre
   une ligne `TELECHARGEMENT`. L'aperçu reste public.
 - `estFavori` vaut `false` pour un visiteur non connecté.

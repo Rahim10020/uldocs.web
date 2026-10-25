@@ -34,6 +34,27 @@ function patchCache(
 	return data.id === id ? { ...data, estFavori } : data;
 }
 
+function removeFromFavorites(
+	data: Paginated<DocumentListItem> | undefined,
+	id: number,
+): Paginated<DocumentListItem> | undefined {
+	if (!data) {
+		return data;
+	}
+
+	const nextData = data.data.filter((document) => document.id !== id);
+
+	if (nextData.length === data.data.length) {
+		return data;
+	}
+
+	return {
+		...data,
+		data: nextData,
+		total: Math.max(0, data.total - 1),
+	};
+}
+
 /** Ajoute ou retire un document des favoris, avec mise à jour optimiste. */
 export function useFavoriteDocument() {
 	const queryClient = useQueryClient();
@@ -52,6 +73,13 @@ export function useFavoriteDocument() {
 				{ queryKey: queryKeys.documents.all },
 				(data) => patchCache(data, id, estFavori),
 			);
+
+			if (!estFavori) {
+				queryClient.setQueriesData<Paginated<DocumentListItem>>(
+					{ queryKey: queryKeys.documents.favoritesRoot },
+					(data) => removeFromFavorites(data, id),
+				);
+			}
 
 			return { snapshot };
 		},

@@ -64,7 +64,7 @@ export function CategorySection() {
         )}
 
         <Link
-          href={routes.documents}
+          href={routes.categories}
           className="mt-6 inline-flex items-center gap-1 text-md font-semibold text-black underline decoration-black-20 underline-offset-4 transition-colors hover:text-primary"
         >
           Voir toutes les facultés, écoles, instituts…
