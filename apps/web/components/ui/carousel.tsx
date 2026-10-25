@@ -89,9 +89,9 @@ export function Carousel({
           type="button"
           onClick={() => scroll(-1)}
           aria-label="Faire défiler vers la gauche"
-          className="absolute cursor-pointer left-2 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black-10 bg-white text-black shadow-md transition-colors hover:text-primary md:-left-4 xl:-left-10"
+          className="absolute z-20 cursor-pointer left-2 top-1/2 flex size-14 lg:size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black-10 bg-white text-black shadow-md transition-colors hover:text-primary md:-left-4 xl:-left-10"
         >
-          <ChevronLeft aria-hidden className="size-5" />
+          <ChevronLeft aria-hidden className="size-6 lg:size-5" />
         </button>
       ) : null}
 
@@ -100,7 +100,7 @@ export function Carousel({
           type="button"
           onClick={() => scroll(1)}
           aria-label="Faire défiler vers la droite"
-          className="absolute cursor-pointer right-2 top-1/2 flex size-14 lg:size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black-10 bg-white text-black shadow-md transition-colors hover:text-primary md:-right-4 xl:-right-10"
+          className="absolute z-20 cursor-pointer right-2 top-1/2 flex size-14 lg:size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black-10 bg-white text-black shadow-md transition-colors hover:text-primary md:-right-4 xl:-right-10"
         >
           <ChevronRight aria-hidden className="size-6 lg:size-5" />
         </button>
