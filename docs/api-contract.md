@@ -121,6 +121,7 @@ export type DocumentListItem = {
   description: string | null;
   type: TypeDocument;
   format: FormatDocument;
+  nbPages: number | null;
   anneeAcademique: string;
   fichierUrl: string;
   nbVues: number;
@@ -146,14 +147,23 @@ export type DocumentListItem = {
 ### 4.2 `DocumentDetail`
 
 ```ts
+export type VoteDocument = "utile" | "inutile";
+
+export type DocumentReaction = {
+  votesUtiles: number;
+  votesInutiles: number;
+  /** Vote de l'utilisateur connecté, ou `null` s'il n'a pas voté. */
+  voteUtilisateur: VoteDocument | null;
+};
+
 export type DocumentDetail = DocumentListItem & {
   tailleKo: number;
-  nbPages: number | null;
   langue: string;
   statut: StatutDocument;
   dateMiseAJour: string;
   enseignant: { id: number; nom: string } | null;
   tags: { id: number; nom: string }[];
+  reaction: DocumentReaction;
 };
 ```
 
@@ -243,6 +253,7 @@ long).
 | `POST`   | `/documents/:id/download` | —                         | `{ url: string }`             |
 | `POST`   | `/documents/:id/favorite` | —                         | `204`                         |
 | `DELETE` | `/documents/:id/favorite` | —                         | `204`                         |
+| `PUT`    | `/documents/:id/reaction` | `{ valeur: VoteDocument \| null }` | `DocumentReaction` |
 | `POST`   | `/documents/:id/report`   | `{ motif, commentaire? }` | `Signalement`                 |
 
 - Les listes publiques ne renvoient que `statut = "valide"`.
@@ -252,6 +263,9 @@ long).
 - `POST /documents/:id/download` exige une session (401 sinon) et enregistre
   une ligne `TELECHARGEMENT`. L'aperçu reste public.
 - `estFavori` vaut `false` pour un visiteur non connecté.
+- `PUT /documents/:id/reaction` exige une session (401 sinon). La valeur
+  `null` retire le vote. Un utilisateur ne peut avoir qu'une réaction par
+  document ; changer de valeur déplace son vote.
 - `POST` / `DELETE /documents/:id/favorite` exigent une session (401 sinon) et
   sont idempotents.
 - Upload : `pdf`, `docx`, `pptx`, `image`, **20 Mo max**, champ

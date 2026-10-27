@@ -6,6 +6,8 @@ import {
   type TriDocuments,
   TYPES_DOCUMENT,
   type TypeDocument,
+  VOTES_DOCUMENT,
+  type VoteDocument,
 } from "shared";
 import { ApiError } from "../api/errors";
 import { mockAcademic } from "./academic";
@@ -16,6 +18,7 @@ import {
   recordMockDownload,
   searchMockDocuments,
   setMockFavorite,
+  setMockReaction,
 } from "./documents";
 import { CURRENT_USER } from "./users";
 
@@ -157,6 +160,39 @@ export async function mockRequest(
     }
 
     return undefined;
+  }
+
+  const reactionMatch = /^\/documents\/(\d+)\/reaction$/.exec(pathname);
+
+  if (method === "PUT" && reactionMatch) {
+    let body: { valeur?: unknown } = {};
+
+    try {
+      body = init?.body ? JSON.parse(String(init.body)) : {};
+    } catch {
+      throw new ApiError("Corps de requête invalide", 400, "VALIDATION_ERROR");
+    }
+
+    const valeur = body.valeur;
+
+    if (
+      valeur !== null &&
+      (typeof valeur !== "string" ||
+        !VOTES_DOCUMENT.includes(valeur as VoteDocument))
+    ) {
+      throw new ApiError("Réaction invalide", 400, "VALIDATION_ERROR");
+    }
+
+    const reaction = setMockReaction(
+      Number(reactionMatch[1]),
+      valeur as VoteDocument | null,
+    );
+
+    if (!reaction) {
+      throw new ApiError("Document introuvable", 404, "NOT_FOUND");
+    }
+
+    return reaction;
   }
 
   const downloadMatch = /^\/documents\/(\d+)\/download$/.exec(pathname);

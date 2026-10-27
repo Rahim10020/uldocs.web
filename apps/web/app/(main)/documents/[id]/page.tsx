@@ -1,14 +1,17 @@
+import { notFound } from "next/navigation";
+import { DocumentDetailPage } from "./components/document-detail-page";
+
 export default async function DocumentPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const numericId = Number(id);
 
-  return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-12">
-      <h1 className="text-2xl font-bold text-black">Document #{id}</h1>
-      <p className="mt-2 text-black-60">Détail et aperçu PDF à venir.</p>
-    </div>
-  );
+  if (!Number.isInteger(numericId) || numericId <= 0) {
+    notFound();
+  }
+
+  return <DocumentDetailPage key={numericId} documentId={numericId} />;
 }

@@ -5,6 +5,7 @@ import type {
 	StatutDocument,
 	TriDocuments,
 	TypeDocument,
+	VoteDocument,
 } from "./enums.js";
 
 /** Standard API response wrapper */
@@ -67,6 +68,7 @@ export type DocumentListItem = {
 	description: string | null;
 	type: TypeDocument;
 	format: FormatDocument;
+	nbPages: number | null;
 	anneeAcademique: string;
 	fichierUrl: string;
 	nbVues: number;
@@ -88,15 +90,27 @@ export type DocumentListItem = {
 	uploader: { id: number; nom: string };
 };
 
+/** Compteurs et vote de l'utilisateur courant sur un document. */
+export type DocumentReaction = {
+	votesUtiles: number;
+	votesInutiles: number;
+	voteUtilisateur: VoteDocument | null;
+};
+
+/** Corps de PUT /documents/:id/reaction. */
+export type DocumentReactionPayload = {
+	valeur: VoteDocument | null;
+};
+
 /** Document complet (GET /documents/:id). */
 export type DocumentDetail = DocumentListItem & {
 	tailleKo: number;
-	nbPages: number | null;
 	langue: string;
 	statut: StatutDocument;
 	dateMiseAJour: string;
 	enseignant: { id: number; nom: string } | null;
 	tags: { id: number; nom: string }[];
+	reaction: DocumentReaction;
 };
 
 /** Paramètres de GET /documents. */

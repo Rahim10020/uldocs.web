@@ -1,10 +1,12 @@
 import type {
   DocumentDetail,
   DocumentListItem,
+  DocumentReaction,
   DocumentSearchParams,
   Paginated,
   StatutDocument,
   TypeDocument,
+  VoteDocument,
 } from "shared";
 import { getUeContextByName } from "./academic";
 import { CURRENT_USER, MOCK_USERS } from "./users";
@@ -22,6 +24,86 @@ const MOCK_FILE_URL = "/downloads/art-de-la-guerre-sun-tzu.pdf";
 
 /** Favoris de l'utilisateur courant (session simulée). */
 const FAVORITE_IDS = new Set<number>([1, 5, 12]);
+
+type MockReactionState = {
+  votesUtiles: number;
+  votesInutiles: number;
+  votes: Map<number, VoteDocument>;
+};
+
+/** Réactions en mémoire, indexées par document. */
+const MOCK_REACTIONS = new Map<number, MockReactionState>();
+
+function getReactionState(documentId: number): MockReactionState {
+  const existing = MOCK_REACTIONS.get(documentId);
+
+  if (existing) {
+    return existing;
+  }
+
+  const state: MockReactionState = {
+    votesUtiles: 0,
+    votesInutiles: 0,
+    votes: new Map(),
+  };
+
+  MOCK_REACTIONS.set(documentId, state);
+
+  return state;
+}
+
+/** Réinitialise les réactions (tests et session de démonstration). */
+export function resetMockReactions(): void {
+  MOCK_REACTIONS.clear();
+}
+
+/** Réaction de l'utilisateur courant pour un document. */
+export function getMockReaction(documentId: number): DocumentReaction {
+  const state = getReactionState(documentId);
+
+  return {
+    votesUtiles: state.votesUtiles,
+    votesInutiles: state.votesInutiles,
+    voteUtilisateur: state.votes.get(CURRENT_USER.id) ?? null,
+  };
+}
+
+/** PUT /documents/:id/reaction — idempotent, `null` retire le vote. */
+export function setMockReaction(
+  documentId: number,
+  valeur: VoteDocument | null,
+): DocumentReaction | undefined {
+  const document = MOCK_DOCUMENTS.find((item) => item.id === documentId);
+
+  if (!document) {
+    return undefined;
+  }
+
+  const state = getReactionState(documentId);
+  const previous = state.votes.get(CURRENT_USER.id) ?? null;
+
+  if (previous === "utile") {
+    state.votesUtiles = Math.max(0, state.votesUtiles - 1);
+  }
+
+  if (previous === "inutile") {
+    state.votesInutiles = Math.max(0, state.votesInutiles - 1);
+  }
+
+  state.votes.delete(CURRENT_USER.id);
+
+  if (valeur === "utile") {
+    state.votesUtiles += 1;
+    state.votes.set(CURRENT_USER.id, valeur);
+  }
+
+  if (valeur === "inutile") {
+    state.votesInutiles += 1;
+    state.votes.set(CURRENT_USER.id, valeur);
+  }
+
+  return getMockReaction(documentId);
+}
 
 const TYPE_LABEL: Record<TypeDocument, string> = {
   cours: "cours",
@@ -249,6 +331,11 @@ function buildDocuments(): DocumentDetail[] {
       uploader: { id: uploader.id, nom: uploader.nom },
       enseignant: null,
       tags: [],
+      reaction: {
+        votesUtiles: 0,
+        votesInutiles: 0,
+        voteUtilisateur: null,
+      },
     };
   });
 }
@@ -262,6 +349,7 @@ export function toDocumentListItem(doc: DocumentDetail): DocumentListItem {
     description: doc.description,
     type: doc.type,
     format: doc.format,
+    nbPages: doc.nbPages,
     anneeAcademique: doc.anneeAcademique,
     fichierUrl: doc.fichierUrl,
     nbVues: doc.nbVues,
@@ -282,7 +370,11 @@ export function getMockDocument(id: number): DocumentDetail | undefined {
   const document = MOCK_DOCUMENTS.find((doc) => doc.id === id);
 
   return document
-    ? { ...document, estFavori: FAVORITE_IDS.has(document.id) }
+    ? {
+        ...document,
+        estFavori: FAVORITE_IDS.has(document.id),
+        reaction: getMockReaction(document.id),
+      }
     : undefined;
 }
 

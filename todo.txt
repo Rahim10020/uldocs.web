@@ -6,3 +6,14 @@ n'est pas le cas, on l'invite a se connecter.
 -- les descriptions des facultes, ecoles, instituts, filieres(de chaque categories) et 
 ues sont a titre de placeholder juste pour faire le design. donc tu vas generer 
 des descriptions appropriees.
+
+voila un probleme :
+Learn more: https://nextjs.org/docs/messages/instant-shell-url-data
+    at DocumentPage (app/(main)/documents/[id]/page.tsx:9:17)
+   7 |  params: Promise<{ id: string }>;
+   8 | }) {
+>  9 |  const { id } = await params;
+     |                ^
+  10 |  const numericId = Number(id);
+  11 |
+  12 |  if (!Number.isInteger(numericId) || numericId <= ...

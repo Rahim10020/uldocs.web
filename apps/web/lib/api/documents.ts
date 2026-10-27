@@ -1,6 +1,8 @@
 import type {
   DocumentDetail,
   DocumentListItem,
+  DocumentReaction,
+  DocumentReactionPayload,
   DocumentSearchParams,
   Paginated,
 } from "shared";
@@ -75,5 +77,16 @@ export function removeFavorite(id: number): Promise<void> {
 export function downloadDocument(id: number): Promise<{ url: string }> {
   return apiFetch<{ url: string }>(endpoints.documents.download(id), {
     method: "POST",
+  });
+}
+
+/** PUT /documents/:id/reaction */
+export function setDocumentReaction(
+  id: number,
+  payload: DocumentReactionPayload,
+): Promise<DocumentReaction> {
+  return apiFetch<DocumentReaction>(endpoints.documents.reaction(id), {
+    method: "PUT",
+    body: JSON.stringify(payload),
   });
 }

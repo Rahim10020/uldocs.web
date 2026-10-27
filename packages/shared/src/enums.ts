@@ -40,6 +40,10 @@ export type TypeDocument = (typeof TYPES_DOCUMENT)[number];
 export const FORMATS_DOCUMENT = ["pdf", "docx", "pptx", "image"] as const;
 export type FormatDocument = (typeof FORMATS_DOCUMENT)[number];
 
+/** Réaction binaire d'un utilisateur sur un document. */
+export const VOTES_DOCUMENT = ["utile", "inutile"] as const;
+export type VoteDocument = (typeof VOTES_DOCUMENT)[number];
+
 /** Motifs de signalement d'un document. */
 export const MOTIFS_SIGNALEMENT = [
 	"contenu_illegal",

@@ -32,3 +32,6 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# PDF.js worker (copié par apps/web/scripts/copy-pdf-worker.mjs)
+apps/web/public/pdf.worker.min.mjs

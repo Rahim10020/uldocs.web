@@ -3,17 +3,24 @@ import { cn } from "@/lib/utils";
 
 /** Conteneur central du site : 1248px max, gouttière Scribd. */
 export function Container({
-	children,
-	className,
+  children,
+  className,
+  fluid = false,
 }: {
-	children: ReactNode;
-	className?: string;
+  children: ReactNode;
+  className?: string;
+  /** Pleine largeur avec gouttières, pour la fiche document. */
+  fluid?: boolean;
 }) {
-	return (
-		<div
-			className={cn("mx-auto w-full max-w-[1248px] px-4 sm:px-6", className)}
-		>
-			{children}
-		</div>
-	);
+  return (
+    <div
+      className={cn(
+        "mx-auto w-full px-4 sm:px-6",
+        fluid ? "max-w-none lg:px-8" : "max-w-[1248px]",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
 }

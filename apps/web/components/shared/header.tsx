@@ -4,16 +4,16 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { DesktopAccountMenu } from "@/components/shared/desktop-account-menu";
 import { HeaderSearch } from "@/components/shared/header-search";
+import { HeaderShell } from "@/components/shared/header-shell";
 import { MobileMenu } from "@/components/shared/mobile-menu";
 import { ButtonLink } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
 import { SearchBar } from "@/components/ui/search-bar";
 import { routes } from "@/lib/routes";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-black-10 bg-white">
-      <Container className="flex h-14 items-center gap-3 sm:gap-6">
+      <HeaderShell className="flex h-14 items-center gap-3 sm:gap-6">
         <MobileMenu />
 
         <Link
@@ -61,7 +61,7 @@ export function Header() {
             Contribuer
           </ButtonLink>
         </nav>
-      </Container>
+      </HeaderShell>
     </header>
   );
 }
