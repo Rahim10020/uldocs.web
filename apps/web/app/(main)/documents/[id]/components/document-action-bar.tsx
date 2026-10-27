@@ -27,19 +27,25 @@ export function DocumentActionBar({
         className,
       )}
     >
-      <DocumentDownloadButton
-        documentId={document.id}
-        fileName={document.titre}
-        className="min-w-42 flex-1 sm:flex-none"
-      />
-
-      <div className="ml-auto flex items-center gap-2 lg:gap-4">
+      <div className="flex items-center gap-2 lg:gap-4">
+        <DocumentDownloadButton
+          documentId={document.id}
+          fileName={document.titre}
+          className="min-w-42 flex-1 sm:flex-none"
+        />
         <FavoriteButton
           documentId={document.id}
           estFavori={document.estFavori}
-          className="size-10"
+          className="size-10 hidden lg:block"
         />
-        <DocumentShareButton onShare={onShare} isCopied={isCopied} />
+        <DocumentShareButton
+          onShare={onShare}
+          isCopied={isCopied}
+          className="hidden lg:block"
+        />
+      </div>
+
+      <div className="ml-auto">
         <button
           type="button"
           onClick={onFullscreen}
