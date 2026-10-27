@@ -1,6 +1,25 @@
 --utiliser le mcp de iconscout pour changer toutes les icones utilisees, a voir avec opencode 
 la meilleure maniere de le faire
 
+--Il y a deux façons de faire :
+
+La méthode "facile" : Tu stockes le PDF complet sur R2, et c'est react-pdf côté frontend qui 
+est configuré pour n'afficher que les 3 premières pages (numPages={3}). C'est facile, 
+mais un petit malin pourrait inspecter le réseau et télécharger le PDF directement 
+depuis R2.
+
+La méthode "sécurisée" (Recommandée) : C'est ton pote backend qui s'en occupe. 
+Quand le frontend demande l'URL de l'aperçu, le backend génère un nouveau PDF contenant 
+seulement les 3 premières pages (à la volée), ou génère des images (thumbnails) 
+des 3 pages. Le frontend n'a jamais accès au fichier PDF complet. Le lien de 
+téléchargement complet n'est généré (via une URL pré-signée R2) que lorsque 
+l'utilisateur clique sur "Télécharger".
+
+L'option la plus simple pour vous deux :
+Vous stockez le PDF complet sur R2. Pour la page de détail, vous utilisez l'URL R2 
+dans react-pdf, mais vous forcez l'affichage à 3 pages. C'est suffisant pour le MVP. 
+(Ne vous cassez pas la tête avec la génération de mini-PDF pour l'instant).
+
 -- avant de sauvegarder un document (bookmark) la personne dois etre connecte. si ce 
 n'est pas le cas, on l'invite a se connecter.
 -- les descriptions des facultes, ecoles, instituts, filieres(de chaque categories) et 

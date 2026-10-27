@@ -61,44 +61,46 @@ export function DocumentTop({
       </div>
 
       <div className="flex flex-col">
-        <h1
-          id="document-title"
-          className="order-2 mt-2 text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl lg:order-1 lg:mt-0"
-        >
-          {document.titre}
-        </h1>
+        <div className="flex flex-col lg:flex-row items-start gap-0 lg:gap-4">
+          <h1
+            id="document-title"
+            className="order-2 mt-2 text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl lg:order-1 lg:mt-0"
+          >
+            {document.titre}
+          </h1>
 
-        <div className="order-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-black-60 lg:order-2 lg:mt-3">
-          <span className="inline-flex items-center gap-1">
-            <Star aria-hidden className="size-3 fill-current text-black" />
-            <span className="font-medium text-black">
-              {formatRating(document.noteMoyenne)}
+          <div className="order-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-black-60 lg:order-2 lg:mt-3">
+            <span className="inline-flex items-center gap-1">
+              <Star aria-hidden className="size-3 fill-current text-black" />
+              <span className="font-medium text-black">
+                {formatRating(document.noteMoyenne)}
+              </span>
+              <span className="sr-only">note moyenne</span>
             </span>
-            <span className="sr-only">note moyenne</span>
-          </span>
-          <span aria-hidden className="text-black-30">
-            ·
-          </span>
-          <span className="inline-flex items-center gap-1">
-            <Download aria-hidden className="size-4" />
-            {formatCount(document.nbTelechargements)}
-            <span className="sr-only">téléchargements</span>
-          </span>
-          {pageCount ? (
-            <>
-              <span aria-hidden className="text-black-30">
-                ·
-              </span>
-              <span className="inline-flex items-center gap-1">
-                <FileText aria-hidden className="size-4" />
-                {pageCount} pages
-              </span>
-            </>
-          ) : null}
-          <span aria-hidden className="text-black-30">
-            ·
-          </span>
-          <span>{formatFileSize(document.tailleKo)}</span>
+            <span aria-hidden className="text-black-30">
+              ·
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <Download aria-hidden className="size-4" />
+              {formatCount(document.nbTelechargements)}
+              <span className="sr-only">téléchargements</span>
+            </span>
+            {pageCount ? (
+              <>
+                <span aria-hidden className="text-black-30">
+                  ·
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <FileText aria-hidden className="size-4" />
+                  {pageCount} pages
+                </span>
+              </>
+            ) : null}
+            <span aria-hidden className="text-black-30">
+              ·
+            </span>
+            <span>{formatFileSize(document.tailleKo)}</span>
+          </div>
         </div>
 
         <p className="order-3 mt-2 text-sm text-black-60 lg:mt-1.5">
