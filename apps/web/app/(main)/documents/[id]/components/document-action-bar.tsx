@@ -27,11 +27,11 @@ export function DocumentActionBar({
         className,
       )}
     >
-      <div className="flex items-center gap-2 lg:gap-4">
+      <div className="flex min-w-0 flex-1 items-center gap-2 lg:gap-4">
         <DocumentDownloadButton
           documentId={document.id}
           fileName={document.titre}
-          className="min-w-42 flex-1 sm:flex-none"
+          className="h-10 rounded-sm lg:rounded-md min-w-0 flex-1 sm:min-w-42 sm:flex-none"
         />
         <FavoriteButton
           documentId={document.id}
@@ -51,7 +51,7 @@ export function DocumentActionBar({
           onClick={onFullscreen}
           aria-label="Ouvrir l'aperçu en plein écran"
           title="Plein écran"
-          className="flex size-10 items-center justify-center rounded text-black-60 transition-colors bg-primary-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+          className="flex size-10 cursor-pointer items-center justify-center rounded text-black-60 transition-colors bg-primary-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
         >
           <Maximize2 aria-hidden className="size-6" />
         </button>
