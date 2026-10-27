@@ -47,7 +47,7 @@ export function DocumentDetailPage({ documentId }: { documentId: number }) {
 
   return (
     <>
-      <Container fluid className="pb-24 pt-5 sm:pt-6 lg:pb-8 lg:pt-8">
+      <Container fluid className="pb-24 pt-5 sm:pt-6 lg:pb-8 lg:pt-4">
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_19rem] xl:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="min-w-0">
             <DocumentTop document={doc} pageCount={pageCount} />

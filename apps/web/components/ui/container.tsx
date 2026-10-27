@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Conteneur central du site : 1248px max, gouttière Scribd. */
+/** Conteneur central du site : 1248px max */
 export function Container({
   children,
   className,

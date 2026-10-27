@@ -23,7 +23,7 @@ export function DocumentTop({
     <section aria-labelledby="document-title">
       <div className="flex items-start justify-between gap-4">
         <nav aria-label="Fil d'Ariane" className="hidden min-w-0 lg:block">
-          <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-black-60">
+          <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-black-60">
             {breadcrumb.map((item, index) => (
               <li
                 key={`${item.label}-${item.href ?? "current"}`}
@@ -60,7 +60,7 @@ export function DocumentTop({
         </div>
       </div>
 
-      <div className="mt-3 flex flex-col lg:mt-4">
+      <div className="mt-0 flex flex-col lg:mt-2">
         <h1
           id="document-title"
           className="order-2 mt-2 text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl lg:order-1 lg:mt-0"
