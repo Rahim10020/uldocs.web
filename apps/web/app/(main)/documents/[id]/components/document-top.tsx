@@ -32,7 +32,7 @@ export function DocumentTop({
                 {index > 0 ? (
                   <ChevronRight
                     aria-hidden
-                    className="size-3 shrink-0 text-black-30"
+                    className="size-4 shrink-0 text-black-30"
                   />
                 ) : null}
                 <Link
@@ -60,7 +60,7 @@ export function DocumentTop({
         </div>
       </div>
 
-      <div className="mt-0 flex flex-col lg:mt-2">
+      <div className="flex flex-col">
         <h1
           id="document-title"
           className="order-2 mt-2 text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl lg:order-1 lg:mt-0"
@@ -70,7 +70,7 @@ export function DocumentTop({
 
         <div className="order-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-black-60 lg:order-2 lg:mt-3">
           <span className="inline-flex items-center gap-1">
-            <Star aria-hidden className="size-4 fill-current text-black" />
+            <Star aria-hidden className="size-3 fill-current text-black" />
             <span className="font-medium text-black">
               {formatRating(document.noteMoyenne)}
             </span>
@@ -101,7 +101,7 @@ export function DocumentTop({
           <span>{formatFileSize(document.tailleKo)}</span>
         </div>
 
-        <p className="order-3 mt-2 text-xs text-black-60 lg:mt-1.5">
+        <p className="order-3 mt-2 text-sm text-black-60 lg:mt-1.5">
           Téléversé par{" "}
           <span className="font-medium text-black-80">
             {document.uploader.nom}
