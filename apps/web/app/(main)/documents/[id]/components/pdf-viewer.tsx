@@ -199,7 +199,7 @@ export function PdfViewer({
       <div
         className={cn(
           fullscreen
-            ? "fixed inset-0 z-[60] flex h-dvh flex-col overflow-hidden bg-white"
+            ? "fixed inset-0 z-60 flex h-dvh flex-col overflow-hidden bg-white"
             : "rounded-md border border-black-10 bg-surface",
         )}
       >
@@ -227,7 +227,7 @@ export function PdfViewer({
     <div
       className={cn(
         fullscreen
-          ? "fixed inset-0 z-[60] flex h-dvh flex-col overflow-hidden bg-white"
+          ? "fixed inset-0 z-60 flex h-dvh flex-col overflow-hidden bg-white"
           : "rounded-md border border-black-10 bg-surface p-3 sm:p-4 lg:p-6",
       )}
     >
