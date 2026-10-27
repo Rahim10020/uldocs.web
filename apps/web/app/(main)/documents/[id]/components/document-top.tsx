@@ -53,9 +53,9 @@ export function DocumentTop({
             disabled
             aria-label="Signaler ce document (bientôt disponible)"
             title="Signalement bientôt disponible"
-            className="flex size-8 cursor-not-allowed items-center justify-center rounded text-black-30"
+            className="flex size-9 cursor-not-allowed items-center justify-center rounded text-black-30"
           >
-            <Flag aria-hidden className="size-5" />
+            <Flag aria-hidden className="size-6" />
           </button>
         </div>
       </div>

@@ -93,13 +93,13 @@ export function DocumentReaction({
             disabled={mutation.isPending}
             onClick={() => vote(valeur)}
             className={cn(
-              "flex size-8 items-center justify-center rounded transition-colors cursor-pointer bg-surface p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
+              "flex size-9 items-center justify-center rounded transition-colors cursor-pointer bg-primary-5 p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
               selected ? "text-primary" : "text-black-50 hover:text-black-90",
             )}
           >
             <Icon
               aria-hidden
-              className={cn("size-5", selected && "fill-current")}
+              className={cn("size-6", selected && "fill-current")}
             />
           </button>
         );
