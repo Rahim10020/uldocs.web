@@ -26,7 +26,7 @@ export function FavoriteButton({
       disabled={mutation.isPending}
       onClick={() => mutation.mutate({ id: documentId, estFavori: !estFavori })}
       className={cn(
-        "flex size-8 cursor-pointer items-center justify-center rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
+        "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
         estFavori ? "text-black-80" : "text-black-60 hover:text-black-60",
         className,
       )}

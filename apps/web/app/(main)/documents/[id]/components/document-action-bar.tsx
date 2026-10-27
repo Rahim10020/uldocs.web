@@ -36,12 +36,12 @@ export function DocumentActionBar({
         <FavoriteButton
           documentId={document.id}
           estFavori={document.estFavori}
-          className="size-10 hidden lg:block"
+          className="hidden size-10 lg:flex"
         />
         <DocumentShareButton
           onShare={onShare}
           isCopied={isCopied}
-          className="hidden lg:block"
+          className="hidden lg:flex"
         />
       </div>
 

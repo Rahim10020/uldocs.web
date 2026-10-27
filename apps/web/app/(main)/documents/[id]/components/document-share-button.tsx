@@ -45,7 +45,7 @@ export function DocumentShareButton({
       aria-label={label}
       title={label}
       className={cn(
-        "flex size-10 cursor-pointer items-center justify-center text-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
+        "flex size-10 shrink-0 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
         className,
       )}
     >
