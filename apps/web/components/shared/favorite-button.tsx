@@ -27,13 +27,13 @@ export function FavoriteButton({
       onClick={() => mutation.mutate({ id: documentId, estFavori: !estFavori })}
       className={cn(
         "flex size-8 cursor-pointer items-center justify-center rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
-        estFavori ? "text-primary" : "text-black-60 hover:text-black-90",
+        estFavori ? "text-black-80" : "text-black-60 hover:text-black-60",
         className,
       )}
     >
       <Bookmark
         aria-hidden
-        className={cn("size-5", estFavori && "fill-current")}
+        className={cn("size-6", estFavori && "fill-current")}
       />
     </button>
   );

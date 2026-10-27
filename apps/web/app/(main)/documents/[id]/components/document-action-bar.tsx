@@ -33,11 +33,11 @@ export function DocumentActionBar({
         className="min-w-36 flex-1 sm:flex-none"
       />
 
-      <div className="ml-auto flex items-center gap-1">
+      <div className="ml-auto flex items-center gap-4 lg:gap-2">
         <FavoriteButton
           documentId={document.id}
           estFavori={document.estFavori}
-          className="size-10"
+          className="size-12 lg:size-10"
         />
         <DocumentShareButton onShare={onShare} isCopied={isCopied} />
         <button

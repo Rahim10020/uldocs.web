@@ -24,7 +24,7 @@ export function DocumentShareButton({
         type="button"
         onClick={onShare}
         className={cn(
-          "flex w-full items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:bg-black-5 focus-visible:outline-none",
+          "flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:bg-black-5 focus-visible:outline-none",
           className,
         )}
       >
@@ -45,7 +45,7 @@ export function DocumentShareButton({
       aria-label={label}
       title={label}
       className={cn(
-        "flex size-10 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
+        "flex size-10 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
         className,
       )}
     >
