@@ -1,17 +1,27 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { DocumentDetailPage } from "./components/document-detail-page";
+import { DocumentDetailSkeleton } from "./components/document-detail-skeleton";
 
-export default async function DocumentPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  const numericId = Number(id);
+type DocumentPageProps = {
+	params: Promise<{ id: string }>;
+};
 
-  if (!Number.isInteger(numericId) || numericId <= 0) {
-    notFound();
-  }
+export default function DocumentPage({ params }: DocumentPageProps) {
+	return (
+		<Suspense fallback={<DocumentDetailSkeleton />}>
+			<DocumentRoute params={params} />
+		</Suspense>
+	);
+}
 
-  return <DocumentDetailPage key={numericId} documentId={numericId} />;
+async function DocumentRoute({ params }: DocumentPageProps) {
+	const { id } = await params;
+	const numericId = Number(id);
+
+	if (!Number.isInteger(numericId) || numericId <= 0) {
+		notFound();
+	}
+
+	return <DocumentDetailPage key={numericId} documentId={numericId} />;
 }
