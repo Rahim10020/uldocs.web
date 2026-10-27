@@ -29,9 +29,9 @@ export function DocumentShareButton({
         )}
       >
         {isCopied ? (
-          <Check aria-hidden className="size-5 text-success" />
+          <Check aria-hidden className="size-6 text-success" />
         ) : (
-          <Share2 aria-hidden className="size-5" />
+          <Share2 aria-hidden className="size-6" />
         )}
         <span aria-live="polite">{label}</span>
       </button>
@@ -50,9 +50,9 @@ export function DocumentShareButton({
       )}
     >
       {isCopied ? (
-        <Check aria-hidden className="size-5 text-success" />
+        <Check aria-hidden className="size-6 text-success" />
       ) : (
-        <Share2 aria-hidden className="size-5" />
+        <Share2 aria-hidden className="size-6" />
       )}
       <span className="sr-only" aria-live="polite">
         {label}

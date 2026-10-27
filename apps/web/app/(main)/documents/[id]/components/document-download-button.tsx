@@ -39,7 +39,7 @@ export function DocumentDownloadButton({
         disabled={mutation.isPending}
         onClick={download}
         className={cn(
-          "flex w-full items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:bg-black-5 focus-visible:outline-none disabled:cursor-wait disabled:opacity-60",
+          "flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:bg-black-5 focus-visible:outline-none disabled:cursor-wait disabled:opacity-60",
           className,
         )}
       >
@@ -58,7 +58,7 @@ export function DocumentDownloadButton({
       type="button"
       onClick={download}
       disabled={mutation.isPending}
-      className={cn("h-10 px-5", className)}
+      className={cn("h-10 px-5 cursor-pointer", className)}
     >
       {mutation.isPending ? (
         <LoaderCircle aria-hidden className="size-4 animate-spin" />
