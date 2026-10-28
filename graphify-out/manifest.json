@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "apps/web/__tests__/lib/document-detail.test.ts": {
-    "mtime": 1792975634.1008284,
-    "seen": 1793093029.7658706,
-    "ast_hash": "dd2a7c3a7c505b9121c2ba5521eb98fa",
+    "mtime": 1793178377.198182,
+    "seen": 1793179468.9968283,
+    "ast_hash": "82463dba7e35480035c334a8dc743a1e",
     "semantic_hash": ""
   },
   "apps/web/__tests__/lib/mocks/academic.test.ts": {
@@ -174,21 +174,21 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-action-bar.tsx": {
-    "mtime": 1793094050.9090736,
-    "seen": 1793094592.5679827,
-    "ast_hash": "eeb88b40c4b772e6709f15984933e8c1",
+    "mtime": 1793099950.172648,
+    "seen": 1793179468.998469,
+    "ast_hash": "0111096cbb3429ca61cf1db955273884",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-detail-page.tsx": {
-    "mtime": 1793094507.0781043,
-    "seen": 1793094592.5679846,
-    "ast_hash": "a81627e668fd2ac4e8af1a3311da6495",
+    "mtime": 1793096056.8955748,
+    "seen": 1793179468.9984727,
+    "ast_hash": "a5fafeb37f92df6fa27b183f57f568db",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-download-button.tsx": {
-    "mtime": 1793094055.5722888,
-    "seen": 1793094592.567988,
-    "ast_hash": "312e0d818b92b7be2fdfc92c9fe33552",
+    "mtime": 1793098006.3308308,
+    "seen": 1793179468.9984784,
+    "ast_hash": "74b27693a18c1fed5426ea29037c0089",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-favorite-row.tsx": {
@@ -210,33 +210,33 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-preview.tsx": {
-    "mtime": 1793094064.6788216,
-    "seen": 1793094592.567993,
-    "ast_hash": "883271f198e1d9b58778ad804340fb90",
+    "mtime": 1793178501.7149348,
+    "seen": 1793179468.9988034,
+    "ast_hash": "db287ed740f504abdbbd96f615b0c080",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-reaction.tsx": {
-    "mtime": 1793094069.2608857,
-    "seen": 1793094592.5679939,
-    "ast_hash": "75e7d55af86b536347c793af374e44f7",
+    "mtime": 1793096336.2734838,
+    "seen": 1793179468.9988072,
+    "ast_hash": "dbe04776b3182c6641ec53ba55dc0eff",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-share-button.tsx": {
-    "mtime": 1793094079.1350865,
-    "seen": 1793094592.567995,
-    "ast_hash": "b555da17d69d01865bb45b788afb7561",
+    "mtime": 1793099236.4472096,
+    "seen": 1793179468.9988134,
+    "ast_hash": "9ed20a484849541cbd0c008f76800f42",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-top.tsx": {
-    "mtime": 1793094515.7699158,
-    "seen": 1793094592.5679963,
-    "ast_hash": "b004e4b90111c33be189fa4e0c5bc092",
+    "mtime": 1793106016.7592878,
+    "seen": 1793179468.9988174,
+    "ast_hash": "fb88c39b990b39e2ea25c73ee35fc85f",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/pdf-viewer.tsx": {
-    "mtime": 1793094074.5676134,
-    "seen": 1793094592.5679975,
-    "ast_hash": "0f528d2b9d04214ab3d348d3634880d9",
+    "mtime": 1793179374.1302712,
+    "seen": 1793179468.9988313,
+    "ast_hash": "ee1f125f7a054081f8d70a4174fdc16f",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/similar-documents.tsx": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/page.tsx": {
-    "mtime": 1793094328.4154017,
-    "seen": 1793094592.5679998,
-    "ast_hash": "462246c880b2a69c9f9b7c24b316ebbb",
+    "mtime": 1793095701.9904106,
+    "seen": 1793179468.9990315,
+    "ast_hash": "4c8bb44cc6bb3adfe7e63cbf3e6998a9",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/components/documents-content.tsx": {
@@ -282,14 +282,14 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/nouveau/page.tsx": {
-    "mtime": 1792827292.3257754,
-    "seen": 1793093029.7659097,
+    "mtime": 1793095827.4191806,
+    "seen": 1793179468.999601,
     "ast_hash": "ae5d4b823de37241338b2a71e429233b",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/page.tsx": {
-    "mtime": 1792835073.123415,
-    "seen": 1793093029.7659109,
+    "mtime": 1793095831.5060499,
+    "seen": 1793179468.999604,
     "ast_hash": "f4e6e6741feeb412d805291f94eb6f8e",
     "semantic_hash": ""
   },
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "apps/web/components/shared/favorite-button.tsx": {
-    "mtime": 1792837152.3472297,
-    "seen": 1793093029.7659307,
-    "ast_hash": "b801d8a9b331bae9e0878a37f050b265",
+    "mtime": 1793099266.1202824,
+    "seen": 1793179469.0015612,
+    "ast_hash": "83989a28628c099bd5d89db1b105bc81",
     "semantic_hash": ""
   },
   "apps/web/components/shared/footer.tsx": {
@@ -468,9 +468,9 @@
     "semantic_hash": ""
   },
   "apps/web/components/ui/container.tsx": {
-    "mtime": 1793094025.25592,
-    "seen": 1793094592.5698082,
-    "ast_hash": "b1c92bf1b9bc75c110ee2a3810d46af7",
+    "mtime": 1793096260.1820912,
+    "seen": 1793179469.002423,
+    "ast_hash": "64c3f01dced4860fa99fb1ddf8017205",
     "semantic_hash": ""
   },
   "apps/web/components/ui/format-badge.tsx": {
@@ -612,9 +612,9 @@
     "semantic_hash": ""
   },
   "apps/web/lib/document-detail.ts": {
-    "mtime": 1793093997.0414677,
-    "seen": 1793094592.5706751,
-    "ast_hash": "302dedd3ee28432cee4ff5285d3653f0",
+    "mtime": 1793178501.718935,
+    "seen": 1793179469.004566,
+    "ast_hash": "c4709e6c3795a409bc90c2f8412c127e",
     "semantic_hash": ""
   },
   "apps/web/lib/document-labels.ts": {
@@ -846,9 +846,9 @@
     "semantic_hash": ""
   },
   "todo.txt": {
-    "mtime": 1793093926.9309976,
-    "seen": 1793094592.5720243,
-    "ast_hash": "a0cfe3c2c081a395aaddc1fb36dddeab",
+    "mtime": 1793101110.8107665,
+    "seen": 1793179469.0074708,
+    "ast_hash": "36b0ccc01c6d6f9cb21c9e2248f6df0f",
     "semantic_hash": ""
   },
   "apps/web/public/downloads/art-de-la-guerre-sun-tzu.pdf": {
@@ -924,9 +924,21 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/[id]/components/document-detail-skeleton.tsx": {
-    "mtime": 1793094303.233349,
-    "seen": 1793094592.5679862,
-    "ast_hash": "ec44a168e11a03ea6de477da7a72817d",
+    "mtime": 1793178487.520963,
+    "seen": 1793179468.9984756,
+    "ast_hash": "89c4224890ff0f8ff88142ccc59e9daf",
+    "semantic_hash": ""
+  },
+  "apps/web/app/(main)/documents/[id]/components/page-thumbnail-rail.tsx": {
+    "mtime": 1793179212.083575,
+    "seen": 1793179468.9988227,
+    "ast_hash": "9f3d39fe6db2381a2fea6a6180c19e35",
+    "semantic_hash": ""
+  },
+  "apps/web/app/(main)/documents/[id]/components/pdf-toolbar.tsx": {
+    "mtime": 1793178501.7179348,
+    "seen": 1793179468.998827,
+    "ast_hash": "ba395a2c97faf333794505f85acfecb5",
     "semantic_hash": ""
   }
 }

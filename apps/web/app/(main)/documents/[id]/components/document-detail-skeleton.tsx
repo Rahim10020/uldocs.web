@@ -30,10 +30,13 @@ export function DocumentDetailSkeleton() {
 						</div>
 					</div>
 
-					<div className="mt-4 rounded-md border border-black-10 bg-surface p-3 sm:p-4 lg:p-6">
-						<div className="flex items-start gap-3">
-							<Skeleton className="hidden h-80 w-12 shrink-0 lg:block" />
-							<Skeleton className="mx-auto aspect-[612/792] w-full max-w-[900px] rounded-sm" />
+					<div className="mt-4 rounded-md border border-black-10 bg-surface">
+						<div className="flex items-stretch">
+							<Skeleton className="hidden h-80 w-16 shrink-0 rounded-none border-r border-black-10 lg:block" />
+							<Skeleton className="hidden h-80 w-[216px] shrink-0 rounded-none border-r border-black-10 lg:block" />
+							<div className="min-w-0 flex-1 p-3 sm:p-4 lg:p-6">
+								<Skeleton className="mx-auto aspect-[612/792] w-full max-w-[900px] rounded-sm" />
+							</div>
 						</div>
 					</div>
 				</div>

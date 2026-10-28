@@ -33,16 +33,38 @@ export function DocumentPreview({
   );
 }
 
+const VIEWER_THUMBNAIL_SKELETON_KEYS = [
+  "viewer-thumbnail-1",
+  "viewer-thumbnail-2",
+  "viewer-thumbnail-3",
+] as const;
+
 function ViewerLoading() {
   return (
     <div
       role="status"
       aria-label="Chargement de l'aperçu"
-      className="rounded-md border border-black-10 bg-surface p-3 sm:p-4 lg:p-6"
+      className="rounded-md border border-black-10 bg-surface"
     >
-      <div className="flex items-start gap-3">
-        <Skeleton className="hidden h-80 w-12 shrink-0 lg:block" />
-        <Skeleton className="mx-auto aspect-[612/792] w-full max-w-[900px] rounded-sm" />
+      <div className="flex min-h-105 items-stretch">
+        <div className="hidden w-16 shrink-0 flex-col items-center gap-1 border-r border-black-10 bg-white p-2 lg:flex">
+          <Skeleton className="size-8 rounded" />
+          <Skeleton className="size-8 rounded" />
+          <Skeleton className="mt-2 size-8 rounded" />
+        </div>
+
+        <div className="hidden w-54 shrink-0 flex-col gap-2 border-r border-black-10 bg-black-5 p-3 lg:flex">
+          {VIEWER_THUMBNAIL_SKELETON_KEYS.map((key) => (
+            <div key={key} className="rounded-md border border-transparent p-2">
+              <Skeleton className="aspect-612/792 w-full rounded-sm" />
+              <Skeleton className="mx-auto mt-2 h-5 w-6" />
+            </div>
+          ))}
+        </div>
+
+        <div className="min-w-0 flex-1 p-3 sm:p-4 lg:p-6">
+          <Skeleton className="mx-auto aspect-612/792 w-full max-w-225 rounded-sm" />
+        </div>
       </div>
     </div>
   );

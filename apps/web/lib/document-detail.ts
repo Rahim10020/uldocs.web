@@ -50,6 +50,9 @@ export function buildDocumentBreadcrumb(
   ];
 }
 
+/** Nombre maximum de pages rendues dans l'aperçu public. */
+export const PREVIEW_PAGE_LIMIT = 3;
+
 /** Borne une page entre 1 et le nombre total de pages. */
 export function clampPage(page: number, numPages: number): number {
   if (!Number.isFinite(page) || numPages < 1) {
@@ -57,6 +60,19 @@ export function clampPage(page: number, numPages: number): number {
   }
 
   return Math.min(Math.max(1, Math.trunc(page)), numPages);
+}
+
+/**
+ * Nombre de pages réellement affichées dans l'aperçu.
+ * On ne rend que les premières pages, tout en conservant le total réel
+ * pour les métadonnées du document.
+ */
+export function previewPageCount(totalPages: number | null): number | null {
+  if (totalPages === null || !Number.isFinite(totalPages)) {
+    return null;
+  }
+
+  return Math.min(Math.max(0, Math.trunc(totalPages)), PREVIEW_PAGE_LIMIT);
 }
 
 /** Nettoie un titre pour servir de nom de fichier téléchargé. */

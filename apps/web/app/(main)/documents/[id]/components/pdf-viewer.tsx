@@ -6,8 +6,6 @@ import {
   FileWarning,
   RotateCcw,
   X,
-  ZoomIn,
-  ZoomOut,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,10 +21,20 @@ import type { DocumentDetail } from "shared";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useBodyScrollLock } from "@/hooks/use-body-scroll-lock";
-import { canPreviewDocument, clampPage } from "@/lib/document-detail";
+import {
+  canPreviewDocument,
+  clampPage,
+  PREVIEW_PAGE_LIMIT,
+  previewPageCount,
+} from "@/lib/document-detail";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import { DocumentDownloadButton } from "./document-download-button";
+import {
+  PageThumbnailRail,
+  PageThumbnailRailSkeleton,
+} from "./page-thumbnail-rail";
+import { PdfToolbar } from "./pdf-toolbar";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
@@ -73,6 +81,7 @@ export function PdfViewer({
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const canPreview = canPreviewDocument(doc);
+  const previewPages = previewPageCount(numPages);
 
   useBodyScrollLock(fullscreen);
 
@@ -130,7 +139,7 @@ export function PdfViewer({
   const handleLoadSuccess = useCallback(
     ({ numPages: total }: { numPages: number }) => {
       setNumPages(total);
-      setPage((current) => clampPage(current, total));
+      setPage((current) => clampPage(current, previewPageCount(total) ?? 1));
       setLoadError(false);
       onPageCountChange?.(total);
     },
@@ -139,11 +148,11 @@ export function PdfViewer({
 
   const scrollToPage = useCallback(
     (nextPage: number) => {
-      if (!numPages) {
+      if (!previewPages) {
         return;
       }
 
-      const target = clampPage(nextPage, numPages);
+      const target = clampPage(nextPage, previewPages);
       setPage(target);
 
       const element = globalThis.document.getElementById(
@@ -170,7 +179,7 @@ export function PdfViewer({
 
       window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     },
-    [doc.id, fullscreen, numPages],
+    [doc.id, fullscreen, previewPages],
   );
 
   function changeZoom(direction: 1 | -1) {
@@ -207,7 +216,7 @@ export function PdfViewer({
           <FullscreenHeader
             document={doc}
             page={page}
-            numPages={numPages}
+            numPages={previewPages}
             onPageChange={scrollToPage}
             onClose={() => onFullscreenChange(false)}
             closeRef={closeRef}
@@ -228,14 +237,14 @@ export function PdfViewer({
       className={cn(
         fullscreen
           ? "fixed inset-0 z-60 flex h-dvh flex-col overflow-hidden bg-white"
-          : "rounded-md border border-black-10 bg-surface p-3 sm:p-4 lg:p-6",
+          : "rounded-md border border-black-10 bg-surface",
       )}
     >
       {fullscreen ? (
         <FullscreenHeader
           document={doc}
           page={page}
-          numPages={numPages}
+          numPages={previewPages}
           onPageChange={scrollToPage}
           onClose={() => onFullscreenChange(false)}
           closeRef={closeRef}
@@ -243,64 +252,83 @@ export function PdfViewer({
       ) : null}
 
       <div key="viewer-body" className="flex min-h-0 flex-1 items-stretch">
-        <PageRail
-          numPages={numPages}
-          currentPage={page}
+        <PdfToolbar
+          page={page}
+          numPages={previewPages}
           onPageChange={scrollToPage}
-          zoom={zoom}
+          canZoomIn={zoom !== ZOOM_LEVELS[ZOOM_LEVELS.length - 1]}
+          canZoomOut={zoom !== ZOOM_LEVELS[0]}
           onZoomIn={() => changeZoom(1)}
           onZoomOut={() => changeZoom(-1)}
+          showPageStepper={!fullscreen}
           className={cn(
             "hidden shrink-0 lg:flex",
             fullscreen
-              ? "ml-3 h-full max-h-full w-14 rounded-none border-0 border-r border-black-10 p-2"
-              : "sticky top-30 max-h-[calc(100dvh-8rem)] w-12 self-start",
+              ? "h-full max-h-full"
+              : "sticky top-30 max-h-[calc(100dvh-8rem)] self-start",
           )}
         />
 
-        <div
-          ref={scrollRef}
-          className={cn(
-            "min-w-0 flex-1",
-            fullscreen
-              ? "min-h-0 overflow-auto bg-surface p-3 pb-24 sm:p-4 lg:pb-6"
-              : "overflow-x-auto",
-          )}
+        <Document
+          key={`${doc.id}-${retryKey}`}
+          file={doc.fichierUrl}
+          onLoadSuccess={handleLoadSuccess}
+          onLoadError={() => setLoadError(true)}
+          loading={<ViewerBodySkeleton />}
+          className="flex min-h-0 min-w-0 flex-1 items-stretch"
         >
-          <div
-            ref={setPageColumnElement}
+          <PageThumbnailRail
+            numPages={previewPages}
+            currentPage={page}
+            onPageChange={scrollToPage}
             className={cn(
-              "mx-auto flex w-full flex-col gap-3 sm:gap-4",
-              PAGE_WIDTH_CLASS[zoom],
+              "hidden shrink-0 lg:flex",
+              fullscreen
+                ? "h-full max-h-full"
+                : "sticky top-30 max-h-[calc(100dvh-8rem)] self-start",
+            )}
+          />
+
+          <div
+            ref={scrollRef}
+            className={cn(
+              "min-w-0 flex-1",
+              fullscreen
+                ? "min-h-0 overflow-auto bg-surface p-3 pb-24 sm:p-4 lg:pb-6"
+                : "overflow-x-auto bg-surface p-3 sm:p-4 lg:p-6",
             )}
           >
-            <Document
-              key={`${doc.id}-${retryKey}`}
-              file={doc.fichierUrl}
-              onLoadSuccess={handleLoadSuccess}
-              onLoadError={() => setLoadError(true)}
-              loading={<PdfPageSkeleton />}
-              className="flex w-full flex-col gap-3 sm:gap-4"
+            <div
+              ref={setPageColumnElement}
+              className={cn(
+                "mx-auto flex w-full flex-col gap-3 sm:gap-4",
+                PAGE_WIDTH_CLASS[zoom],
+              )}
             >
-              {numPages && pageWidth > 0 ? (
-                Array.from({ length: numPages }, (_, index) => index + 1).map(
-                  (pageNumber) => (
-                    <PdfPage
-                      key={pageNumber}
-                      documentId={doc.id}
-                      pageNumber={pageNumber}
-                      width={pageWidth}
-                      scrollRoot={scrollRoot}
-                      onActive={setPage}
-                    />
-                  ),
-                )
+              {previewPages && pageWidth > 0 ? (
+                Array.from(
+                  { length: previewPages },
+                  (_, index) => index + 1,
+                ).map((pageNumber) => (
+                  <PdfPage
+                    key={pageNumber}
+                    documentId={doc.id}
+                    pageNumber={pageNumber}
+                    width={pageWidth}
+                    scrollRoot={scrollRoot}
+                    onActive={setPage}
+                  />
+                ))
               ) : (
                 <PdfPageSkeleton />
               )}
-            </Document>
+
+              {numPages && previewPages && numPages > previewPages ? (
+                <PreviewLimitNotice document={doc} totalPages={numPages} />
+              ) : null}
+            </div>
           </div>
-        </div>
+        </Document>
       </div>
     </div>
   );
@@ -320,28 +348,6 @@ function PdfPage({
   onActive: (page: number) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldRender, setShouldRender] = useState(false);
-
-  // Ne monte le canvas que pour les pages proches du viewport.
-  useEffect(() => {
-    const element = containerRef.current;
-
-    if (!element) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setShouldRender(entry.isIntersecting),
-      {
-        root: scrollRoot,
-        rootMargin: "1800px 0px",
-      },
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [scrollRoot]);
 
   // Détecte la page au centre de l'écran pour la navigation.
   useEffect(() => {
@@ -382,150 +388,54 @@ function PdfPage({
           PAGE_ASPECT_CLASS,
         )}
       >
-        {shouldRender ? (
-          <Page
-            pageNumber={pageNumber}
-            width={width}
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-            loading={<PdfPageSkeleton inner />}
-            className="!w-full"
-          />
-        ) : (
-          <div className="h-full w-full animate-pulse bg-black-5" />
-        )}
+        <Page
+          pageNumber={pageNumber}
+          width={width}
+          renderTextLayer={false}
+          renderAnnotationLayer={false}
+          loading={<PdfPageSkeleton inner />}
+          className="w-full!"
+        />
       </div>
     </div>
   );
 }
 
-function PageRail({
-  numPages,
-  currentPage,
-  onPageChange,
-  zoom,
-  onZoomIn,
-  onZoomOut,
-  className,
+function PreviewLimitNotice({
+  document: doc,
+  totalPages,
 }: {
-  numPages: number | null;
-  currentPage: number;
-  onPageChange: (page: number) => void;
-  zoom: ZoomLevel;
-  onZoomIn: () => void;
-  onZoomOut: () => void;
-  className?: string;
+  document: DocumentDetail;
+  totalPages: number;
 }) {
-  const listRef = useRef<HTMLDivElement>(null);
-  const firstZoom = ZOOM_LEVELS[0];
-  const lastZoom = ZOOM_LEVELS[ZOOM_LEVELS.length - 1];
-
-  useEffect(() => {
-    const list = listRef.current;
-    const active = list?.querySelector<HTMLElement>(
-      `[data-page="${currentPage}"]`,
-    );
-
-    if (!list || !active) {
-      return;
-    }
-
-    const top = active.offsetTop;
-    const bottom = top + active.offsetHeight;
-
-    if (top < list.scrollTop || bottom > list.scrollTop + list.clientHeight) {
-      list.scrollTo({
-        top: top - list.clientHeight / 2 + active.offsetHeight / 2,
-        behavior: "smooth",
-      });
-    }
-  }, [currentPage]);
-
   return (
-    <nav
-      aria-label="Navigation dans l'aperçu"
-      className={cn(
-        "flex flex-col rounded-md border border-black-10 bg-white p-1.5",
-        className,
-      )}
-    >
-      <div className="flex shrink-0 flex-col gap-1 border-b border-black-10 pb-1.5">
-        <button
-          type="button"
-          onClick={onZoomIn}
-          disabled={zoom === lastZoom}
-          aria-label="Agrandir la page"
-          title="Agrandir"
-          className="flex size-8 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <ZoomIn aria-hidden className="size-4" />
-        </button>
-        <button
-          type="button"
-          onClick={onZoomOut}
-          disabled={zoom === firstZoom}
-          aria-label="Réduire la page"
-          title="Réduire"
-          className="flex size-8 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <ZoomOut aria-hidden className="size-4" />
-        </button>
+    <div className="p-4 text-center sm:p-5">
+      <p className="text-md lg:text-lg text-black-60">
+        Aperçu limité aux {PREVIEW_PAGE_LIMIT} premières pages sur {totalPages}.
+      </p>
+      <p className="mt-1 text-sm text-black-50">
+        Télécharge le document pour lire la suite.
+      </p>
+      <div className="mt-8 flex justify-center">
+        <DocumentDownloadButton documentId={doc.id} fileName={doc.titre} />
       </div>
-
-      <div
-        ref={listRef}
-        className="relative mt-1.5 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto pr-0.5"
-      >
-        {numPages ? (
-          Array.from({ length: numPages }, (_, index) => index + 1).map(
-            (pageNumber) => {
-              const active = pageNumber === currentPage;
-
-              return (
-                <button
-                  key={pageNumber}
-                  type="button"
-                  data-page={pageNumber}
-                  aria-label={`Aller à la page ${pageNumber}`}
-                  aria-current={active ? "page" : undefined}
-                  onClick={() => onPageChange(pageNumber)}
-                  className={cn(
-                    "flex size-8 shrink-0 items-center justify-center rounded text-[11px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
-                    active
-                      ? "bg-primary text-white"
-                      : "text-black-60 hover:bg-black-5 hover:text-black",
-                  )}
-                >
-                  {pageNumber}
-                </button>
-              );
-            },
-          )
-        ) : (
-          <PageRailSkeleton />
-        )}
-      </div>
-    </nav>
+    </div>
   );
 }
 
-const RAIL_SKELETON_KEYS = [
-  "rail-1",
-  "rail-2",
-  "rail-3",
-  "rail-4",
-  "rail-5",
-  "rail-6",
-  "rail-7",
-  "rail-8",
-] as const;
-
-function PageRailSkeleton() {
+function ViewerBodySkeleton() {
   return (
-    <div aria-hidden className="flex flex-col items-center gap-1">
-      {RAIL_SKELETON_KEYS.map((key) => (
-        <Skeleton key={key} className="size-8 rounded" />
-      ))}
+    <div
+      role="status"
+      aria-label="Chargement de l'aperçu"
+      className="flex min-h-0 flex-1 items-stretch"
+    >
+      <PageThumbnailRailSkeleton className="hidden lg:flex" />
+      <div className="min-w-0 flex-1 overflow-x-auto bg-surface p-3 sm:p-4 lg:p-6">
+        <div className="mx-auto w-full max-w-225">
+          <PdfPageSkeleton />
+        </div>
+      </div>
     </div>
   );
 }
@@ -647,7 +557,7 @@ function PagePicker({
           onChange={(event) => setValue(event.target.value.replace(/\D/g, ""))}
           onBlur={commit}
           inputMode="numeric"
-          aria-label="Numéro de page"
+          aria-label="Numéro de page de l'aperçu"
           className="h-8 w-10 rounded border border-black-20 bg-white px-1 text-center text-sm text-black focus:border-primary focus:outline-none"
         />
         <span aria-hidden>/</span>
@@ -680,7 +590,7 @@ function PreviewFallback({
     <div
       className={cn(
         "flex flex-1 flex-col items-center justify-center px-6 py-16 text-center",
-        !fullscreen && "min-h-[420px]",
+        !fullscreen && "min-h-105",
       )}
     >
       <FileWarning aria-hidden className="size-10 text-black-30" />

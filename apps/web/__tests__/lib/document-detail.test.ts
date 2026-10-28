@@ -5,6 +5,8 @@ import {
 	canPreviewDocument,
 	clampPage,
 	nextReactionVote,
+	PREVIEW_PAGE_LIMIT,
+	previewPageCount,
 	toDownloadFileName,
 	usefulPercentage,
 } from "@/lib/document-detail";
@@ -46,6 +48,14 @@ describe("document detail", () => {
 		expect(clampPage(99, 74)).toBe(74);
 		expect(clampPage(Number.NaN, 74)).toBe(1);
 		expect(clampPage(3, 0)).toBe(1);
+	});
+
+	it("limite l'aperçu aux trois premières pages", () => {
+		expect(PREVIEW_PAGE_LIMIT).toBe(3);
+		expect(previewPageCount(null)).toBeNull();
+		expect(previewPageCount(1)).toBe(1);
+		expect(previewPageCount(3)).toBe(3);
+		expect(previewPageCount(74)).toBe(3);
 	});
 
 	it("nettoie le nom de fichier téléchargé", () => {
