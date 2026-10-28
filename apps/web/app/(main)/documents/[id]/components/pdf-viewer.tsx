@@ -488,9 +488,9 @@ function FullscreenHeader({
           onClick={onClose}
           aria-label="Fermer l'aperçu plein écran"
           title="Fermer"
-          className="flex size-9 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+          className="flex size-10 cursor-pointer items-center justify-center rounded text-black-60 transition-colors bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
         >
-          <X aria-hidden className="size-5" />
+          <X aria-hidden className="size-6" />
         </button>
       </div>
     </header>
@@ -540,9 +540,9 @@ function PagePicker({
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
         aria-label="Page précédente"
-        className="flex size-8 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-not-allowed disabled:opacity-40"
+        className="flex cursor-pointer size-9 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        <ChevronLeft aria-hidden className="size-4" />
+        <ChevronLeft aria-hidden className="size-5" />
       </button>
 
       <form
@@ -550,7 +550,7 @@ function PagePicker({
           event.preventDefault();
           commit();
         }}
-        className="flex items-center gap-1 text-black-60"
+        className="flex items-center gap-2 text-black-60"
       >
         <input
           value={value}
@@ -569,9 +569,9 @@ function PagePicker({
         onClick={() => onPageChange(page + 1)}
         disabled={page >= numPages}
         aria-label="Page suivante"
-        className="flex size-8 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-not-allowed disabled:opacity-40"
+        className="flex cursor-pointer size-9 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        <ChevronRight aria-hidden className="size-4" />
+        <ChevronRight aria-hidden className="size-5" />
       </button>
     </div>
   );
