@@ -16,7 +16,15 @@ type FilierePageProps = {
 	params: Promise<{ id: string }>;
 };
 
-export default async function FilierePage({ params }: FilierePageProps) {
+export default function FilierePage({ params }: FilierePageProps) {
+	return (
+		<Suspense fallback={<FiliereDetailSkeleton />}>
+			<FiliereRoute params={params} />
+		</Suspense>
+	);
+}
+
+async function FiliereRoute({ params }: FilierePageProps) {
 	const { id } = await params;
 	const numericId = Number(id);
 
@@ -24,9 +32,5 @@ export default async function FilierePage({ params }: FilierePageProps) {
 		notFound();
 	}
 
-	return (
-		<Suspense fallback={<FiliereDetailSkeleton />}>
-			<FiliereDetailContent key={numericId} filiereId={numericId} />
-		</Suspense>
-	);
+	return <FiliereDetailContent key={numericId} filiereId={numericId} />;
 }

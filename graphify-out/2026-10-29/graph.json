@@ -2101,7 +2101,7 @@
       "file_type": "code",
       "norm_label": "typefilterrow()",
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L173"
+      "source_location": "L175"
     },
     {
       "id": "apps_web_app_main_matieres_id_components_ue_filters_uefilters",
@@ -2125,7 +2125,7 @@
       "file_type": "code",
       "norm_label": "uefiltersheet()",
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L95"
+      "source_location": "L97"
     },
     {
       "id": "apps_web_app_main_matieres_id_components_ue_type_chips_typechip",
@@ -10832,7 +10832,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L192",
+      "source_location": "L194",
       "weight": 1.0
     },
     {
@@ -26642,7 +26642,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L173",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -26653,7 +26653,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L95",
+      "source_location": "L97",
       "weight": 1.0
     },
     {

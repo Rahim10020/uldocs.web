@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CategoryDetailContent } from "./components/category-detail-content";
+import { Suspense } from "react";
+import {
+	CategoryDetailContent,
+	CategoryDetailSkeleton,
+} from "./components/category-detail-content";
 
 export const metadata: Metadata = {
 	title: "Catégorie — ulDocs",
@@ -12,7 +16,15 @@ type CategoryPageProps = {
 	params: Promise<{ id: string }>;
 };
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default function CategoryPage({ params }: CategoryPageProps) {
+	return (
+		<Suspense fallback={<CategoryDetailSkeleton />}>
+			<CategoryRoute params={params} />
+		</Suspense>
+	);
+}
+
+async function CategoryRoute({ params }: CategoryPageProps) {
 	const { id } = await params;
 	const numericId = Number(id);
 
