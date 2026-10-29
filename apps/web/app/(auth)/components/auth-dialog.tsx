@@ -114,12 +114,12 @@ export function AuthDialog({
       aria-labelledby={titleId}
       aria-describedby={description ? descriptionId : undefined}
       className={cn(
-        "fixed inset-0 z-60 flex min-h-dvh w-full flex-col overflow-hidden bg-white lg:static lg:z-auto lg:min-h-0 lg:max-h-[calc(100dvh-7rem)] lg:max-w-[840px] lg:flex-row lg:rounded-lg lg:border lg:border-black-10",
+        "fixed inset-0 z-60 flex min-h-dvh w-full flex-col overflow-hidden bg-white lg:static lg:z-auto lg:min-h-0 lg:max-h-[calc(100dvh-7rem)] lg:max-w-210 lg:flex-row lg:rounded-lg lg:border lg:border-black-10",
         className,
       )}
     >
       {image ? (
-        <div className="relative hidden min-h-[500px] w-[46%] shrink-0 lg:block">
+        <div className="relative hidden min-h-125 w-[46%] shrink-0 lg:block">
           <Image
             src="/images/banner.png"
             alt=""
@@ -140,9 +140,9 @@ export function AuthDialog({
             type="button"
             onClick={onClose}
             aria-label="Fermer"
-            className="absolute right-4 top-4 z-10 flex size-9 items-center justify-center rounded text-black-50 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+            className="absolute cursor-pointer right-4 top-4 z-10 flex size-9 items-center justify-center rounded text-black-50 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
-            <X aria-hidden className="size-5" />
+            <X aria-hidden className="size-6" />
           </button>
         ) : null}
 
