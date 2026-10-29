@@ -94,7 +94,7 @@ export function RegisterForm({
             htmlFor="charte"
             className="text-sm leading-relaxed text-black-70"
           >
-            J’accepte la{" "}
+            J&apos;accepte la{" "}
             <Link
               href={routes.charter}
               onClick={(event) => event.stopPropagation()}
@@ -116,7 +116,7 @@ export function RegisterForm({
         type="submit"
         disabled={isSubmitting}
         aria-busy={isSubmitting}
-        className="inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-md font-semibold text-white transition-colors hover:bg-primary-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
+        className="inline-flex cursor-pointer h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-md font-semibold text-white transition-colors hover:bg-primary-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
       >
         {isSubmitting ? (
           <>
