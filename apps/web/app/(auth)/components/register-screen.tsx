@@ -15,98 +15,98 @@ import { routes } from "@/lib/routes";
 import type { AcademicDraft, AuthMode, RegisterStage } from "@/types/auth";
 
 const EMPTY_DRAFT: AcademicDraft = {
-	faculteId: null,
-	filiereId: null,
-	niveauId: null,
+  faculteId: null,
+  filiereId: null,
+  niveauId: null,
 };
 
 export function RegisterScreen({ mode }: { mode: AuthMode }) {
-	const router = useRouter();
-	const registerMutation = useRegister();
-	const updateMutation = useUpdateProfile();
-	const [stage, setStage] = useState<RegisterStage>("form");
-	const [user, setUser] = useState<Utilisateur | null>(null);
-	const [draft, setDraft] = useState<AcademicDraft>(EMPTY_DRAFT);
-	const [apiError, setApiError] = useState<string | null>(null);
-	const [saveError, setSaveError] = useState<string | null>(null);
+  const router = useRouter();
+  const registerMutation = useRegister();
+  const updateMutation = useUpdateProfile();
+  const [stage, setStage] = useState<RegisterStage>("form");
+  const [user, setUser] = useState<Utilisateur | null>(null);
+  const [draft, setDraft] = useState<AcademicDraft>(EMPTY_DRAFT);
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
-	const close = () => {
-		if (mode === "modal") {
-			router.back();
-			return;
-		}
+  const close = () => {
+    if (mode === "modal") {
+      router.back();
+      return;
+    }
 
-		router.push(routes.home);
-	};
+    router.push(routes.home);
+  };
 
-	async function handleRegister(values: RegisterFormValues) {
-		setApiError(null);
+  async function handleRegister(values: RegisterFormValues) {
+    setApiError(null);
 
-		try {
-			const registeredUser = await registerMutation.mutateAsync({
-				nom: values.nom,
-				email: values.email,
-				motDePasse: values.motDePasse,
-			});
-			setUser(registeredUser);
-			setStage("onboarding");
-		} catch (error) {
-			setApiError(
-				error instanceof ApiError && error.status === 409
-					? "Cet email est déjà utilisé. Essaie de te connecter."
-					: "Impossible de créer ton compte pour le moment. Réessaie.",
-			);
-		}
-	}
+    try {
+      const registeredUser = await registerMutation.mutateAsync({
+        nom: values.nom,
+        email: values.email,
+        motDePasse: values.motDePasse,
+      });
+      setUser(registeredUser);
+      setStage("onboarding");
+    } catch (error) {
+      setApiError(
+        error instanceof ApiError && error.status === 409
+          ? "Cet email est déjà utilisé. Essaie de te connecter."
+          : "Impossible de créer ton compte pour le moment. Réessaie.",
+      );
+    }
+  }
 
-	async function handleFinish(nextDraft: AcademicDraft) {
-		setDraft(nextDraft);
-		setSaveError(null);
+  async function handleFinish(nextDraft: AcademicDraft) {
+    setDraft(nextDraft);
+    setSaveError(null);
 
-		const hasAcademicSelection =
-			nextDraft.faculteId !== null ||
-			nextDraft.filiereId !== null ||
-			nextDraft.niveauId !== null;
+    const hasAcademicSelection =
+      nextDraft.faculteId !== null ||
+      nextDraft.filiereId !== null ||
+      nextDraft.niveauId !== null;
 
-		if (hasAcademicSelection) {
-			try {
-				await updateMutation.mutateAsync(nextDraft);
-			} catch {
-				setSaveError(
-					"Tes informations académiques n’ont pas pu être enregistrées. Tu pourras les compléter plus tard depuis ton compte.",
-				);
-			}
-		}
+    if (hasAcademicSelection) {
+      try {
+        await updateMutation.mutateAsync(nextDraft);
+      } catch {
+        setSaveError(
+          "Tes informations académiques n’ont pas pu être enregistrées. Tu pourras les compléter plus tard depuis ton compte.",
+        );
+      }
+    }
 
-		setStage("success");
-	}
+    setStage("success");
+  }
 
-	if (stage === "form" || !user) {
-		return (
-			<AuthDialog
-				title="Créer ton compte"
-				description="Rejoins la communauté ulDocs et partage les documents qui font avancer tout le monde."
-				image
-				onClose={close}
-			>
-				<RegisterForm
-					onSubmit={handleRegister}
-					apiError={apiError}
-					mode={mode}
-				/>
-			</AuthDialog>
-		);
-	}
+  if (stage === "form" || !user) {
+    return (
+      <AuthDialog
+        title="Créer ton compte"
+        description="Rejoins la communauté ulDocs et partage les documents qui font avancer tout le monde."
+        image
+        onClose={close}
+      >
+        <RegisterForm
+          onSubmit={handleRegister}
+          apiError={apiError}
+          mode={mode}
+        />
+      </AuthDialog>
+    );
+  }
 
-	if (stage === "success") {
-		return <RegisterSuccess user={user} draft={draft} saveError={saveError} />;
-	}
+  if (stage === "success") {
+    return <RegisterSuccess user={user} draft={draft} saveError={saveError} />;
+  }
 
-	return (
-		<OnboardingFlow
-			user={user}
-			isSaving={updateMutation.isPending}
-			onFinish={handleFinish}
-		/>
-	);
+  return (
+    <OnboardingFlow
+      user={user}
+      isSaving={updateMutation.isPending}
+      onFinish={handleFinish}
+    />
+  );
 }
