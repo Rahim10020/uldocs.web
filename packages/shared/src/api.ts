@@ -59,6 +59,17 @@ export type RegisterPayload = {
 };
 
 /**
+ * PATCH /auth/me
+ * Permet de compléter ou modifier les informations académiques du profil.
+ * `null` efface explicitement la valeur.
+ */
+export type UpdateProfilePayload = {
+	faculteId?: number | null;
+	filiereId?: number | null;
+	niveauId?: number | null;
+};
+
+/**
  * Document dénormalisé pour les cartes (GET /documents).
  * Un seul appel suffit : pas de jointure côté client.
  */

@@ -221,8 +221,23 @@ export type FaculteTree = Faculte & {
 | `POST`  | `/auth/login`           | `LoginPayload`          | `Utilisateur` |
 | `POST`  | `/auth/logout`          | —                       | `204`         |
 | `GET`   | `/auth/me`              | —                       | `Utilisateur` |
+| `PATCH` | `/auth/me`              | `UpdateProfilePayload`  | `Utilisateur` |
 | `POST`  | `/auth/forgot-password` | `{ email }`             | `204`         |
 | `POST`  | `/auth/reset-password`  | `{ token, motDePasse }` | `204`         |
+
+`UpdateProfilePayload` permet de compléter le profil après l'inscription :
+
+```ts
+export type UpdateProfilePayload = {
+  faculteId?: number | null;
+  filiereId?: number | null;
+  niveauId?: number | null;
+};
+```
+
+- `null` efface explicitement la valeur.
+- `filiereId` doit appartenir à `faculteId`, et `niveauId` à `filiereId`.
+- L'endpoint exige une session (`401` sinon).
 
 ### Académique
 

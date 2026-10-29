@@ -22,6 +22,7 @@ export const routes = {
 
 	profile: "/profil",
 	myDocuments: "/profil/documents",
+	moderation: "/moderation",
 
 	login: "/connexion",
 	register: "/inscription",
