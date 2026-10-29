@@ -1,34 +1,32 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+import {
+	UeDocumentsContent,
+	UeDocumentsSkeleton,
+} from "./components/ue-documents-content";
+
+export const metadata: Metadata = {
+	title: "Unité d'enseignement — ulDocs",
+	description:
+		"Retrouvez les cours, examens et corrigés d'une unité d'enseignement de l'Université de Lomé.",
+};
 
 type MatierePageProps = {
 	params: Promise<{ id: string }>;
 };
 
-export default function MatierePage({ params }: MatierePageProps) {
-	return (
-		<Suspense fallback={<MatiereSkeleton />}>
-			<MatiereContent params={params} />
-		</Suspense>
-	);
-}
-
-async function MatiereContent({ params }: MatierePageProps) {
+export default async function MatierePage({ params }: MatierePageProps) {
 	const { id } = await params;
+	const numericId = Number(id);
+
+	if (!Number.isInteger(numericId) || numericId <= 0) {
+		notFound();
+	}
 
 	return (
-		<div className="mx-auto w-full max-w-6xl px-4 py-12">
-			<h1 className="text-2xl font-bold text-black">Matière #{id}</h1>
-			<p className="mt-2 text-black-60">Liste des documents à venir.</p>
-		</div>
-	);
-}
-
-function MatiereSkeleton() {
-	return (
-		<div className="mx-auto w-full max-w-6xl px-4 py-12">
-			<Skeleton className="h-8 w-48" />
-			<Skeleton className="mt-2 h-4 w-64" />
-		</div>
+		<Suspense fallback={<UeDocumentsSkeleton />}>
+			<UeDocumentsContent key={numericId} ueId={numericId} />
+		</Suspense>
 	);
 }

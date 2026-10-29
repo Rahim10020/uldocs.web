@@ -1,1 +1,322 @@
-{"nodes": [{"id": "$graphify-root$_docs_api_contract_md", "label": "api-contract.md", "file_type": "document", "node_kind": "page", "source_file": "docs/api-contract.md", "source_location": "L1"}, {"id": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "label": "Contrat d'API \u2014 UL Docs", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L1"}, {"id": "$graphify-root$_docs_api_contract_1_conventions", "label": "1. Conventions", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L11"}, {"id": "$graphify-root$_docs_api_contract_enveloppes", "label": "Enveloppes", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L23"}, {"id": "$graphify-root$_docs_api_contract_2_mapping_sql_api", "label": "2. Mapping SQL \u2192 API", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L47"}, {"id": "$graphify-root$_docs_api_contract_3_enums_valeurs_fig\u00e9es", "label": "3. Enums (valeurs fig\u00e9es)", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L67"}, {"id": "$graphify-root$_docs_api_contract_4_dto_publiques", "label": "4. DTO publiques", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L110"}, {"id": "$graphify-root$_docs_api_contract_4_1_documentlistitem", "label": "4.1 `DocumentListItem`", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L112"}, {"id": "$graphify-root$_docs_api_contract_4_2_documentdetail", "label": "4.2 `DocumentDetail`", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L147"}, {"id": "$graphify-root$_docs_api_contract_4_3_documentsearchparams", "label": "4.3 `DocumentSearchParams`", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L170"}, {"id": "$graphify-root$_docs_api_contract_4_4_arbre_acad\u00e9mique", "label": "4.4 Arbre acad\u00e9mique", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L198"}, {"id": "$graphify-root$_docs_api_contract_5_endpoints_v1", "label": "5. Endpoints V1", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L214"}, {"id": "$graphify-root$_docs_api_contract_authentification", "label": "Authentification", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L216"}, {"id": "$graphify-root$_docs_api_contract_acad\u00e9mique", "label": "Acad\u00e9mique", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L227"}, {"id": "$graphify-root$_docs_api_contract_documents", "label": "Documents", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L242"}, {"id": "$graphify-root$_docs_api_contract_profil", "label": "Profil", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L300"}, {"id": "$graphify-root$_docs_api_contract_mod\u00e9ration_et_administration_phase_finale_v1", "label": "Mod\u00e9ration et administration (phase finale V1)", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L308"}, {"id": "$graphify-root$_docs_api_contract_6_erreurs", "label": "6. Erreurs", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L322"}, {"id": "$graphify-root$_docs_api_contract_7_r\u00e8gles_de_seed_mocks_et_prisma", "label": "7. R\u00e8gles de seed (mocks et Prisma)", "file_type": "document", "node_kind": "heading", "source_file": "docs/api-contract.md", "source_location": "L340"}], "edges": [{"source": "$graphify-root$_docs_api_contract_md", "target": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L1", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_1_conventions", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L11", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_1_conventions", "target": "$graphify-root$_docs_api_contract_enveloppes", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L23", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_2_mapping_sql_api", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L47", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_3_enums_valeurs_fig\u00e9es", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L67", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_4_dto_publiques", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L110", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_4_dto_publiques", "target": "$graphify-root$_docs_api_contract_4_1_documentlistitem", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L112", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_4_dto_publiques", "target": "$graphify-root$_docs_api_contract_4_2_documentdetail", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L147", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_4_dto_publiques", "target": "$graphify-root$_docs_api_contract_4_3_documentsearchparams", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L170", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_4_dto_publiques", "target": "$graphify-root$_docs_api_contract_4_4_arbre_acad\u00e9mique", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L198", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_5_endpoints_v1", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L214", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_5_endpoints_v1", "target": "$graphify-root$_docs_api_contract_authentification", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L216", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_5_endpoints_v1", "target": "$graphify-root$_docs_api_contract_acad\u00e9mique", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L227", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_5_endpoints_v1", "target": "$graphify-root$_docs_api_contract_documents", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L242", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_5_endpoints_v1", "target": "$graphify-root$_docs_api_contract_profil", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L300", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_5_endpoints_v1", "target": "$graphify-root$_docs_api_contract_mod\u00e9ration_et_administration_phase_finale_v1", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L308", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_6_erreurs", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L322", "weight": 1.0}, {"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs", "target": "$graphify-root$_docs_api_contract_7_r\u00e8gles_de_seed_mocks_et_prisma", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/api-contract.md", "source_location": "L340", "weight": 1.0}], "input_tokens": 0, "output_tokens": 0}
+{
+	"nodes": [
+		{
+			"id": "$graphify-root$_docs_api_contract_md",
+			"label": "api-contract.md",
+			"file_type": "document",
+			"node_kind": "page",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"label": "Contrat d'API \u2014 UL Docs",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_1_conventions",
+			"label": "1. Conventions",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L11"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_enveloppes",
+			"label": "Enveloppes",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L23"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_2_mapping_sql_api",
+			"label": "2. Mapping SQL \u2192 API",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L47"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_3_enums_valeurs_fig\u00e9es",
+			"label": "3. Enums (valeurs fig\u00e9es)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L67"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_4_dto_publiques",
+			"label": "4. DTO publiques",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L110"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_4_1_documentlistitem",
+			"label": "4.1 `DocumentListItem`",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L112"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_4_2_documentdetail",
+			"label": "4.2 `DocumentDetail`",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L147"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_4_3_documentsearchparams",
+			"label": "4.3 `DocumentSearchParams`",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L170"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_4_4_arbre_acad\u00e9mique",
+			"label": "4.4 Arbre acad\u00e9mique",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L198"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"label": "5. Endpoints V1",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L214"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_authentification",
+			"label": "Authentification",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L216"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_acad\u00e9mique",
+			"label": "Acad\u00e9mique",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L227"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_documents",
+			"label": "Documents",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L242"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_profil",
+			"label": "Profil",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L300"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_mod\u00e9ration_et_administration_phase_finale_v1",
+			"label": "Mod\u00e9ration et administration (phase finale V1)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L308"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_6_erreurs",
+			"label": "6. Erreurs",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L322"
+		},
+		{
+			"id": "$graphify-root$_docs_api_contract_7_r\u00e8gles_de_seed_mocks_et_prisma",
+			"label": "7. R\u00e8gles de seed (mocks et Prisma)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L340"
+		}
+	],
+	"edges": [
+		{
+			"source": "$graphify-root$_docs_api_contract_md",
+			"target": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_1_conventions",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L11",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_1_conventions",
+			"target": "$graphify-root$_docs_api_contract_enveloppes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L23",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_2_mapping_sql_api",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L47",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_3_enums_valeurs_fig\u00e9es",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L67",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_4_dto_publiques",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L110",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_4_dto_publiques",
+			"target": "$graphify-root$_docs_api_contract_4_1_documentlistitem",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L112",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_4_dto_publiques",
+			"target": "$graphify-root$_docs_api_contract_4_2_documentdetail",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L147",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_4_dto_publiques",
+			"target": "$graphify-root$_docs_api_contract_4_3_documentsearchparams",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L170",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_4_dto_publiques",
+			"target": "$graphify-root$_docs_api_contract_4_4_arbre_acad\u00e9mique",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L198",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L214",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"target": "$graphify-root$_docs_api_contract_authentification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L216",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"target": "$graphify-root$_docs_api_contract_acad\u00e9mique",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L227",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"target": "$graphify-root$_docs_api_contract_documents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L242",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"target": "$graphify-root$_docs_api_contract_profil",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L300",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_5_endpoints_v1",
+			"target": "$graphify-root$_docs_api_contract_mod\u00e9ration_et_administration_phase_finale_v1",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L308",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_6_erreurs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L322",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_api_contract_contrat_d_api_ul_docs",
+			"target": "$graphify-root$_docs_api_contract_7_r\u00e8gles_de_seed_mocks_et_prisma",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/api-contract.md",
+			"source_location": "L340",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

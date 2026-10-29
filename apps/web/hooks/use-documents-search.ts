@@ -8,13 +8,21 @@ import {
 	ORDRE_NIVEAU,
 	TRIS_DOCUMENTS,
 	type TriDocuments,
-	TYPES_DOCUMENT,
 	type TypeDocument,
 } from "shared";
 import { useAcademicTree } from "@/hooks/use-academic-tree";
+import {
+	DOCUMENTS_PAGE_SIZE,
+	getAcademicYears,
+	readInt,
+	readString,
+	readTriDocuments,
+	readTypeDocument,
+	type SearchView,
+} from "@/lib/document-search";
 
-/** Taille de page de la recherche (contrat API : 20 par défaut). */
-export const DOCUMENTS_PAGE_SIZE = 20;
+export type { SearchView };
+export { DOCUMENTS_PAGE_SIZE };
 
 const FILTER_KEYS = [
 	"faculteId",
@@ -25,8 +33,6 @@ const FILTER_KEYS = [
 	"type",
 	"anneeAcademique",
 ] as const;
-
-export type SearchView = "grid" | "list";
 
 export type DocumentsSearchState = {
 	q: string;
@@ -42,26 +48,10 @@ export type DocumentsSearchState = {
 	view: SearchView;
 };
 
-function readInt(value: string | null): number | undefined {
-	if (!value) {
-		return undefined;
-	}
-
-	const parsed = Number(value);
-
-	return Number.isInteger(parsed) && parsed > 0 ? parsed : undefined;
-}
-
-function readString(value: string | null): string | undefined {
-	return value === null || value === "" ? undefined : value;
-}
-
 /** Lit l'état de recherche depuis l'URL. Exporté pour être testable. */
 export function parseDocumentsSearchState(
 	searchParams: URLSearchParams,
 ): DocumentsSearchState {
-	const type = searchParams.get("type");
-	const tri = searchParams.get("tri");
 	const view = searchParams.get("view");
 
 	return {
@@ -71,29 +61,12 @@ export function parseDocumentsSearchState(
 		niveau: readString(searchParams.get("niveau")),
 		semestre: readString(searchParams.get("semestre")),
 		ueId: readInt(searchParams.get("ueId")),
-		type:
-			type && TYPES_DOCUMENT.includes(type as TypeDocument)
-				? (type as TypeDocument)
-				: undefined,
+		type: readTypeDocument(searchParams.get("type")),
 		anneeAcademique: readString(searchParams.get("anneeAcademique")),
-		tri:
-			tri && TRIS_DOCUMENTS.includes(tri as TriDocuments)
-				? (tri as TriDocuments)
-				: undefined,
+		tri: readTriDocuments(searchParams.get("tri")),
 		page: readInt(searchParams.get("page")) ?? 1,
 		view: view === "list" ? "list" : "grid",
 	};
-}
-
-/** Cinq dernières années académiques, la plus récente en premier. */
-export function getAcademicYears(count = 5, now = new Date()): string[] {
-	const startYear =
-		now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
-
-	return Array.from(
-		{ length: count },
-		(_, index) => `${startYear - index}-${startYear - index + 1}`,
-	);
 }
 
 function niveauxOf(facultes: { filieres: { niveaux: { nom: string }[] }[] }[]) {

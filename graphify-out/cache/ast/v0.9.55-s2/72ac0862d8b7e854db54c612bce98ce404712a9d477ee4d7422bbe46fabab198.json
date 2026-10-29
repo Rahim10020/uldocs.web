@@ -1,1 +1,220 @@
-{"nodes": [{"id": "$graphify-root$_docs_mvp_scope_md", "label": "mvp-scope.md", "file_type": "document", "node_kind": "page", "source_file": "docs/mvp-scope.md", "source_location": "L1"}, {"id": "$graphify-root$_docs_mvp_scope_definition_du_perimetre_mvp", "label": "Definition du perimetre (MVP)", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L1"}, {"id": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "label": "**Methode de remplissage de la matrice**", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L5"}, {"id": "$graphify-root$_docs_mvp_scope_authentification", "label": "Authentification", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L12"}, {"id": "$graphify-root$_docs_mvp_scope_gestion_des_documents", "label": "Gestion des documents", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L28"}, {"id": "$graphify-root$_docs_mvp_scope_recherche_et_navigation", "label": "Recherche et Navigation", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L52"}, {"id": "$graphify-root$_docs_mvp_scope_interaction_et_communaute", "label": "Interaction et communaute", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L71"}, {"id": "$graphify-root$_docs_mvp_scope_moderation_et_confiance", "label": "Moderation et confiance", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L88"}, {"id": "$graphify-root$_docs_mvp_scope_profil_et_tableau_de_bord", "label": "Profil et Tableau de bord", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L106"}, {"id": "$graphify-root$_docs_mvp_scope_experience_et_contenu_editorial", "label": "Experience et Contenu Editorial", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L119"}, {"id": "$graphify-root$_docs_mvp_scope_technique_et_performance", "label": "Technique et Performance", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L133"}, {"id": "$graphify-root$_docs_mvp_scope_monetisation_plus_tard", "label": "Monetisation (Plus tard)", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L150"}, {"id": "$graphify-root$_docs_mvp_scope_administration", "label": "Administration", "file_type": "document", "node_kind": "heading", "source_file": "docs/mvp-scope.md", "source_location": "L160"}], "edges": [{"source": "$graphify-root$_docs_mvp_scope_md", "target": "$graphify-root$_docs_mvp_scope_definition_du_perimetre_mvp", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L1", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_definition_du_perimetre_mvp", "target": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L5", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_authentification", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L12", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_gestion_des_documents", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L28", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_recherche_et_navigation", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L52", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_interaction_et_communaute", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L71", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_moderation_et_confiance", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L88", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_profil_et_tableau_de_bord", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L106", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_experience_et_contenu_editorial", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L119", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_technique_et_performance", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L133", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_monetisation_plus_tard", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L150", "weight": 1.0}, {"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice", "target": "$graphify-root$_docs_mvp_scope_administration", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/mvp-scope.md", "source_location": "L160", "weight": 1.0}], "input_tokens": 0, "output_tokens": 0}
+{
+	"nodes": [
+		{
+			"id": "$graphify-root$_docs_mvp_scope_md",
+			"label": "mvp-scope.md",
+			"file_type": "document",
+			"node_kind": "page",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_definition_du_perimetre_mvp",
+			"label": "Definition du perimetre (MVP)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"label": "**Methode de remplissage de la matrice**",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L5"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_authentification",
+			"label": "Authentification",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L12"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_gestion_des_documents",
+			"label": "Gestion des documents",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_recherche_et_navigation",
+			"label": "Recherche et Navigation",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L52"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_interaction_et_communaute",
+			"label": "Interaction et communaute",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L71"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_moderation_et_confiance",
+			"label": "Moderation et confiance",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L88"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_profil_et_tableau_de_bord",
+			"label": "Profil et Tableau de bord",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L106"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_experience_et_contenu_editorial",
+			"label": "Experience et Contenu Editorial",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L119"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_technique_et_performance",
+			"label": "Technique et Performance",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L133"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_monetisation_plus_tard",
+			"label": "Monetisation (Plus tard)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L150"
+		},
+		{
+			"id": "$graphify-root$_docs_mvp_scope_administration",
+			"label": "Administration",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L160"
+		}
+	],
+	"edges": [
+		{
+			"source": "$graphify-root$_docs_mvp_scope_md",
+			"target": "$graphify-root$_docs_mvp_scope_definition_du_perimetre_mvp",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_definition_du_perimetre_mvp",
+			"target": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L5",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_authentification",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L12",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_gestion_des_documents",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_recherche_et_navigation",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L52",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_interaction_et_communaute",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L71",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_moderation_et_confiance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L88",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_profil_et_tableau_de_bord",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L106",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_experience_et_contenu_editorial",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L119",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_technique_et_performance",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L133",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_monetisation_plus_tard",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L150",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_mvp_scope_methode_de_remplissage_de_la_matrice",
+			"target": "$graphify-root$_docs_mvp_scope_administration",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/mvp-scope.md",
+			"source_location": "L160",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

@@ -1,1 +1,101 @@
-{"nodes": [{"id": "$graphify-root$_docs_academic_data_md", "label": "academic-data.md", "file_type": "document", "node_kind": "page", "source_file": "docs/academic-data.md", "source_location": "L1"}, {"id": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul", "label": "Donn\u00e9es Acad\u00e9miques de l'Universit\u00e9 de Lom\u00e9 (UL)", "file_type": "document", "node_kind": "heading", "source_file": "docs/academic-data.md", "source_location": "L1"}, {"id": "$graphify-root$_docs_academic_data_objectif", "label": "\ud83c\udfaf Objectif", "file_type": "document", "node_kind": "heading", "source_file": "docs/academic-data.md", "source_location": "L3"}, {"id": "$graphify-root$_docs_academic_data_1_structure_de_la_base", "label": "1. Structure de la Base", "file_type": "document", "node_kind": "heading", "source_file": "docs/academic-data.md", "source_location": "L7"}, {"id": "$graphify-root$_docs_academic_data_liste_des_entit\u00e9s_15", "label": "Liste des entit\u00e9s (15)", "file_type": "document", "node_kind": "heading", "source_file": "docs/academic-data.md", "source_location": "L9"}, {"id": "$graphify-root$_docs_academic_data_2_donn\u00e9es_d\u00e9taill\u00e9es_fili\u00e8res_ue", "label": "2. Donn\u00e9es d\u00e9taill\u00e9es (Fili\u00e8res & UE)", "file_type": "document", "node_kind": "heading", "source_file": "docs/academic-data.md", "source_location": "L15"}], "edges": [{"source": "$graphify-root$_docs_academic_data_md", "target": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/academic-data.md", "source_location": "L1", "weight": 1.0}, {"source": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul", "target": "$graphify-root$_docs_academic_data_objectif", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/academic-data.md", "source_location": "L3", "weight": 1.0}, {"source": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul", "target": "$graphify-root$_docs_academic_data_1_structure_de_la_base", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/academic-data.md", "source_location": "L7", "weight": 1.0}, {"source": "$graphify-root$_docs_academic_data_1_structure_de_la_base", "target": "$graphify-root$_docs_academic_data_liste_des_entit\u00e9s_15", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/academic-data.md", "source_location": "L9", "weight": 1.0}, {"source": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul", "target": "$graphify-root$_docs_academic_data_2_donn\u00e9es_d\u00e9taill\u00e9es_fili\u00e8res_ue", "relation": "contains", "confidence": "EXTRACTED", "source_file": "docs/academic-data.md", "source_location": "L15", "weight": 1.0}], "input_tokens": 0, "output_tokens": 0}
+{
+	"nodes": [
+		{
+			"id": "$graphify-root$_docs_academic_data_md",
+			"label": "academic-data.md",
+			"file_type": "document",
+			"node_kind": "page",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul",
+			"label": "Donn\u00e9es Acad\u00e9miques de l'Universit\u00e9 de Lom\u00e9 (UL)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_docs_academic_data_objectif",
+			"label": "\ud83c\udfaf Objectif",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "$graphify-root$_docs_academic_data_1_structure_de_la_base",
+			"label": "1. Structure de la Base",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L7"
+		},
+		{
+			"id": "$graphify-root$_docs_academic_data_liste_des_entit\u00e9s_15",
+			"label": "Liste des entit\u00e9s (15)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L9"
+		},
+		{
+			"id": "$graphify-root$_docs_academic_data_2_donn\u00e9es_d\u00e9taill\u00e9es_fili\u00e8res_ue",
+			"label": "2. Donn\u00e9es d\u00e9taill\u00e9es (Fili\u00e8res & UE)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L15"
+		}
+	],
+	"edges": [
+		{
+			"source": "$graphify-root$_docs_academic_data_md",
+			"target": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul",
+			"target": "$graphify-root$_docs_academic_data_objectif",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul",
+			"target": "$graphify-root$_docs_academic_data_1_structure_de_la_base",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L7",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_academic_data_1_structure_de_la_base",
+			"target": "$graphify-root$_docs_academic_data_liste_des_entit\u00e9s_15",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L9",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_docs_academic_data_donn\u00e9es_acad\u00e9miques_de_l_universit\u00e9_de_lom\u00e9_ul",
+			"target": "$graphify-root$_docs_academic_data_2_donn\u00e9es_d\u00e9taill\u00e9es_fili\u00e8res_ue",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "docs/academic-data.md",
+			"source_location": "L15",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

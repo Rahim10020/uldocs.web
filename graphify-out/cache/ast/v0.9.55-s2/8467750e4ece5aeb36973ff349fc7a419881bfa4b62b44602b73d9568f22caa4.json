@@ -1,1 +1,271 @@
-{"nodes": [{"id": "$graphify-root$_agents_md", "label": "AGENTS.md", "file_type": "document", "node_kind": "page", "source_file": "AGENTS.md", "source_location": "L1"}, {"id": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "label": "R\u00e8gles du projet UL Docs", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L1"}, {"id": "$graphify-root$_agents_contexte", "label": "\ud83c\udfaf Contexte", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L3"}, {"id": "$graphify-root$_agents_documentation_de_r\u00e9f\u00e9rence_\u00e0_lire_obligatoirement", "label": "\ud83d\udcda Documentation de r\u00e9f\u00e9rence (\u00c0 LIRE OBLIGATOIREMENT)", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L13"}, {"id": "$graphify-root$_agents_stack_technique_frontend", "label": "\ud83d\udee0\ufe0f Stack technique (frontend)", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L28"}, {"id": "$graphify-root$_agents_d\u00e9pendances", "label": "\ud83d\udce6 D\u00e9pendances", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L38"}, {"id": "$graphify-root$_agents_architecture_frontend_apps_web", "label": "\ud83d\udcd0 Architecture frontend (`apps/web`)", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L48"}, {"id": "$graphify-root$_agents_conventions_de_nommage", "label": "\ud83e\uddf1 Conventions de nommage", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L68"}, {"id": "$graphify-root$_agents_style_de_code", "label": "\u270d\ufe0f Style de code", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L79"}, {"id": "$graphify-root$_agents_styling", "label": "\ud83c\udfa8 Styling", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L86"}, {"id": "$graphify-root$_agents_d\u00e9composition_des_\u00e9crans_composants", "label": "\ud83e\udde9 D\u00e9composition des \u00e9crans & composants", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L104"}, {"id": "$graphify-root$_agents_hooks_personnalis\u00e9s", "label": "\ud83e\ude9d Hooks personnalis\u00e9s", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L111"}, {"id": "$graphify-root$_agents_tests_tdd", "label": "\ud83e\uddea Tests (TDD)", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L123"}, {"id": "$graphify-root$_agents_commandes", "label": "\u2699\ufe0f Commandes", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L134"}, {"id": "$graphify-root$_agents_astuces_de_workflow_ia", "label": "\ud83e\udd16 Astuces de workflow IA", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L143"}, {"id": "$graphify-root$_agents_principes_g\u00e9n\u00e9raux", "label": "\ud83e\udded Principes g\u00e9n\u00e9raux", "file_type": "document", "node_kind": "heading", "source_file": "AGENTS.md", "source_location": "L163"}], "edges": [{"source": "$graphify-root$_agents_md", "target": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L1", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_contexte", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L3", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_documentation_de_r\u00e9f\u00e9rence_\u00e0_lire_obligatoirement", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L13", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_stack_technique_frontend", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L28", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_d\u00e9pendances", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L38", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_architecture_frontend_apps_web", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L48", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_conventions_de_nommage", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L68", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_style_de_code", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L79", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_styling", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L86", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_d\u00e9composition_des_\u00e9crans_composants", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L104", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_hooks_personnalis\u00e9s", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L111", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_tests_tdd", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L123", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_commandes", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L134", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_astuces_de_workflow_ia", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L143", "weight": 1.0}, {"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs", "target": "$graphify-root$_agents_principes_g\u00e9n\u00e9raux", "relation": "contains", "confidence": "EXTRACTED", "source_file": "AGENTS.md", "source_location": "L163", "weight": 1.0}], "input_tokens": 0, "output_tokens": 0}
+{
+	"nodes": [
+		{
+			"id": "$graphify-root$_agents_md",
+			"label": "AGENTS.md",
+			"file_type": "document",
+			"node_kind": "page",
+			"source_file": "AGENTS.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"label": "R\u00e8gles du projet UL Docs",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L1"
+		},
+		{
+			"id": "$graphify-root$_agents_contexte",
+			"label": "\ud83c\udfaf Contexte",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L3"
+		},
+		{
+			"id": "$graphify-root$_agents_documentation_de_r\u00e9f\u00e9rence_\u00e0_lire_obligatoirement",
+			"label": "\ud83d\udcda Documentation de r\u00e9f\u00e9rence (\u00c0 LIRE OBLIGATOIREMENT)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L13"
+		},
+		{
+			"id": "$graphify-root$_agents_stack_technique_frontend",
+			"label": "\ud83d\udee0\ufe0f Stack technique (frontend)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L28"
+		},
+		{
+			"id": "$graphify-root$_agents_d\u00e9pendances",
+			"label": "\ud83d\udce6 D\u00e9pendances",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L38"
+		},
+		{
+			"id": "$graphify-root$_agents_architecture_frontend_apps_web",
+			"label": "\ud83d\udcd0 Architecture frontend (`apps/web`)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L48"
+		},
+		{
+			"id": "$graphify-root$_agents_conventions_de_nommage",
+			"label": "\ud83e\uddf1 Conventions de nommage",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L68"
+		},
+		{
+			"id": "$graphify-root$_agents_style_de_code",
+			"label": "\u270d\ufe0f Style de code",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L79"
+		},
+		{
+			"id": "$graphify-root$_agents_styling",
+			"label": "\ud83c\udfa8 Styling",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L86"
+		},
+		{
+			"id": "$graphify-root$_agents_d\u00e9composition_des_\u00e9crans_composants",
+			"label": "\ud83e\udde9 D\u00e9composition des \u00e9crans & composants",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L104"
+		},
+		{
+			"id": "$graphify-root$_agents_hooks_personnalis\u00e9s",
+			"label": "\ud83e\ude9d Hooks personnalis\u00e9s",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L111"
+		},
+		{
+			"id": "$graphify-root$_agents_tests_tdd",
+			"label": "\ud83e\uddea Tests (TDD)",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L123"
+		},
+		{
+			"id": "$graphify-root$_agents_commandes",
+			"label": "\u2699\ufe0f Commandes",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L134"
+		},
+		{
+			"id": "$graphify-root$_agents_astuces_de_workflow_ia",
+			"label": "\ud83e\udd16 Astuces de workflow IA",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L143"
+		},
+		{
+			"id": "$graphify-root$_agents_principes_g\u00e9n\u00e9raux",
+			"label": "\ud83e\udded Principes g\u00e9n\u00e9raux",
+			"file_type": "document",
+			"node_kind": "heading",
+			"source_file": "AGENTS.md",
+			"source_location": "L163"
+		}
+	],
+	"edges": [
+		{
+			"source": "$graphify-root$_agents_md",
+			"target": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L1",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_contexte",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L3",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_documentation_de_r\u00e9f\u00e9rence_\u00e0_lire_obligatoirement",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L13",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_stack_technique_frontend",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L28",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_d\u00e9pendances",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L38",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_architecture_frontend_apps_web",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L48",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_conventions_de_nommage",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L68",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_style_de_code",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L79",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_styling",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L86",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_d\u00e9composition_des_\u00e9crans_composants",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L104",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_hooks_personnalis\u00e9s",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L111",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_tests_tdd",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L123",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_commandes",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L134",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_astuces_de_workflow_ia",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L143",
+			"weight": 1.0
+		},
+		{
+			"source": "$graphify-root$_agents_r\u00e8gles_du_projet_ul_docs",
+			"target": "$graphify-root$_agents_principes_g\u00e9n\u00e9raux",
+			"relation": "contains",
+			"confidence": "EXTRACTED",
+			"source_file": "AGENTS.md",
+			"source_location": "L163",
+			"weight": 1.0
+		}
+	],
+	"input_tokens": 0,
+	"output_tokens": 0
+}

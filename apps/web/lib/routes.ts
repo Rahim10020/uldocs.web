@@ -3,24 +3,27 @@
  * Les route groups (`(auth)`, `(main)`) n'apparaissent pas ici.
  */
 export const routes = {
-  home: "/",
-  about: "/a-propos",
-  charter: "/charte-de-contribution",
-  report: "/signaler-un-probleme",
+	home: "/",
+	about: "/a-propos",
+	charter: "/charte-de-contribution",
+	report: "/signaler-un-probleme",
 
-  documents: "/documents",
-  newDocument: "/documents/nouveau",
-  document: (id: string | number) =>
-    `/documents/${id}` as `/documents/${string}`,
-  categories: "/categories",
-  favorites: "/favoris",
+	documents: "/documents",
+	newDocument: "/documents/nouveau",
+	document: (id: string | number) =>
+		`/documents/${id}` as `/documents/${string}`,
+	categories: "/categories",
+	categorie: (id: string | number) =>
+		`/categories/${id}` as `/categories/${string}`,
+	filiere: (id: string | number) => `/filieres/${id}` as `/filieres/${string}`,
+	favorites: "/favoris",
 
-  matiere: (id: string | number) => `/matieres/${id}` as `/matieres/${string}`,
+	matiere: (id: string | number) => `/matieres/${id}` as `/matieres/${string}`,
 
-  profile: "/profil",
-  myDocuments: "/profil/documents",
+	profile: "/profil",
+	myDocuments: "/profil/documents",
 
-  login: "/connexion",
-  register: "/inscription",
-  forgotPassword: "/mot-de-passe-oublie",
+	login: "/connexion",
+	register: "/inscription",
+	forgotPassword: "/mot-de-passe-oublie",
 } as const;
