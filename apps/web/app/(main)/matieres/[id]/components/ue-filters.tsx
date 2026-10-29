@@ -145,6 +145,7 @@ function UeFilterSheet({
           value={search.state.anneeAcademique ?? ""}
           options={yearOptions}
           onChange={search.setAnnee}
+          inline
         />
       </div>
 
@@ -156,6 +157,7 @@ function UeFilterSheet({
           options={triOptions}
           onChange={search.setSortValue}
           showAllOption={false}
+          inline
         />
       </div>
 

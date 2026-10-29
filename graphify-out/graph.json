@@ -2053,7 +2053,7 @@
       "file_type": "code",
       "norm_label": "sheetfield()",
       "source_file": "apps/web/app/(main)/documents/components/search-filters.tsx",
-      "source_location": "L350"
+      "source_location": "L355"
     },
     {
       "id": "apps_web_app_main_filieres_id_components_filiere_filters_filierefilters",
@@ -2077,7 +2077,7 @@
       "file_type": "code",
       "norm_label": "typefilterrow()",
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L175"
+      "source_location": "L177"
     },
     {
       "id": "apps_web_app_main_matieres_id_components_ue_filters_uefilters",
@@ -2149,7 +2149,7 @@
       "file_type": "code",
       "norm_label": "handlekeydown()",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L79"
+      "source_location": "L89"
     },
     {
       "id": "apps_web_components_ui_search_select_searchselect_handlepointerdown",
@@ -2161,7 +2161,7 @@
       "file_type": "code",
       "norm_label": "handlepointerdown()",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L55"
+      "source_location": "L59"
     },
     {
       "id": "apps_web_components_ui_search_select_searchselect_selectoption",
@@ -2173,7 +2173,7 @@
       "file_type": "code",
       "norm_label": "selectoption()",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L73"
+      "source_location": "L83"
     },
     {
       "id": "apps_web_lib_academic_labels_formatniveau",
@@ -10868,7 +10868,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L194",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -11276,7 +11276,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L119",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
@@ -11288,7 +11288,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L114",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -12368,7 +12368,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L73",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -25932,7 +25932,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/app/(main)/documents/components/search-filters.tsx",
-      "source_location": "L350",
+      "source_location": "L355",
       "weight": 1.0
     },
     {
@@ -26724,7 +26724,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx",
-      "source_location": "L175",
+      "source_location": "L177",
       "weight": 1.0
     },
     {
@@ -27582,7 +27582,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L79",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -32148,7 +32148,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "apps/web/components/ui/search-select.tsx",
-      "source_location": "L61",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -32189,5 +32189,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "445630b9f8ee3aa09409b6753a4f56a5b23886c7"
+  "built_at_commit": "c0c667ad9e7d4af5e7b4bfbd685361daa101b474"
 }

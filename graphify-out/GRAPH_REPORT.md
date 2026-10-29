@@ -1,7 +1,7 @@
 # Graph Report - uldocs  (2026-10-29)
 
 ## Corpus Check
-- 169 files · ~155,248 words
+- 169 files · ~156,494 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `445630b9`
+- Built from commit: `c0c667ad`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

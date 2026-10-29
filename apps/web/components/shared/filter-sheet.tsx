@@ -71,11 +71,11 @@ export function FilterSheet({
 
 			<div
 				className={cn(
-					"absolute inset-x-0 bottom-0 flex max-h-[85vh] flex-col rounded-t-2xl bg-white shadow-xl",
+					"absolute inset-x-0 bottom-0 flex max-h-[90dvh] flex-col rounded-t-2xl bg-white shadow-xl",
 					className,
 				)}
 			>
-				<div className="flex items-center justify-between border-b border-black-10 px-5 py-4">
+				<div className="flex shrink-0 items-center justify-between border-b border-black-10 px-5 py-4">
 					<h2 id={titleId} className="text-lg font-semibold text-black">
 						{title}
 					</h2>
@@ -90,12 +90,17 @@ export function FilterSheet({
 					</button>
 				</div>
 
-				<div className="flex-1 space-y-4 overflow-y-auto px-5 py-5">
+				<div
+					className={cn(
+						"min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain px-5 pt-5",
+						footer ? "pb-5" : "pb-[calc(1.25rem+env(safe-area-inset-bottom))]",
+					)}
+				>
 					{children}
 				</div>
 
 				{footer ? (
-					<div className="flex gap-3 border-t border-black-10 px-5 py-4">
+					<div className="flex shrink-0 gap-3 border-t border-black-10 px-5 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
 						{footer}
 					</div>
 				) : null}

@@ -299,6 +299,7 @@ function MobileFilterSheet({
 					value={search.state.faculteId?.toString() ?? ""}
 					options={options.faculties}
 					onChange={search.setFaculte}
+					inline
 				/>
 			</SheetField>
 
@@ -310,6 +311,7 @@ function MobileFilterSheet({
 					options={options.niveaux}
 					onChange={search.setNiveau}
 					disabled={search.niveaux.length === 0}
+					inline
 				/>
 			</SheetField>
 
@@ -321,6 +323,7 @@ function MobileFilterSheet({
 					options={options.semestres}
 					onChange={search.setSemestre}
 					disabled={search.semestres.length === 0}
+					inline
 				/>
 			</SheetField>
 
@@ -331,6 +334,7 @@ function MobileFilterSheet({
 					value={search.state.type ?? ""}
 					options={options.types}
 					onChange={search.setType}
+					inline
 				/>
 			</SheetField>
 
@@ -341,6 +345,7 @@ function MobileFilterSheet({
 					value={search.state.anneeAcademique ?? ""}
 					options={options.years}
 					onChange={search.setAnnee}
+					inline
 				/>
 			</SheetField>
 		</FilterSheet>

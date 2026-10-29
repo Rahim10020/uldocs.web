@@ -1,6 +1,8 @@
 --utiliser le mcp de iconscout pour changer toutes les icones utilisees, a voir avec opencode 
 la meilleure maniere de le faire
 
+--tester les sheet sur vrai telephone mobile
+
 --Il y a deux façons de faire :
 
 La méthode "facile" : Tu stockes le PDF complet sur R2, et c'est react-pdf côté frontend qui 
@@ -22,6 +24,3 @@ dans react-pdf, mais vous forcez l'affichage à 3 pages. C'est suffisant pour le
 
 -- avant de sauvegarder un document (bookmark) la personne dois etre connecte. si ce 
 n'est pas le cas, on l'invite a se connecter.
--- les descriptions des facultes, ecoles, instituts, filieres(de chaque categories) et 
-ues sont a titre de placeholder juste pour faire le design. donc tu vas generer 
-des descriptions appropriees.

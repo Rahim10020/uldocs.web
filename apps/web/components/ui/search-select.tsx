@@ -19,6 +19,7 @@ export function SearchSelect({
 	allLabel,
 	disabled,
 	showAllOption = true,
+	inline = false,
 }: {
 	label: string;
 	value: string;
@@ -30,10 +31,13 @@ export function SearchSelect({
 	disabled?: boolean;
 	/** Affiche l'option vide en tête de liste. Désactiver pour un tri sans « tous ». */
 	showAllOption?: boolean;
+	/** Affiche la liste dans le flux, utile dans une feuille scrollable. */
+	inline?: boolean;
 }) {
 	const id = useId();
 	const rootRef = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
+	const listboxRef = useRef<HTMLDivElement>(null);
 	const [open, setOpen] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(0);
 	const allOptions = showAllOption
@@ -69,6 +73,12 @@ export function SearchSelect({
 				?.scrollIntoView({ block: "nearest" });
 		}
 	}, [activeIndex, id, open]);
+
+	useEffect(() => {
+		if (open && inline) {
+			listboxRef.current?.scrollIntoView({ block: "nearest" });
+		}
+	}, [inline, open]);
 
 	function selectOption(option: SearchSelectOption) {
 		onChange(option.value);
@@ -149,10 +159,14 @@ export function SearchSelect({
 
 			{open && (
 				<div
+					ref={listboxRef}
 					id={listboxId}
 					role="listbox"
 					aria-label={label}
-					className="absolute left-0 top-full z-50 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-black-10 bg-white p-1 shadow-lg [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black-20"
+					className={cn(
+						"z-50 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-black-10 bg-white p-1 shadow-lg [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black-20",
+						inline ? "relative" : "absolute left-0 top-full",
+					)}
 				>
 					{allOptions.map((option, index) => {
 						const selected = option.value === value;
