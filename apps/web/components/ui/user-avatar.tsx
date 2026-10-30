@@ -13,7 +13,7 @@ export function UserAvatar({
     <span
       aria-hidden
       className={cn(
-        "inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-10 text-sm font-bold text-primary",
+        "inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-black-80 text-sm font-bold text-white",
         className,
       )}
     >

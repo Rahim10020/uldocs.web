@@ -32,7 +32,9 @@ export default function RootLayout({ children, modal }: LayoutProps<"/">) {
 		<html lang="fr" className={`${satoshi.variable} h-full antialiased`}>
 			<body className="min-h-full flex flex-col bg-background text-foreground">
 				<Providers>
-					{children}
+					<div id="app-shell" className="flex min-h-full flex-1 flex-col">
+						{children}
+					</div>
 					{modal}
 				</Providers>
 			</body>

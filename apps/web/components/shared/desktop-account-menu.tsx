@@ -158,7 +158,7 @@ export function DesktopAccountMenu() {
                   type="button"
                   onClick={handleLogout}
                   disabled={logoutMutation.isPending}
-                  className="inline-flex w-full items-center gap-2 rounded-sm px-3 py-2.5 text-left text-base text-error transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
+                  className="inline-flex cursor-pointer w-full items-center gap-2 rounded-sm px-3 py-2.5 text-left text-base text-error transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
                 >
                   <LogOut aria-hidden className="size-4" />
                   Déconnexion
