@@ -24,7 +24,3 @@ dans react-pdf, mais vous forcez l'affichage à 3 pages. C'est suffisant pour le
 
 -- avant de sauvegarder un document (bookmark) la personne dois etre connecte. si ce 
 n'est pas le cas, on l'invite a se connecter.
-
--- quand on ouvre le modal, il y a le header qui est toujours visible. il devrais 
-etre floute comme c'est fais pour le background. le focus devrais etre uniquement sur 
-le modal. dis moi si c'est une bonne approche ou bien c'est pas bon ?
