@@ -1,10 +1,12 @@
+import type { Metadata } from "next";
+import { MyDocumentsContent } from "./components/my-documents-content";
+
+export const metadata: Metadata = {
+	title: "Mes documents — ulDocs",
+	description:
+		"Retrouve tous les documents que tu as importés sur ulDocs et suis leur statut.",
+};
+
 export default function MyDocumentsPage() {
-  return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-12">
-      <h1 className="text-2xl font-bold text-black">
-        Imports &amp; Téléchargements
-      </h1>
-      <p className="mt-2 text-black-60">Cette page sera bientôt disponible.</p>
-    </div>
-  );
+	return <MyDocumentsContent />;
 }

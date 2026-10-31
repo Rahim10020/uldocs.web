@@ -84,6 +84,7 @@ describe("documents mockés", () => {
 		expect(mine.total).toBeGreaterThan(0);
 		expect(mine.data.every((doc) => doc.uploader.id === 1)).toBe(true);
 		expect(mine.data.some((doc) => pendingIds.has(doc.id))).toBe(true);
+		expect(mine.data.every((doc) => doc.statut)).toBe(true);
 	});
 
 	it("couvre plusieurs niveaux et semestres pour la démo", () => {

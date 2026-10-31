@@ -80,7 +80,7 @@ export type TypeDocument =
   | "annale"
   | "corrige"
   | "td"
-  | "memoire"
+  | "resume"
   | "autre";
 
 export type FormatDocument = "pdf" | "docx" | "pptx" | "image";
@@ -127,6 +127,7 @@ export type DocumentListItem = {
   nbVues: number;
   nbTelechargements: number;
   noteMoyenne: number;
+  statut: StatutDocument;
   /** `true` si l'utilisateur connecté a mis le document en favori. */
   estFavori: boolean;
   dateUpload: string;
@@ -159,7 +160,6 @@ export type DocumentReaction = {
 export type DocumentDetail = DocumentListItem & {
   tailleKo: number;
   langue: string;
-  statut: StatutDocument;
   dateMiseAJour: string;
   enseignant: { id: number; nom: string } | null;
   tags: { id: number; nom: string }[];
@@ -285,6 +285,8 @@ long).
   sont idempotents.
 - Upload : `pdf`, `docx`, `pptx`, `image`, **20 Mo max**, champ
   `certification = true` obligatoire. Le document est créé en `en_attente`.
+- Un appel crée **un seul document** : le frontend enchaîne les appels pour un
+  import multi-fichiers (10 fichiers maximum par import).
 
 ```ts
 export type DocumentCreatePayload = {

@@ -49,7 +49,7 @@ export function AuthDialog({
 
 		const focusTimer = window.setTimeout(() => {
 			const firstField = dialog?.querySelector<HTMLElement>(
-				"input:not([type='hidden']), select, textarea",
+				"input:not([type='hidden']), select, textarea, [data-auth-select]",
 			);
 
 			(firstField ?? closeRef.current)?.focus();

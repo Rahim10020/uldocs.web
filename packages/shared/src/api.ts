@@ -85,6 +85,7 @@ export type DocumentListItem = {
 	nbVues: number;
 	nbTelechargements: number;
 	noteMoyenne: number;
+	statut: StatutDocument;
 	/** `true` si l'utilisateur connecté a mis le document en favori. */
 	estFavori: boolean;
 	dateUpload: string;
@@ -117,11 +118,24 @@ export type DocumentReactionPayload = {
 export type DocumentDetail = DocumentListItem & {
 	tailleKo: number;
 	langue: string;
-	statut: StatutDocument;
 	dateMiseAJour: string;
 	enseignant: { id: number; nom: string } | null;
 	tags: { id: number; nom: string }[];
 	reaction: DocumentReaction;
+};
+
+/** Corps multipart de POST /documents. */
+export type DocumentCreatePayload = {
+	titre: string;
+	description?: string;
+	type: TypeDocument;
+	ueId: number;
+	enseignantId?: number;
+	anneeAcademique: string;
+	langue?: string;
+	nbPages?: number;
+	certification: true;
+	fichier: File;
 };
 
 /** Paramètres de GET /documents. */

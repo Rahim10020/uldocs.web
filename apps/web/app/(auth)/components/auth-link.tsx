@@ -1,10 +1,9 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { AuthMode } from "@/types/auth";
-
-type AuthRoute = "/connexion" | "/inscription" | "/mot-de-passe-oublie";
 
 /**
  * Lien entre écrans d'authentification.
@@ -12,29 +11,29 @@ type AuthRoute = "/connexion" | "/inscription" | "/mot-de-passe-oublie";
  * au-dessus de la page courante. En mode modale, le Link Next.js intercepte.
  */
 export function AuthLink({
-  href,
-  mode,
-  children,
-  className,
-  onClick,
+	href,
+	mode,
+	children,
+	className,
+	onClick,
 }: {
-  href: AuthRoute;
-  mode: AuthMode;
-  children: ReactNode;
-  className?: string;
-  onClick?: () => void;
+	href: Route;
+	mode: AuthMode;
+	children: ReactNode;
+	className?: string;
+	onClick?: () => void;
 }) {
-  if (mode === "page") {
-    return (
-      <a href={href} className={className} onClick={onClick}>
-        {children}
-      </a>
-    );
-  }
+	if (mode === "page") {
+		return (
+			<a href={href} className={className} onClick={onClick}>
+				{children}
+			</a>
+		);
+	}
 
-  return (
-    <Link href={href} className={className} onClick={onClick}>
-      {children}
-    </Link>
-  );
+	return (
+		<Link href={href} className={className} onClick={onClick}>
+			{children}
+		</Link>
+	);
 }

@@ -13,8 +13,10 @@ import {
 	type VoteDocument,
 } from "shared";
 import { ApiError } from "../api/errors";
-import { mockAcademic } from "./academic";
+import { getDocumentFormat, MAX_FILE_SIZE_BYTES } from "../document-upload";
+import { getUeContext, mockAcademic } from "./academic";
 import {
+	createMockDocument,
 	getMockDocument,
 	listMockDocumentsByUploader,
 	listMockFavoriteDocuments,
@@ -66,6 +68,61 @@ function readJsonBody<T>(init?: RequestInit): T {
 	} catch {
 		throw new ApiError("Corps de requête invalide", 400, "VALIDATION_ERROR");
 	}
+}
+
+function readFormDataBody(init?: RequestInit): FormData {
+	if (!(init?.body instanceof FormData)) {
+		throw new ApiError(
+			"Corps multipart/form-data attendu",
+			400,
+			"VALIDATION_ERROR",
+		);
+	}
+
+	return init.body;
+}
+
+function readRequiredFormString(formData: FormData, key: string): string {
+	const value = formData.get(key);
+
+	if (typeof value !== "string" || value.trim() === "") {
+		throw new ApiError(
+			`Champ « ${key} » manquant ou invalide`,
+			400,
+			"VALIDATION_ERROR",
+		);
+	}
+
+	return value.trim();
+}
+
+function readRequiredFormNumber(formData: FormData, key: string): number {
+	const value = Number(readRequiredFormString(formData, key));
+
+	if (!Number.isInteger(value) || value <= 0) {
+		throw new ApiError(`Champ « ${key} » invalide`, 400, "VALIDATION_ERROR");
+	}
+
+	return value;
+}
+
+function readOptionalFormNumber(
+	formData: FormData,
+	key: string,
+): number | undefined {
+	const raw = formData.get(key);
+
+	if (raw === null || raw === "") {
+		return undefined;
+	}
+
+	const value = Number(raw);
+
+	if (!Number.isInteger(value) || value <= 0) {
+		throw new ApiError(`Champ « ${key} » invalide`, 400, "VALIDATION_ERROR");
+	}
+
+	return value;
 }
 
 function parseSearchParams(
@@ -161,6 +218,67 @@ export async function mockRequest(
 
 	if (method === "GET" && pathname === "/documents") {
 		return searchMockDocuments(parseSearchParams(searchParams));
+	}
+
+	if (method === "POST" && pathname === "/documents") {
+		const uploader = requireMockSession();
+		const formData = readFormDataBody(init);
+		const titre = readRequiredFormString(formData, "titre");
+		const rawType = readRequiredFormString(formData, "type");
+
+		if (!TYPES_DOCUMENT.includes(rawType as TypeDocument)) {
+			throw new ApiError("Type de document invalide", 400, "VALIDATION_ERROR");
+		}
+
+		const ueId = readRequiredFormNumber(formData, "ueId");
+
+		if (!getUeContext(ueId)) {
+			throw new ApiError("UE introuvable", 400, "VALIDATION_ERROR");
+		}
+
+		const anneeAcademique = readRequiredFormString(formData, "anneeAcademique");
+
+		if (formData.get("certification") !== "true") {
+			throw new ApiError(
+				"La certification est obligatoire",
+				400,
+				"VALIDATION_ERROR",
+			);
+		}
+
+		const fichier = formData.get("fichier");
+
+		if (!(fichier instanceof File)) {
+			throw new ApiError("Fichier manquant", 400, "VALIDATION_ERROR");
+		}
+
+		if (fichier.size > MAX_FILE_SIZE_BYTES) {
+			throw new ApiError(
+				"Le fichier dépasse la taille maximale de 20 Mo",
+				413,
+				"PAYLOAD_TOO_LARGE",
+			);
+		}
+
+		if (!getDocumentFormat(fichier)) {
+			throw new ApiError(
+				"Format de fichier non accepté",
+				400,
+				"VALIDATION_ERROR",
+			);
+		}
+
+		const nbPages = readOptionalFormNumber(formData, "nbPages");
+
+		return createMockDocument({
+			titre,
+			type: rawType as TypeDocument,
+			ueId,
+			anneeAcademique,
+			nbPages,
+			fichier,
+			uploader,
+		});
 	}
 
 	if (method === "GET" && pathname === "/documents/mine") {

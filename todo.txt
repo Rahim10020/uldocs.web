@@ -2,6 +2,7 @@
 la meilleure maniere de le faire
 
 --tester les sheet sur vrai telephone mobile
+-- suggestions lors de la recherche
 
 --Il y a deux façons de faire :
 

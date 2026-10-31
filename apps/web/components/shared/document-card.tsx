@@ -1,12 +1,13 @@
 import { Download, FileText, Star } from "lucide-react";
 import Link from "next/link";
-import type { DocumentListItem } from "shared";
+import type { DocumentListItem, StatutDocument } from "shared";
 import { FormatBadge } from "@/components/ui/format-badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TYPE_DOCUMENT_LABELS } from "@/lib/document-labels";
 import { formatCount, formatDate, formatRating } from "@/lib/format";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
+import { DocumentStatusBadge } from "./document-status-badge";
 import { DownloadButton } from "./download-button";
 import { FavoriteButton } from "./favorite-button";
 
@@ -19,6 +20,8 @@ type DocumentCardProps = {
 	meta?: "rating" | "downloads";
 	/** Masque la ligne « UE · niveau » quand le contexte est déjà évident. */
 	showAcademicContext?: boolean;
+	/** Affiche le statut éditorial à la place des métriques et du favori. */
+	status?: StatutDocument;
 	className?: string;
 };
 
@@ -62,6 +65,7 @@ export function DocumentCard({
 	variant = "home",
 	meta = "rating",
 	showAcademicContext = true,
+	status,
 	className,
 }: DocumentCardProps) {
 	const isList = variant === "search-list";
@@ -85,6 +89,7 @@ export function DocumentCard({
 					meta={meta}
 					home={isHome}
 					showAcademicContext={showAcademicContext}
+					status={status}
 				/>
 			)}
 		</article>
@@ -106,11 +111,13 @@ function GridContent({
 	meta,
 	home,
 	showAcademicContext,
+	status,
 }: {
 	document: DocumentListItem;
 	meta: "rating" | "downloads";
 	home: boolean;
 	showAcademicContext: boolean;
+	status?: StatutDocument;
 }) {
 	return (
 		<div className="pointer-events-none relative z-10 flex h-full flex-col">
@@ -152,13 +159,19 @@ function GridContent({
 				) : null}
 
 				<div className="mt-auto flex items-center justify-between text-xs text-black-60">
-					<DocumentMeta document={document} meta={meta} />
-					<div className="pointer-events-auto">
-						<FavoriteButton
-							documentId={document.id}
-							estFavori={document.estFavori}
-						/>
-					</div>
+					{status ? (
+						<DocumentStatusBadge statut={status} />
+					) : (
+						<>
+							<DocumentMeta document={document} meta={meta} />
+							<div className="pointer-events-auto">
+								<FavoriteButton
+									documentId={document.id}
+									estFavori={document.estFavori}
+								/>
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 		</div>

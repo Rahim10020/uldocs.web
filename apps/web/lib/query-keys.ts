@@ -17,5 +17,8 @@ export const queryKeys = {
 		favoritesRoot: ["documents", "favorites"] as const,
 		favorites: (page: number, pageSize: number) =>
 			["documents", "favorites", page, pageSize] as const,
+		mineRoot: ["documents", "mine"] as const,
+		mine: (page: number, pageSize: number) =>
+			["documents", "mine", page, pageSize] as const,
 	},
 };

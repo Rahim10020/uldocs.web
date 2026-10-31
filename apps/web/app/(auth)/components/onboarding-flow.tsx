@@ -230,6 +230,7 @@ export function OnboardingFlow({
 
         {step === 1 ? (
           <AuthSelect
+            autoFocus
             label="Faculté"
             value={faculteId}
             options={faculteOptions}
@@ -245,6 +246,7 @@ export function OnboardingFlow({
 
         {step === 2 ? (
           <AuthSelect
+            autoFocus
             label="Filière"
             value={filiereId}
             options={filiereOptions}
@@ -260,6 +262,7 @@ export function OnboardingFlow({
 
         {step === 3 ? (
           <AuthSelect
+            autoFocus
             label="Niveau"
             value={niveauId}
             options={niveauOptions}

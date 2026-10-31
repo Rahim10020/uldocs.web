@@ -10,15 +10,18 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { useLogin } from "@/hooks/use-login";
 import { ApiError } from "@/lib/api/errors";
 import { type LoginFormValues, loginSchema } from "@/lib/auth-schemas";
+import { withNextPath } from "@/lib/next-path";
 import { routes } from "@/lib/routes";
 import type { AuthMode } from "@/types/auth";
 
 export function LoginForm({
   onSuccess,
   mode,
+  nextPath,
 }: {
   onSuccess: () => void;
   mode: AuthMode;
+  nextPath: string | null;
 }) {
   const loginMutation = useLogin();
   const [apiError, setApiError] = useState<string | null>(null);
@@ -82,7 +85,7 @@ export function LoginForm({
         />
         <div className="mt-2 text-right">
           <AuthLink
-            href={routes.forgotPassword}
+            href={withNextPath(routes.forgotPassword, nextPath)}
             mode={mode}
             className="text-sm font-semibold text-primary transition-colors hover:text-primary-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
@@ -110,7 +113,7 @@ export function LoginForm({
       <p className="text-center text-sm text-black-60">
         Pas encore de compte ?{" "}
         <AuthLink
-          href={routes.register}
+          href={withNextPath(routes.register, nextPath)}
           mode={mode}
           className="font-semibold text-primary transition-colors hover:text-primary-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
         >
