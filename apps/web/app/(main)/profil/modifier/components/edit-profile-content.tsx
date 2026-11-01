@@ -60,7 +60,7 @@ function EditProfilePanel({ user }: { user: Utilisateur }) {
           Retour au profil
         </Link>
 
-        <div className="mt-4 rounded-md border border-black-10 bg-white p-5 sm:p-8">
+        <div className="mt-4 p-5 sm:p-8">
           <h1 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
             Modification du profil
           </h1>
