@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { parseProfileTab } from "@/lib/profile";
-import { ProfileContent } from "./components/profile-content";
+import { Suspense } from "react";
+import { ProfileSkeleton } from "./components/profile-skeleton";
+import { ProfileTabContent } from "./components/profile-tab-content";
 
 export const metadata: Metadata = {
   title: "Mon profil — ulDocs",
@@ -12,8 +13,10 @@ type ProfilePageProps = {
   searchParams: Promise<{ tab?: string | string[] }>;
 };
 
-export default async function ProfilePage({ searchParams }: ProfilePageProps) {
-  const { tab } = await searchParams;
-
-  return <ProfileContent initialTab={parseProfileTab(tab)} />;
+export default function ProfilePage({ searchParams }: ProfilePageProps) {
+  return (
+    <Suspense fallback={<ProfileSkeleton />}>
+      <ProfileTabContent searchParams={searchParams} />
+    </Suspense>
+  );
 }

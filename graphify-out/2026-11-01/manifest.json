@@ -1319,12 +1319,6 @@
     "ast_hash": "05cb98308f8787d7d4e39f7cd61840ed",
     "semantic_hash": ""
   },
-  "apps/web/app/(main)/profil/documents/components/my-documents-content.tsx": {
-    "mtime": 1793356702.5350285,
-    "seen": 1793357238.9176726,
-    "ast_hash": "a3699b826d5b0e0743a15ab7220db65e",
-    "semantic_hash": ""
-  },
   "apps/web/components/shared/document-status-badge.tsx": {
     "mtime": 1793356889.295353,
     "seen": 1793357238.9194794,
