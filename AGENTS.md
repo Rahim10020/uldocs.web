@@ -65,6 +65,57 @@ Jamais de fichier de types ou d'utilitaires dans `app/` ou `components/`.
 Pas de CSS custom : uniquement des classes Tailwind.
 Ne crée pas de nouveaux dossiers sans raison.
 
+## ⚛️ Next.js 16 — `params`, `searchParams` et Suspense
+
+Next 16 active les Cache Components et la validation « instant navigation ».
+Lire `params` ou `searchParams` en haut d'une page ou d'un layout déclenche
+l'erreur `instant-shell-url-data` et casse les navigations instantanées.
+
+- **Ne jamais faire `await params` ou `await searchParams` directement dans le
+  composant `page.tsx` / `layout.tsx`.**
+- Passer la **promesse** à un composant enfant async, rendu dans une
+  `<Suspense>` avec un fallback réaliste (pas un spinner générique) :
+
+  ```tsx
+  // app/<route>/page.tsx
+  export default function Page({
+    searchParams,
+  }: {
+    searchParams: Promise<{ tab?: string | string[] }>;
+  }) {
+    return (
+      <Suspense fallback={<PageSkeleton />}>
+        <PageContent searchParams={searchParams} />
+      </Suspense>
+    );
+  }
+
+  // app/<route>/components/page-content.tsx
+  export async function PageContent({ searchParams }) {
+    const { tab } = await searchParams;
+    return <... />;
+  }
+  ```
+
+- Même règle pour `params` sur les routes dynamiques (`[id]`) : le `await` doit
+  être dans le composant enfant `...Route`, pas dans `page.tsx`. Voir
+  `app/(main)/documents/[id]/page.tsx` comme référence.
+- `useSearchParams()` dans un composant client doit aussi être sous
+  `<Suspense>`, ou recevoir les données via les props de la page.
+- `export const instant = false` est un **opt-out exceptionnel** : il autorise
+  la route à bloquer et supprime le bénéfice des navigations instantanées. Ne
+  l'utiliser que si la page ne peut vraiment pas avoir de shell partagé, et le
+  justifier dans la PR.
+- `cookies()` et `headers()` ne déclenchent pas cette erreur, mais peuvent
+  nécessiter une boundary pour le shell statique.
+
+**Checklist avant de livrer une route** : aucune lecture de `params` /
+`searchParams` hors `<Suspense>`, fallback qui reprend la forme du contenu
+final, `next build` sans avertissement d'instant navigation.
+
+Note : `apps/web/AGENTS.md` est régénéré par `next dev`. Les règles projet
+doivent être écrites ici, pas dans ce fichier généré.
+
 ## 🧱 Conventions de nommage
 
 - **Fichiers / dossiers** : `kebab-case` (`user-card.tsx`, `auth-provider/`).
