@@ -1,20 +1,24 @@
 "use client";
 
 import { FileQuestion, RefreshCw } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { useDocument } from "@/hooks/use-document";
+import { useSession } from "@/hooks/use-session";
 import { useShareDocument } from "@/hooks/use-share-document";
 import { useSimilarDocuments } from "@/hooks/use-similar-documents";
 import { ApiError } from "@/lib/api/client";
 import { documentPageCount } from "@/lib/document-detail";
+import { withNextPath } from "@/lib/next-path";
 import { routes } from "@/lib/routes";
 import { DocumentActionBar } from "./document-action-bar";
 import { DocumentDetailSkeleton } from "./document-detail-skeleton";
 import { DocumentMobileBar } from "./document-mobile-bar";
 import { DocumentOptionsSheet } from "./document-options-sheet";
 import { DocumentPreview } from "./document-preview";
+import { DocumentReportDialog } from "./document-report-dialog";
 import { DocumentTop } from "./document-top";
 import { SimilarDocuments } from "./similar-documents";
 
@@ -22,12 +26,25 @@ export function DocumentDetailPage({ documentId }: { documentId: number }) {
   const query = useDocument(documentId);
   const similar = useSimilarDocuments(query.data);
   const share = useShareDocument(query.data?.titre ?? "Document ulDocs");
+  const router = useRouter();
+  const { isAuthenticated } = useSession();
   const [pdfPageCount, setPdfPageCount] = useState<number | null>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [optionsOpen, setOptionsOpen] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   const closeOptions = useCallback(() => setOptionsOpen(false), []);
+  const closeReport = useCallback(() => setReportOpen(false), []);
+  const openReport = useCallback(() => {
+    if (!isAuthenticated) {
+      router.push(withNextPath(routes.login, routes.document(documentId)));
+      return;
+    }
+
+    setOptionsOpen(false);
+    setReportOpen(true);
+  }, [isAuthenticated, router, documentId]);
 
   if (query.isPending) {
     return <DocumentDetailSkeleton />;
@@ -50,7 +67,11 @@ export function DocumentDetailPage({ documentId }: { documentId: number }) {
       <Container fluid className="pb-24 pt-5 sm:pt-6 lg:pb-8 lg:pt-4">
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_19rem] xl:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="min-w-0">
-            <DocumentTop document={doc} pageCount={pageCount} />
+            <DocumentTop
+              document={doc}
+              pageCount={pageCount}
+              onReport={openReport}
+            />
 
             <DocumentActionBar
               document={doc}
@@ -94,7 +115,14 @@ export function DocumentDetailPage({ documentId }: { documentId: number }) {
         onClose={closeOptions}
         document={doc}
         onShare={share.share}
+        onReport={openReport}
         isCopied={share.isCopied}
+      />
+
+      <DocumentReportDialog
+        open={reportOpen}
+        documentId={doc.id}
+        onClose={closeReport}
       />
     </>
   );

@@ -107,6 +107,34 @@ describe("mocks d’authentification", () => {
 		expect(loggedIn.id).toBe(registered.id);
 	});
 
+	it("met à jour le nom du profil", async () => {
+		const original = (await mockRequest("/auth/me")) as Utilisateur;
+
+		const updated = (await mockRequest("/auth/me", {
+			method: "PATCH",
+			body: JSON.stringify({ nom: "  Akouvi D. Mensah  " }),
+		})) as Utilisateur;
+
+		expect(updated.nom).toBe("Akouvi D. Mensah");
+		expect((await mockRequest("/auth/me")) as Utilisateur).toMatchObject({
+			nom: "Akouvi D. Mensah",
+		});
+
+		await mockRequest("/auth/me", {
+			method: "PATCH",
+			body: JSON.stringify({ nom: original.nom }),
+		});
+	});
+
+	it("refuse un nom de profil trop court", async () => {
+		await expect(
+			mockRequest("/auth/me", {
+				method: "PATCH",
+				body: JSON.stringify({ nom: " A " }),
+			}),
+		).rejects.toMatchObject({ status: 400, code: "VALIDATION_ERROR" });
+	});
+
 	it("protège la mise à jour du profil sans session", async () => {
 		resetMockAuth(null);
 

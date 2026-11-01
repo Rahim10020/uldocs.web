@@ -18,21 +18,21 @@ export type StatutUtilisateur = (typeof STATUTS_UTILISATEUR)[number];
 
 /** Statut éditorial d'un document. */
 export const STATUTS_DOCUMENT = [
-	"en_attente",
-	"valide",
-	"signale",
-	"retire",
+  "en_attente",
+  "valide",
+  "signale",
+  "retire",
 ] as const;
 export type StatutDocument = (typeof STATUTS_DOCUMENT)[number];
 
 /** Nature d'un document. */
 export const TYPES_DOCUMENT = [
-	"cours",
-	"annale",
-	"corrige",
-	"td",
-	"resume",
-	"autre",
+  "cours",
+  "annale",
+  "corrige",
+  "td",
+  "resume",
+  "autre",
 ] as const;
 export type TypeDocument = (typeof TYPES_DOCUMENT)[number];
 
@@ -46,39 +46,40 @@ export type VoteDocument = (typeof VOTES_DOCUMENT)[number];
 
 /** Motifs de signalement d'un document. */
 export const MOTIFS_SIGNALEMENT = [
-	"contenu_illegal",
-	"erreur",
-	"doublon",
-	"qualite",
-	"droit_auteur",
-	"autre",
+  "contenu_illegal",
+  "erreur",
+  "doublon",
+  "mal_classe",
+  "qualite",
+  "droit_auteur",
+  "autre",
 ] as const;
 export type MotifSignalement = (typeof MOTIFS_SIGNALEMENT)[number];
 
 /** Statut de traitement d'un signalement. */
 export const STATUTS_SIGNALEMENT = [
-	"ouvert",
-	"en_cours",
-	"traite",
-	"rejete",
+  "ouvert",
+  "en_cours",
+  "traite",
+  "rejete",
 ] as const;
 export type StatutSignalement = (typeof STATUTS_SIGNALEMENT)[number];
 
 /** Action prise par un modérateur. */
 export const ACTIONS_MODERATION = [
-	"valider",
-	"retirer",
-	"avertir",
-	"suspendre",
-	"bannir",
+  "valider",
+  "retirer",
+  "avertir",
+  "suspendre",
+  "bannir",
 ] as const;
 export type ActionModeration = (typeof ACTIONS_MODERATION)[number];
 
 /** Ordre de tri des résultats de recherche. */
 export const TRIS_DOCUMENTS = [
-	"pertinence",
-	"recent",
-	"populaire",
-	"mieux_note",
+  "pertinence",
+  "recent",
+  "populaire",
+  "mieux_note",
 ] as const;
 export type TriDocuments = (typeof TRIS_DOCUMENTS)[number];

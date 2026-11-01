@@ -3,16 +3,21 @@ import type {
 	DocumentListItem,
 	FaculteTree,
 	Paginated,
+	Signalement,
 } from "shared";
 import { beforeEach, describe, expect, it } from "vitest";
 import { getUeContextByName } from "@/lib/mocks/academic";
 import { resetMockDocuments, resetMockReactions } from "@/lib/mocks/documents";
 import { mockRequest } from "@/lib/mocks/handlers";
+import { resetMockReports } from "@/lib/mocks/reports";
+import { resetMockAuth } from "@/lib/mocks/users";
 
 describe("routeur mock", () => {
 	beforeEach(() => {
+		resetMockAuth();
 		resetMockReactions();
 		resetMockDocuments();
+		resetMockReports();
 	});
 
 	it("renvoie l'arbre académique", async () => {
@@ -170,5 +175,66 @@ describe("routeur mock", () => {
 				body: createFormData({ type: "memoire" }),
 			}),
 		).rejects.toMatchObject({ status: 400 });
+	});
+
+	it("crée un signalement ouvert pour le document", async () => {
+		const report = (await mockRequest("/documents/1/report", {
+			method: "POST",
+			body: JSON.stringify({
+				motif: "mal_classe",
+				commentaire: "  Ce document n'est pas dans la bonne UE.  ",
+			}),
+		})) as Signalement;
+
+		expect(report).toMatchObject({
+			documentId: 1,
+			signaleurId: 1,
+			motif: "mal_classe",
+			commentaire: "Ce document n'est pas dans la bonne UE.",
+			statut: "ouvert",
+			traitePar: null,
+			dateTraitement: null,
+		});
+	});
+
+	it("refuse un motif de signalement inconnu", async () => {
+		await expect(
+			mockRequest("/documents/1/report", {
+				method: "POST",
+				body: JSON.stringify({ motif: "spam" }),
+			}),
+		).rejects.toMatchObject({ status: 400, code: "VALIDATION_ERROR" });
+	});
+
+	it("refuse un signalement sans session", async () => {
+		resetMockAuth(null);
+
+		await expect(
+			mockRequest("/documents/1/report", {
+				method: "POST",
+				body: JSON.stringify({ motif: "erreur" }),
+			}),
+		).rejects.toMatchObject({ status: 401, code: "UNAUTHORIZED" });
+	});
+
+	it("renvoie 404 pour un signalement sur un document inconnu", async () => {
+		await expect(
+			mockRequest("/documents/9999/report", {
+				method: "POST",
+				body: JSON.stringify({ motif: "erreur" }),
+			}),
+		).rejects.toMatchObject({ status: 404, code: "NOT_FOUND" });
+	});
+
+	it("refuse un détail de signalement trop long", async () => {
+		await expect(
+			mockRequest("/documents/1/report", {
+				method: "POST",
+				body: JSON.stringify({
+					motif: "autre",
+					commentaire: "a".repeat(1001),
+				}),
+			}),
+		).rejects.toMatchObject({ status: 400, code: "VALIDATION_ERROR" });
 	});
 });

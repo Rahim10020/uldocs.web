@@ -19,5 +19,6 @@ export const endpoints = {
 		favorite: (id: number) => `/documents/${id}/favorite`,
 		download: (id: number) => `/documents/${id}/download`,
 		reaction: (id: number) => `/documents/${id}/reaction`,
+		report: (id: number) => `/documents/${id}/report`,
 	},
 } as const;

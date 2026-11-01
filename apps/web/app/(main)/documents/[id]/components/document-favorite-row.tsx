@@ -12,7 +12,7 @@ export function DocumentFavoriteRow({
   estFavori: boolean;
 }) {
   const mutation = useFavoriteDocument();
-  const label = estFavori ? "Retirer des favoris" : "Enregistrer";
+  const label = estFavori ? "Retirer des documents enregistrés" : "Enregistrer";
 
   return (
     <button

@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-import { MyDocumentsContent } from "./components/my-documents-content";
+import { redirect } from "next/navigation";
+import { profileTabHref } from "@/lib/profile";
 
-export const metadata: Metadata = {
-	title: "Mes documents — ulDocs",
-	description:
-		"Retrouve tous les documents que tu as importés sur ulDocs et suis leur statut.",
-};
-
+/** Ancienne URL de « Mes documents », conservée pour les liens existants. */
 export default function MyDocumentsPage() {
-	return <MyDocumentsContent />;
+	redirect(profileTabHref("documents"));
 }

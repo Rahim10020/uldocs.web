@@ -5,6 +5,8 @@ import type {
 	DocumentReactionPayload,
 	DocumentSearchParams,
 	Paginated,
+	ReportDocumentPayload,
+	Signalement,
 } from "shared";
 import { apiFetch, apiFetchPaginated } from "./client";
 import { endpoints } from "./endpoints";
@@ -102,6 +104,17 @@ export function setDocumentReaction(
 ): Promise<DocumentReaction> {
 	return apiFetch<DocumentReaction>(endpoints.documents.reaction(id), {
 		method: "PUT",
+		body: JSON.stringify(payload),
+	});
+}
+
+/** POST /documents/:id/report */
+export function reportDocument(
+	id: number,
+	payload: ReportDocumentPayload,
+): Promise<Signalement> {
+	return apiFetch<Signalement>(endpoints.documents.report(id), {
+		method: "POST",
 		body: JSON.stringify(payload),
 	});
 }

@@ -89,6 +89,7 @@ export type MotifSignalement =
   | "contenu_illegal"
   | "erreur"
   | "doublon"
+  | "mal_classe"
   | "qualite"
   | "droit_auteur"
   | "autre";
@@ -225,16 +226,20 @@ export type FaculteTree = Faculte & {
 | `POST`  | `/auth/forgot-password` | `{ email }`             | `204`         |
 | `POST`  | `/auth/reset-password`  | `{ token, motDePasse }` | `204`         |
 
-`UpdateProfilePayload` permet de compléter le profil après l'inscription :
+`UpdateProfilePayload` permet de compléter ou de modifier le profil :
 
 ```ts
 export type UpdateProfilePayload = {
+  nom?: string;
   faculteId?: number | null;
   filiereId?: number | null;
   niveauId?: number | null;
 };
 ```
 
+- `nom` est facultatif, mais s'il est fourni il doit contenir au moins
+  2 caractères après suppression des espaces superflus. L'email n'est pas
+  modifiable depuis cet endpoint.
 - `null` efface explicitement la valeur.
 - `filiereId` doit appartenir à `faculteId`, et `niveauId` à `filiereId`.
 - L'endpoint exige une session (`401` sinon).
@@ -283,6 +288,17 @@ long).
   document ; changer de valeur déplace son vote.
 - `POST` / `DELETE /documents/:id/favorite` exigent une session (401 sinon) et
   sont idempotents.
+- `POST /documents/:id/report` exige une session (401 sinon). `motif` doit
+  appartenir à `MotifSignalement`, `commentaire` est optionnel (1000 caractères
+  max). Le signalement est créé avec le statut `ouvert`.
+
+```ts
+export type ReportDocumentPayload = {
+  motif: MotifSignalement;
+  commentaire?: string;
+};
+```
+
 - Upload : `pdf`, `docx`, `pptx`, `image`, **20 Mo max**, champ
   `certification = true` obligatoire. Le document est créé en `en_attente`.
 - Un appel crée **un seul document** : le frontend enchaîne les appels pour un

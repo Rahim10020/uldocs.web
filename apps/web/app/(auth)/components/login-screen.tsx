@@ -31,7 +31,7 @@ export function LoginScreen({ mode }: { mode: "modal" | "page" }) {
 	return (
 		<AuthDialog
 			title="Content de te revoir !"
-			description="Connecte-toi pour retrouver tes documents, tes favoris et tes imports."
+			description="Connecte-toi pour retrouver tes documents, tes enregistrements et tes imports."
 			image
 			onClose={close}
 		>

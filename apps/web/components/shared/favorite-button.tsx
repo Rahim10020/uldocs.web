@@ -15,7 +15,9 @@ export function FavoriteButton({
   className?: string;
 }) {
   const mutation = useFavoriteDocument();
-  const label = estFavori ? "Retirer des favoris" : "Ajouter aux favoris";
+  const label = estFavori
+    ? "Retirer des documents enregistrés"
+    : "Enregistrer le document";
 
   return (
     <button

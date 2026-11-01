@@ -22,14 +22,14 @@ export function FavoritesList() {
     FAVORITES_PAGE_SIZE,
   );
 
-  // Le filtre masque immédiatement une carte retirée des favoris.
+  // Le filtre masque immédiatement une carte retirée des enregistrements.
   const documents = (data?.data ?? []).filter((document) => document.estFavori);
 
   if (isError) {
     return (
       <div className="mt-10 rounded-md border border-black-10 bg-surface p-8 text-center">
         <p className="text-sm text-black-70">
-          Impossible de charger vos favoris pour le moment.
+          Impossible de charger tes documents enregistrés pour le moment.
         </p>
         <Button
           variant="secondary"
@@ -60,11 +60,10 @@ export function FavoritesList() {
         </span>
 
         <h2 className="mt-5 text-xl font-semibold text-black">
-          Aucun favori pour le moment
+          Aucun document enregistré
         </h2>
         <p className="mt-2 text-sm text-black-60">
-          Ajoutez des documents à vos favoris depuis la recherche ou une fiche
-          document.
+          Enregistre des documents depuis la recherche ou une fiche document.
         </p>
 
         <ButtonLink href={routes.documents} className="mt-6">
@@ -79,7 +78,8 @@ export function FavoritesList() {
   return (
     <div className="mt-8">
       <p className="text-sm text-black-70" aria-live="polite">
-        {count} {count > 1 ? "documents sauvegardés" : "document sauvegardé"}
+        {count}{" "}
+        {count > 1 ? "documents enregistrés" : "document enregistré"}
       </p>
 
       <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5">

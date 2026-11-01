@@ -13,9 +13,11 @@ import { DocumentReaction } from "./document-reaction";
 export function DocumentTop({
   document,
   pageCount,
+  onReport,
 }: {
   document: DocumentDetail;
   pageCount: number | null;
+  onReport: () => void;
 }) {
   const breadcrumb = buildDocumentBreadcrumb(document);
 
@@ -50,10 +52,10 @@ export function DocumentTop({
           <DocumentReaction document={document} />
           <button
             type="button"
-            disabled
-            aria-label="Signaler ce document (bientôt disponible)"
-            title="Signalement bientôt disponible"
-            className="flex size-9 cursor-not-allowed items-center justify-center rounded text-black-30"
+            onClick={onReport}
+            aria-label="Signaler ce document"
+            title="Signaler ce document"
+            className="flex size-9 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <Flag aria-hidden className="size-6" />
           </button>

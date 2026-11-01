@@ -158,7 +158,7 @@ CREATE TABLE "SIGNALEMENT" (
   "document_id" integer NOT NULL,
   "signaleur_id" integer NOT NULL,
   "motif" varchar NOT NULL
-    CHECK ("motif" IN ('contenu_illegal', 'erreur', 'doublon', 'qualite', 'droit_auteur', 'autre')),
+    CHECK ("motif" IN ('contenu_illegal', 'erreur', 'doublon', 'mal_classe', 'qualite', 'droit_auteur', 'autre')),
   "commentaire" text,
   "statut" varchar NOT NULL DEFAULT 'ouvert'
     CHECK ("statut" IN ('ouvert', 'en_cours', 'traite', 'rejete')),

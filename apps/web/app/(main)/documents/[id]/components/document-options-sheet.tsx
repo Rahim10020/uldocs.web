@@ -14,12 +14,14 @@ export function DocumentOptionsSheet({
   onClose,
   document: doc,
   onShare,
+  onReport,
   isCopied,
 }: {
   open: boolean;
   onClose: () => void;
   document: DocumentDetail;
   onShare: () => void;
+  onReport: () => void;
   isCopied: boolean;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -91,13 +93,12 @@ export function DocumentOptionsSheet({
         <div className="border-t border-black-10">
           <button
             type="button"
-            disabled
-            aria-label="Signaler ce document (bientôt disponible)"
-            className="flex w-full cursor-not-allowed items-center gap-3 px-4 py-3 text-left text-md font-medium text-black-30"
+            onClick={onReport}
+            aria-label="Signaler ce document"
+            className="flex w-full items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <Flag aria-hidden className="size-5" />
             <span>Signaler ce document</span>
-            <span className="ml-auto text-xs">Bientôt</span>
           </button>
         </div>
 

@@ -239,7 +239,7 @@ export function MobileMenu() {
 									className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-lg font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
 								>
 									<Bookmark aria-hidden className="size-5" />
-									Favoris
+									Enregistrés
 								</Link>
 								{MOBILE_NAV_LINKS.slice(1).map((item) => (
 									<Link

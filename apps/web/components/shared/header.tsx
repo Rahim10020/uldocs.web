@@ -54,7 +54,7 @@ export function Header() {
             className="inline-flex h-10 items-center gap-2 rounded-md px-3 text-md font-semibold text-black-80 transition-colors hover:text-black-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <Bookmark aria-hidden className="size-4" />
-            Favoris
+            Enregistrés
           </Link>
           <DesktopAccountMenu />
           <ButtonLink href={routes.newDocument} className="ml-1 text-sm">

@@ -14,10 +14,10 @@ export function FavoritesContent() {
     <Container className="py-8 sm:py-12">
       <div className="max-w-2xl">
         <h1 className="text-2xl font-bold tracking-tight text-black sm:text-4xl">
-          Mes favoris
+          Enregistrés
         </h1>
         <p className="mt-2 text-sm text-black-60 sm:text-base">
-          Retrouvez les documents que vous avez sauvegardés.
+          Retrouve les documents que tu as enregistrés.
         </p>
       </div>
 
@@ -36,7 +36,7 @@ function FavoritesLoading() {
   return (
     <div
       role="status"
-      aria-label="Chargement des favoris"
+      aria-label="Chargement des documents enregistrés"
       className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4 xl:grid-cols-5"
     >
       {Array.from({ length: 5 }, (_, index) => `favorite-loading-${index}`).map(
@@ -56,11 +56,11 @@ function FavoritesLocked() {
       </span>
 
       <h2 className="mt-5 text-xl font-semibold text-black">
-        Connectez-vous pour retrouver vos favoris
+        Connecte-toi pour retrouver tes documents enregistrés
       </h2>
       <p className="mt-2 text-sm text-black-60">
-        Les documents que vous sauvegardez sont liés à votre compte.
-        Connectez-vous pour les retrouver sur tous vos appareils.
+        Les documents que tu enregistres sont liés à ton compte. Connecte-toi
+        pour les retrouver sur tous tes appareils.
       </p>
 
       <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
