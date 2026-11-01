@@ -69,7 +69,7 @@ CREATE TABLE "DOCUMENT" (
   "titre" varchar NOT NULL,
   "description" text,
   "type" varchar NOT NULL
-    CHECK ("type" IN ('cours', 'annale', 'corrige', 'td', 'resume', 'autre')),
+    CHECK ("type" IN ('cours', 'annale', 'corrige', 'resume', 'td', 'autre')),
   "ue_id" integer NOT NULL,
   "enseignant_id" integer,
   "annee_academique" varchar NOT NULL,

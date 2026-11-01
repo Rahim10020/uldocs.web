@@ -254,14 +254,14 @@ function EditProfileForm({
         <ButtonLink
           href={routes.profile}
           variant="secondary"
-          className="w-full sm:w-auto"
+          className="cursor-pointer w-full sm:w-auto"
         >
           Annuler
         </ButtonLink>
         <Button
           type="submit"
           disabled={mutation.isPending}
-          className="w-full sm:w-auto"
+          className="cursor-pointer w-full sm:w-auto"
         >
           {mutation.isPending ? "Enregistrement…" : "Modifier"}
         </Button>

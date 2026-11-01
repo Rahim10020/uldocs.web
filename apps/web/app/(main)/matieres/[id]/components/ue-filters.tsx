@@ -2,13 +2,12 @@
 
 import { Check } from "lucide-react";
 import { useCallback, useState } from "react";
-import { TRIS_DOCUMENTS, TYPES_DOCUMENT } from "shared";
 import { FilterSheet } from "@/components/shared/filter-sheet";
 import { SearchSelect } from "@/components/ui/search-select";
 import type { useUeDocuments } from "@/hooks/use-ue-documents";
 import {
-  TRI_DOCUMENT_LABELS,
-  TYPE_DOCUMENT_LABELS,
+  TRI_DOCUMENT_OPTIONS,
+  TYPE_DOCUMENT_OPTIONS,
 } from "@/lib/document-labels";
 import { cn } from "@/lib/utils";
 import { UeTypeChips } from "./ue-type-chips";
@@ -24,19 +23,9 @@ export function UeFilters({
   const closeSheet = useCallback(() => setSheetOpen(false), []);
   const canReset = search.hasFilters || Boolean(search.state.tri);
 
-  const typeOptions = TYPES_DOCUMENT.map((type) => ({
-    value: type,
-    label: TYPE_DOCUMENT_LABELS[type],
-  }));
-
   const yearOptions = search.years.map((year) => ({
     value: year,
     label: year,
-  }));
-
-  const triOptions = TRIS_DOCUMENTS.map((tri) => ({
-    value: tri,
-    label: TRI_DOCUMENT_LABELS[tri],
   }));
 
   return (
@@ -46,7 +35,7 @@ export function UeFilters({
           label="Type"
           allLabel="Tous les types"
           value={search.state.type ?? ""}
-          options={typeOptions}
+          options={TYPE_DOCUMENT_OPTIONS}
           onChange={search.setType}
           className="w-44"
         />
@@ -61,7 +50,7 @@ export function UeFilters({
         <SearchSelect
           label="Tri"
           value={search.effectiveTri}
-          options={triOptions}
+          options={TRI_DOCUMENT_OPTIONS}
           onChange={search.setSortValue}
           className="w-48"
           showAllOption={false}
@@ -88,7 +77,6 @@ export function UeFilters({
         onClose={closeSheet}
         search={search}
         yearOptions={yearOptions}
-        triOptions={triOptions}
       />
     </>
   );
@@ -99,13 +87,11 @@ function UeFilterSheet({
   onClose,
   search,
   yearOptions,
-  triOptions,
 }: {
   open: boolean;
   onClose: () => void;
   search: ReturnType<typeof useUeDocuments>;
   yearOptions: { value: string; label: string }[];
-  triOptions: { value: string; label: string }[];
 }) {
   const canReset = search.hasFilters || Boolean(search.state.tri);
 
@@ -122,13 +108,15 @@ function UeFilterSheet({
             active={!search.state.type}
             onClick={() => search.setType("")}
           />
-          {TYPES_DOCUMENT.map((type) => (
+          {TYPE_DOCUMENT_OPTIONS.map((option) => (
             <TypeFilterRow
-              key={type}
-              label={TYPE_DOCUMENT_LABELS[type]}
-              active={search.state.type === type}
+              key={option.value}
+              label={option.label}
+              active={search.state.type === option.value}
               onClick={() =>
-                search.setType(search.state.type === type ? "" : type)
+                search.setType(
+                  search.state.type === option.value ? "" : option.value,
+                )
               }
             />
           ))}
@@ -154,7 +142,7 @@ function UeFilterSheet({
         <SearchSelect
           label="Tri"
           value={search.effectiveTri}
-          options={triOptions}
+          options={TRI_DOCUMENT_OPTIONS}
           onChange={search.setSortValue}
           showAllOption={false}
           inline

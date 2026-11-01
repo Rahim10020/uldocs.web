@@ -2,8 +2,8 @@
 
 import { ChevronRight, SlidersHorizontal } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { TYPES_DOCUMENT, type TypeDocument } from "shared";
-import { TYPE_DOCUMENT_LABELS } from "@/lib/document-labels";
+import type { TypeDocument } from "shared";
+import { TYPE_DOCUMENT_OPTIONS } from "@/lib/document-labels";
 import { cn } from "@/lib/utils";
 
 /** Chips de type + bouton d'ouverture des filtres, sur mobile. */
@@ -83,13 +83,15 @@ export function UeTypeChips({
           Tous
         </TypeChip>
 
-        {TYPES_DOCUMENT.map((type) => (
+        {TYPE_DOCUMENT_OPTIONS.map((option) => (
           <TypeChip
-            key={type}
-            active={value === type}
-            onClick={() => onChange(value === type ? "" : type)}
+            key={option.value}
+            active={value === option.value}
+            onClick={() =>
+              onChange(value === option.value ? "" : option.value)
+            }
           >
-            {TYPE_DOCUMENT_LABELS[type]}
+            {option.label}
           </TypeChip>
         ))}
 

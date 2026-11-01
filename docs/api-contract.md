@@ -79,8 +79,8 @@ export type TypeDocument =
   | "cours"
   | "annale"
   | "corrige"
-  | "td"
   | "resume"
+  | "td"
   | "autre";
 
 export type FormatDocument = "pdf" | "docx" | "pptx" | "image";

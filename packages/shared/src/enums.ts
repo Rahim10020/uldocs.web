@@ -30,8 +30,8 @@ export const TYPES_DOCUMENT = [
   "cours",
   "annale",
   "corrige",
-  "td",
   "resume",
+  "td",
   "autre",
 ] as const;
 export type TypeDocument = (typeof TYPES_DOCUMENT)[number];

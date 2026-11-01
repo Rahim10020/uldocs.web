@@ -8,7 +8,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { TRIS_DOCUMENTS, TYPES_DOCUMENT } from "shared";
 import { FilterSheet } from "@/components/shared/filter-sheet";
 import { Button } from "@/components/ui/button";
 import { SearchSelect } from "@/components/ui/search-select";
@@ -16,7 +15,8 @@ import type { useDocumentsSearch } from "@/hooks/use-documents-search";
 import { formatNiveau, formatSemestre } from "@/lib/academic-labels";
 import {
 	TRI_DOCUMENT_LABELS,
-	TYPE_DOCUMENT_LABELS,
+	TRI_DOCUMENT_OPTIONS,
+	TYPE_DOCUMENT_OPTIONS,
 } from "@/lib/document-labels";
 
 type SearchFiltersProps = {
@@ -43,19 +43,9 @@ export function SearchFilters({ search }: SearchFiltersProps) {
 		label: formatSemestre(semestre),
 	}));
 
-	const typeOptions = TYPES_DOCUMENT.map((type) => ({
-		value: type,
-		label: TYPE_DOCUMENT_LABELS[type],
-	}));
-
 	const yearOptions = search.years.map((year) => ({
 		value: year,
 		label: year,
-	}));
-
-	const triOptions = TRIS_DOCUMENTS.map((tri) => ({
-		value: tri,
-		label: TRI_DOCUMENT_LABELS[tri],
 	}));
 
 	return (
@@ -88,7 +78,7 @@ export function SearchFilters({ search }: SearchFiltersProps) {
 				<SearchSelect
 					label="Type"
 					value={search.state.type ?? ""}
-					options={typeOptions}
+					options={TYPE_DOCUMENT_OPTIONS}
 					onChange={search.setType}
 					className="w-36"
 				/>
@@ -103,7 +93,7 @@ export function SearchFilters({ search }: SearchFiltersProps) {
 					label="Tri"
 					allLabel={TRI_DOCUMENT_LABELS[search.effectiveTri]}
 					value={search.state.tri ?? ""}
-					options={triOptions}
+					options={TRI_DOCUMENT_OPTIONS}
 					onChange={search.setSortValue}
 					className="w-40"
 				/>
@@ -119,9 +109,7 @@ export function SearchFilters({ search }: SearchFiltersProps) {
 
 			<MobileFilterRow
 				search={search}
-				triOptions={triOptions}
 				yearOptions={yearOptions}
-				typeOptions={typeOptions}
 				onOpenSheet={() => setSheetOpen(true)}
 			/>
 
@@ -133,7 +121,7 @@ export function SearchFilters({ search }: SearchFiltersProps) {
 					faculties: facultyOptions,
 					niveaux: niveauOptions,
 					semestres: semestreOptions,
-					types: typeOptions,
+					types: TYPE_DOCUMENT_OPTIONS,
 					years: yearOptions,
 				}}
 			/>
@@ -143,15 +131,11 @@ export function SearchFilters({ search }: SearchFiltersProps) {
 
 function MobileFilterRow({
 	search,
-	triOptions,
 	yearOptions,
-	typeOptions,
 	onOpenSheet,
 }: {
 	search: ReturnType<typeof useDocumentsSearch>;
-	triOptions: { value: string; label: string }[];
 	yearOptions: { value: string; label: string }[];
-	typeOptions: { value: string; label: string }[];
 	onOpenSheet: () => void;
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -219,7 +203,7 @@ function MobileFilterRow({
 					label="Tri"
 					allLabel={TRI_DOCUMENT_LABELS[search.effectiveTri]}
 					value={search.state.tri ?? ""}
-					options={triOptions}
+					options={TRI_DOCUMENT_OPTIONS}
 					onChange={search.setSortValue}
 					className="w-36 shrink-0"
 				/>
@@ -233,7 +217,7 @@ function MobileFilterRow({
 				<SearchSelect
 					label="Type"
 					value={search.state.type ?? ""}
-					options={typeOptions}
+					options={TYPE_DOCUMENT_OPTIONS}
 					onChange={search.setType}
 					className="w-32 shrink-0"
 				/>

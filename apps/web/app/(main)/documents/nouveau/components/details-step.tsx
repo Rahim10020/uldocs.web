@@ -2,26 +2,11 @@
 
 import { ArrowRight, ChevronLeft, RefreshCw } from "lucide-react";
 import { useId } from "react";
-import type { TypeDocument } from "shared";
 import { AuthSelect } from "@/components/ui/auth-select";
 import { Button } from "@/components/ui/button";
 import type { NewDocumentFlowController } from "@/hooks/use-new-document-flow";
-import { TYPE_DOCUMENT_LABELS } from "@/lib/document-labels";
+import { TYPE_DOCUMENT_OPTIONS } from "@/lib/document-labels";
 import { cn } from "@/lib/utils";
-
-const TYPE_ORDER: TypeDocument[] = [
-  "cours",
-  "annale",
-  "corrige",
-  "resume",
-  "td",
-  "autre",
-];
-
-const TYPE_OPTION_LABELS: Record<TypeDocument, string> = {
-  ...TYPE_DOCUMENT_LABELS,
-  td: "TD",
-};
 
 /** Étape 2 : titres individuels, type et rattachement académique. */
 export function DetailsStep({ flow }: { flow: NewDocumentFlowController }) {
@@ -120,18 +105,18 @@ export function DetailsStep({ flow }: { flow: NewDocumentFlowController }) {
           </legend>
 
           <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
-            {TYPE_ORDER.map((type) => (
+            {TYPE_DOCUMENT_OPTIONS.map((option) => (
               <label
-                key={type}
+                key={option.value}
                 className="inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-black"
               >
                 <input
                   type="radio"
-                  value={type}
+                  value={option.value}
                   {...flow.form.register("type")}
                   className="size-4 accent-primary"
                 />
-                {TYPE_OPTION_LABELS[type]}
+                {option.label}
               </label>
             ))}
           </div>

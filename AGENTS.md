@@ -116,6 +116,21 @@ final, `next build` sans avertissement d'instant navigation.
 Note : `apps/web/AGENTS.md` est régénéré par `next dev`. Les règles projet
 doivent être écrites ici, pas dans ce fichier généré.
 
+## 🧬 Valeurs de domaine & libellés
+
+- Les valeurs de domaine (`TYPES_DOCUMENT`, `FORMATS_DOCUMENT`,
+  `TRIS_DOCUMENTS`, `STATUTS_DOCUMENT`, `ROLES`, `MOTIFS_SIGNALEMENT`, etc.)
+  viennent **uniquement** de `packages/shared` (`src/enums.ts`).
+- **Ne jamais redéclarer** une liste locale de ces valeurs
+  (`const TYPE_ORDER = [...]`). Un ordre ou un sous-ensemble spécifique doit
+  être dérivé de la constante shared, jamais recopié à la main.
+- Les libellés UI vivent dans `apps/web/lib/document-labels.ts` (documents) et
+  `lib/reports.ts` (motifs), sous forme de `Record<Enum, string>`. Le typage
+  garantit l'exhaustivité quand une valeur est ajoutée.
+- Les options de select/radio sont exportées une seule fois et réutilisées :
+  `TYPE_DOCUMENT_OPTIONS`, `TRI_DOCUMENT_OPTIONS`, etc. Ne pas refaire
+  `.map()` dans chaque écran.
+
 ## 🧱 Conventions de nommage
 
 - **Fichiers / dossiers** : `kebab-case` (`user-card.tsx`, `auth-provider/`).
