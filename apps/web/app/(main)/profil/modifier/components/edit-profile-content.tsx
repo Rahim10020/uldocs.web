@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, RefreshCw } from "lucide-react";
+import { ArrowLeft, ChevronLeft, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Controller, useForm, useWatch } from "react-hook-form";
@@ -56,8 +56,8 @@ function EditProfilePanel({ user }: { user: Utilisateur }) {
           href={routes.profile}
           className="inline-flex items-center gap-2 text-sm font-medium text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
         >
-          <ArrowLeft aria-hidden className="size-4" />
-          Retour au profil
+          <ChevronLeft aria-hidden className="size-5" />
+          Retour
         </Link>
 
         <div className="mt-4 p-5 sm:p-8">
