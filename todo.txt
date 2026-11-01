@@ -25,3 +25,8 @@ dans react-pdf, mais vous forcez l'affichage à 3 pages. C'est suffisant pour le
 
 -- avant de sauvegarder un document (bookmark) la personne dois etre connecte. si ce 
 n'est pas le cas, on l'invite a se connecter.
+
+mets aussi dans AGENTS md que je veux qu'il mette toujours cursor-pointer sur 
+tout ce qui est cliquable. et aussi en passant, troute tout ce qui est cliquable 
+mais qui n'a pas cursor-pointer et tu vas le mettre. fais un plan. les balises Link 
+n'ont pas besoin de cursor-pointer tu sais non ?
