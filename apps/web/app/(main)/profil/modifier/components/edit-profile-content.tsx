@@ -291,7 +291,7 @@ function EditProfileSkeleton() {
     <Container className="py-8 sm:py-12">
       <div className="mx-auto max-w-xl">
         <Skeleton className="h-4 w-32" />
-        <div className="mt-4 rounded-md border border-black-10 bg-white p-5 sm:p-8">
+        <div className="mt-4 p-5 sm:p-8">
           <Skeleton className="h-8 w-64 max-w-full" />
           <Skeleton className="mt-2 h-4 w-72 max-w-full" />
           <EditProfileFormSkeleton />
