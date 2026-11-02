@@ -21,7 +21,7 @@ export function AuthModal({ children }: { children: ReactNode }) {
 				tabIndex={-1}
 				onMouseDown={(event) => event.preventDefault()}
 				onClick={() => router.back()}
-				className="absolute inset-0 hidden cursor-default bg-transparent lg:block"
+				className="absolute inset-0 hidden cursor-pointer bg-transparent lg:block"
 			/>
 			<div className="relative z-10 flex w-full justify-center">{children}</div>
 		</div>

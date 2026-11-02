@@ -22,7 +22,7 @@ export function DetailsStep({ flow }: { flow: NewDocumentFlowController }) {
         <button
           type="button"
           onClick={flow.handleBack}
-          className="mb-6 inline-flex items-center gap-2 rounded text-sm font-semibold text-black-70 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+          className="mb-6 cursor-pointer inline-flex items-center gap-2 rounded text-sm font-semibold text-black-70 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
         >
           <ChevronLeft aria-hidden className="size-5" />
           Retour

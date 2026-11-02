@@ -72,7 +72,7 @@ export function MobileMenu() {
 				aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
 				aria-expanded={open}
 				aria-controls={panelId}
-				className="relative z-20 flex size-10 shrink-0 items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 lg:hidden"
+				className="relative z-20 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 lg:hidden"
 			>
 				{open ? (
 					<X aria-hidden className="size-6" />
@@ -87,7 +87,7 @@ export function MobileMenu() {
 						type="button"
 						aria-label="Fermer le menu"
 						onClick={closeMenu}
-						className="fixed inset-x-0 bottom-0 top-0 z-10 bg-black-60 lg:hidden"
+						className="fixed inset-x-0 bottom-0 top-0 z-10 cursor-pointer bg-black-60 lg:hidden"
 					/>
 					<aside
 						id={panelId}
@@ -114,7 +114,7 @@ export function MobileMenu() {
 									type="button"
 									aria-label="Fermer le menu"
 									onClick={closeMenu}
-									className="flex size-9 items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+									className="flex size-9 cursor-pointer items-center justify-center rounded-md text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
 								>
 									<X aria-hidden className="size-6" />
 								</button>
@@ -187,7 +187,7 @@ export function MobileMenu() {
 											type="button"
 											onClick={handleLogout}
 											disabled={logoutMutation.isPending}
-											className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-left text-base font-medium text-error transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
+											className="inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-left text-base font-medium text-error transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
 										>
 											<LogOut aria-hidden className="size-4" />
 											Déconnexion

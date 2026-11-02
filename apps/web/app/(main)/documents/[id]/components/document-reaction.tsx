@@ -55,7 +55,7 @@ export function DocumentReaction({
                 disabled={mutation.isPending}
                 onClick={() => vote(valeur)}
                 className={cn(
-                  "inline-flex h-9 items-center gap-2 rounded border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
+                  "inline-flex h-9 cursor-pointer items-center gap-2 rounded border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:cursor-wait disabled:opacity-60",
                   selected
                     ? "border-primary bg-primary-5 text-primary"
                     : "border-black-20 text-black-70 hover:border-black-30 hover:text-black",

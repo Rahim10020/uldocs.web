@@ -131,6 +131,18 @@ doivent être écrites ici, pas dans ce fichier généré.
   `TYPE_DOCUMENT_OPTIONS`, `TRI_DOCUMENT_OPTIONS`, etc. Ne pas refaire
   `.map()` dans chaque écran.
 
+## 🖱️ Curseur des éléments interactifs
+
+- Tout élément réellement cliquable doit afficher `cursor-pointer` :
+  `<button>`, composants boutons, lignes/chips/options cliquables, labels de
+  checkbox/radio, backdrops de fermeture.
+- **Exception** : les `Link` / `<a href>` n'ont pas besoin de `cursor-pointer`.
+  Le navigateur affiche déjà le pointeur sur un lien.
+- Les états désactivés conservent leurs overrides existants
+  (`disabled:cursor-not-allowed`, `disabled:cursor-wait`,
+  `disabled:pointer-events-none`).
+- Vérifier tout nouveau `<button>` ou conteneur cliquable avant livraison.
+
 ## 🧱 Conventions de nommage
 
 - **Fichiers / dossiers** : `kebab-case` (`user-card.tsx`, `auth-provider/`).

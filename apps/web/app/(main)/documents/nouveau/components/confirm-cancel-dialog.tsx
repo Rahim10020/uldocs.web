@@ -97,14 +97,14 @@ export function ConfirmCancelDialog({
 			aria-modal="true"
 			aria-labelledby={titleId}
 			aria-describedby={descriptionId}
-			className="fixed inset-0 z-70 flex items-end justify-center bg-black-40 p-0 sm:items-center sm:p-4"
+			className="fixed inset-0 z-70 flex cursor-pointer items-end justify-center bg-black-40 p-0 sm:items-center sm:p-4"
 			onMouseDown={(event) => {
 				if (event.target === event.currentTarget) {
 					onClose();
 				}
 			}}
 		>
-			<div className="w-full max-w-md rounded-t-lg bg-white p-6 shadow-lg sm:rounded-lg">
+			<div className="w-full max-w-md cursor-default rounded-t-lg bg-white p-6 shadow-lg sm:rounded-lg">
 				<span className="flex size-11 items-center justify-center rounded-full bg-white text-warning ring-1 ring-warning">
 					<AlertTriangle aria-hidden className="size-5" />
 				</span>
@@ -125,7 +125,7 @@ export function ConfirmCancelDialog({
 						type="button"
 						className={buttonStyles({
 							variant: "secondary",
-							className: "w-full sm:w-auto",
+							className: "w-full cursor-pointer sm:w-auto",
 						})}
 						onClick={onClose}
 					>
@@ -135,7 +135,7 @@ export function ConfirmCancelDialog({
 						type="button"
 						className={buttonStyles({
 							className:
-								"w-full bg-error text-white hover:opacity-90 sm:w-auto",
+								"w-full cursor-pointer bg-error text-white hover:opacity-90 sm:w-auto",
 						})}
 						onClick={onConfirm}
 					>

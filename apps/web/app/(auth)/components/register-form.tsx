@@ -95,7 +95,7 @@ export function RegisterForm({
 					/>
 					<label
 						htmlFor="charte"
-						className="text-sm leading-relaxed text-black-70"
+						className="cursor-pointer text-sm leading-relaxed text-black-70"
 					>
 						J&apos;accepte la{" "}
 						<Link

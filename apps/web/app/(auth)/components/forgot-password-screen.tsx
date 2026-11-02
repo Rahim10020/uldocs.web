@@ -110,7 +110,7 @@ export function ForgotPasswordScreen({ mode }: { mode: AuthMode }) {
 						type="submit"
 						disabled={isLoading}
 						aria-busy={isLoading}
-						className="inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-md font-semibold text-white transition-colors hover:bg-primary-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
+						className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-primary px-6 text-md font-semibold text-white transition-colors hover:bg-primary-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
 					>
 						{isLoading ? (
 							<>

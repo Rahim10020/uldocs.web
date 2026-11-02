@@ -129,7 +129,7 @@ export function OnboardingFlow({
           type="button"
           onClick={handleFinish}
           disabled={isSaving}
-          className="inline-flex items-center gap-1.5 rounded text-sm font-semibold text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
+          className="cursor-pointer inline-flex items-center gap-1.5 rounded text-sm font-semibold text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
         >
           Passer
           <X aria-hidden className="size-4" />
@@ -165,7 +165,7 @@ export function OnboardingFlow({
             onClick={handleBack}
             disabled={isSaving}
             aria-label="Étape précédente"
-            className="flex size-9 items-center justify-center rounded text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
+            className="flex size-9 cursor-pointer items-center justify-center rounded text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
           >
             <ChevronLeft aria-hidden className="size-5" />
           </button>
@@ -196,7 +196,7 @@ export function OnboardingFlow({
           onClick={handleFinish}
           disabled={isSaving}
           aria-label="Passer l’inscription"
-          className="flex size-8 items-center justify-center rounded text-black-50 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
+          className="flex size-8 cursor-pointer items-center justify-center rounded text-black-50 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
         >
           <X aria-hidden className="size-4" />
         </button>
@@ -221,7 +221,7 @@ export function OnboardingFlow({
             <button
               type="button"
               onClick={() => void treeQuery.refetch()}
-              className="mt-2 font-semibold underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+              className="mt-2 cursor-pointer font-semibold underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
             >
               Réessayer
             </button>
@@ -281,7 +281,7 @@ export function OnboardingFlow({
           onClick={handleContinue}
           disabled={!canContinue || isSaving}
           aria-busy={isSaving}
-          className="inline-flex h-12 w-full items-center justify-center rounded-md bg-primary px-6 text-md font-semibold text-white transition-colors hover:bg-primary-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+          className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-primary px-6 text-md font-semibold text-white transition-colors hover:bg-primary-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
         >
           {isSaving ? (
             <>
@@ -301,7 +301,7 @@ export function OnboardingFlow({
               type="button"
               onClick={handleBack}
               disabled={isSaving}
-              className="hidden rounded text-sm font-semibold text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50 lg:inline-flex"
+              className="hidden cursor-pointer rounded text-sm font-semibold text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50 lg:inline-flex"
             >
               Retour
             </button>
@@ -312,7 +312,7 @@ export function OnboardingFlow({
             type="button"
             onClick={handleFinish}
             disabled={isSaving}
-            className="rounded text-sm font-semibold text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50 lg:hidden"
+            className="cursor-pointer rounded text-sm font-semibold text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50 lg:hidden"
           >
             Passer
           </button>

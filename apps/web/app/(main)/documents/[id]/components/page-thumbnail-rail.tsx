@@ -138,7 +138,7 @@ function PageThumbnail({
       aria-current={active ? "page" : undefined}
       onClick={onSelect}
       className={cn(
-        "block w-full shrink-0 rounded-md border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
+        "block w-full shrink-0 cursor-pointer rounded-md border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
         active
           ? "border-black bg-white"
           : "border-transparent hover:border-black-20 hover:bg-white",

@@ -69,7 +69,7 @@ export function DocumentOptionsSheet({
         type="button"
         aria-label="Fermer les options"
         onClick={onClose}
-        className="absolute inset-0 bg-black-40"
+        className="absolute inset-0 cursor-pointer bg-black-40"
       />
 
       <div className="relative max-h-[85dvh] w-full overflow-y-auto rounded-t-2xl bg-white">
@@ -82,7 +82,7 @@ export function DocumentOptionsSheet({
             type="button"
             onClick={onClose}
             aria-label="Fermer les options"
-            className="flex size-9 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+            className="flex size-9 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <X aria-hidden className="size-5" />
           </button>
@@ -95,7 +95,7 @@ export function DocumentOptionsSheet({
             type="button"
             onClick={onReport}
             aria-label="Signaler ce document"
-            className="flex w-full items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+            className="flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
           >
             <Flag aria-hidden className="size-5" />
             <span>Signaler ce document</span>

@@ -52,7 +52,10 @@ export function Button({
   return (
     <button
       type={type}
-      className={buttonStyles({ variant, size, className })}
+      className={cn(
+        "cursor-pointer",
+        buttonStyles({ variant, size, className }),
+      )}
       {...props}
     >
       {children}

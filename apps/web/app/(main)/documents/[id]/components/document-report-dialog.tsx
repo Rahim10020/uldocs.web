@@ -161,14 +161,14 @@ export function DocumentReportDialog({
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={titleId}
-			className="fixed inset-0 z-[90] flex items-end justify-center bg-black-40 sm:items-center sm:p-4"
+			className="fixed inset-0 z-[90] flex cursor-pointer items-end justify-center bg-black-40 sm:items-center sm:p-4"
 			onMouseDown={(event) => {
 				if (event.target === event.currentTarget) {
 					close();
 				}
 			}}
 		>
-			<div className="max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-5 shadow-lg sm:rounded-lg sm:p-6">
+			<div className="max-h-[92dvh] w-full max-w-lg cursor-default overflow-y-auto rounded-t-2xl bg-white p-5 shadow-lg sm:rounded-lg sm:p-6">
 				{step === "form" ? (
 					<>
 						<div className="flex items-start justify-between gap-4">
@@ -185,7 +185,7 @@ export function DocumentReportDialog({
 								type="button"
 								onClick={close}
 								aria-label="Fermer"
-								className="flex size-9 shrink-0 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+								className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
 							>
 								<X aria-hidden className="size-5" />
 							</button>
@@ -299,7 +299,7 @@ export function DocumentReportDialog({
 							ref={successCloseRef}
 							onClick={close}
 							aria-label="Fermer"
-							className="absolute -top-1 right-0 flex size-9 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+							className="absolute -top-1 right-0 flex size-9 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
 						>
 							<X aria-hidden className="size-5" />
 						</button>

@@ -66,7 +66,7 @@ export function FilterSheet({
 				type="button"
 				aria-label="Fermer les filtres"
 				onClick={onClose}
-				className="absolute inset-0 cursor-default bg-black-50"
+				className="absolute inset-0 cursor-pointer bg-black-50"
 			/>
 
 			<div

@@ -20,7 +20,7 @@ export function DocumentFavoriteRow({
       aria-pressed={estFavori}
       disabled={mutation.isPending}
       onClick={() => mutation.mutate({ id: documentId, estFavori: !estFavori })}
-      className="flex w-full items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:bg-black-5 focus-visible:outline-none disabled:cursor-wait disabled:opacity-60"
+      className="flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left text-md font-medium text-black transition-colors hover:bg-black-5 focus-visible:bg-black-5 focus-visible:outline-none disabled:cursor-wait disabled:opacity-60"
     >
       <Bookmark
         aria-hidden

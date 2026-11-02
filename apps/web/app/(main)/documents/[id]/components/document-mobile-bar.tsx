@@ -75,7 +75,7 @@ export function DocumentMobileBar({
           onClick={onMore}
           aria-label="Plus d'options"
           title="Plus d'options"
-          className="flex size-10 items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+          className="flex size-10 cursor-pointer items-center justify-center rounded text-black-60 transition-colors hover:bg-black-5 hover:text-black-90 focus-visible:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
         >
           <MoreHorizontal aria-hidden className="size-5" />
         </button>

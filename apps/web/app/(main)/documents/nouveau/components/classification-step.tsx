@@ -38,7 +38,7 @@ export function ClassificationStep({
 					type="button"
 					onClick={flow.handleBack}
 					disabled={flow.isSubmitting}
-					className="mb-8 inline-flex items-center gap-2 rounded text-sm font-semibold text-black-70 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
+					className="mb-8 cursor-pointer inline-flex items-center gap-2 rounded text-sm font-semibold text-black-70 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40 disabled:pointer-events-none disabled:opacity-50"
 				>
 					<ChevronLeft aria-hidden className="size-5" />
 					Retour
