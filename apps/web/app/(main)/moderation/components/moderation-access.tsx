@@ -11,7 +11,7 @@ export function ModerationAccess({
 }) {
   return (
     <div className="mx-auto mt-10 max-w-lg p-8 text-center sm:p-12">
-      <span className="mx-auto flex size-14 items-center justify-center text-primary">
+      <span className="mx-auto flex size-14 items-center justify-center text-black">
         {authenticated ? (
           <ShieldAlert aria-hidden className="size-7" />
         ) : (
