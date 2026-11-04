@@ -132,7 +132,7 @@ function OpenReportsCount({
 
 function ModerationErrorState({ onRetry }: { onRetry: () => void }) {
   return (
-    <div className="mt-6 rounded-md border border-black-10 bg-surface p-8 text-center">
+    <div className="mt-6 p-8 text-center">
       <p className="text-sm text-black-70">
         Impossible de charger les signalements pour le moment.
       </p>
@@ -151,8 +151,8 @@ function ModerationEmptyState({
   onReset: () => void;
 }) {
   return (
-    <div className="mt-6 rounded-md border border-black-10 bg-surface p-8 text-center sm:p-10">
-      <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-black-5 text-black-50">
+    <div className="mt-6 p-8 text-center sm:p-10">
+      <span className="mx-auto flex size-12 items-center justify-center rounded-full text-black-50">
         {hasFilters ? (
           <Flag aria-hidden className="size-6" />
         ) : (
