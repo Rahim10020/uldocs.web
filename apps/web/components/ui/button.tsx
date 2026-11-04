@@ -13,7 +13,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
 
 const SIZES: Record<ButtonSize, string> = {
   md: "h-9 px-6 text-base",
-  sm: "h-9 px-3 text-sm",
+  sm: "h-7 px-3 text-sm",
 };
 
 type ButtonStylesOptions = {
