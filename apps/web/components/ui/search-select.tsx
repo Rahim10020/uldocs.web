@@ -151,7 +151,7 @@ export function SearchSelect({
         <ChevronDown
           aria-hidden
           className={cn(
-            "size-4 shrink-0 text-black-60 transition-transform",
+            "size-5 shrink-0 text-black-60 transition-transform",
             open && "rotate-180",
           )}
         />
