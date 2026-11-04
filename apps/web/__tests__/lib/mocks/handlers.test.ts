@@ -4,13 +4,15 @@ import type {
 	FaculteTree,
 	Paginated,
 	Signalement,
+	SignalementDetail,
+	SignalementListItem,
 } from "shared";
 import { beforeEach, describe, expect, it } from "vitest";
 import { getUeContextByName } from "@/lib/mocks/academic";
 import { resetMockDocuments, resetMockReactions } from "@/lib/mocks/documents";
 import { mockRequest } from "@/lib/mocks/handlers";
 import { resetMockReports } from "@/lib/mocks/reports";
-import { resetMockAuth } from "@/lib/mocks/users";
+import { resetMockAuth, resetMockUserStatuses } from "@/lib/mocks/users";
 
 describe("routeur mock", () => {
 	beforeEach(() => {
@@ -18,6 +20,7 @@ describe("routeur mock", () => {
 		resetMockReactions();
 		resetMockDocuments();
 		resetMockReports();
+		resetMockUserStatuses();
 	});
 
 	it("renvoie l'arbre académique", async () => {
@@ -236,5 +239,117 @@ describe("routeur mock", () => {
 				}),
 			}),
 		).rejects.toMatchObject({ status: 400, code: "VALIDATION_ERROR" });
+	});
+});
+
+describe("routeur mock — modération", () => {
+	beforeEach(() => {
+		resetMockAuth(7);
+		resetMockDocuments();
+		resetMockReports();
+		resetMockUserStatuses();
+	});
+
+	it("refuse la file sans session ou pour un étudiant", async () => {
+		resetMockAuth(null);
+
+		await expect(mockRequest("/reports")).rejects.toMatchObject({
+			status: 401,
+			code: "UNAUTHORIZED",
+		});
+
+		resetMockAuth(1);
+
+		await expect(mockRequest("/reports")).rejects.toMatchObject({
+			status: 403,
+			code: "FORBIDDEN",
+		});
+	});
+
+	it("renvoie la file filtrée et paginée", async () => {
+		const page = (await mockRequest(
+			"/reports?statut=ouvert&page=1&pageSize=2",
+		)) as Paginated<SignalementListItem>;
+
+		expect(page.total).toBe(3);
+		expect(page.data).toHaveLength(2);
+		expect(page.data.every((report) => report.statut === "ouvert")).toBe(true);
+	});
+
+	it("renvoie le détail d'un signalement", async () => {
+		const detail = (await mockRequest("/reports/8")) as SignalementDetail;
+
+		expect(detail.id).toBe(8);
+		expect(detail.action?.action).toBe("avertir");
+		expect(detail.previousReportsCount).toBe(2);
+	});
+
+	it("rejette un signalement via PATCH", async () => {
+		const detail = (await mockRequest("/reports/1", {
+			method: "PATCH",
+			body: JSON.stringify({
+				statut: "rejete",
+				raison: "Le signalement n'est pas fondé après vérification.",
+			}),
+		})) as SignalementDetail;
+
+		expect(detail.statut).toBe("rejete");
+		expect(detail.action?.action).toBe("valider");
+		expect(detail.traitePar?.id).toBe(7);
+	});
+
+	it("applique une action punitive", async () => {
+		const detail = (await mockRequest("/moderation/actions", {
+			method: "POST",
+			body: JSON.stringify({
+				reportId: 2,
+				action: "suspendre",
+				raison: "Le contenu est illégal et l'uploader est suspendu.",
+			}),
+		})) as SignalementDetail;
+
+		expect(detail.statut).toBe("traite");
+		expect(detail.action?.action).toBe("suspendre");
+	});
+
+	it("refuse une action valider via POST", async () => {
+		await expect(
+			mockRequest("/moderation/actions", {
+				method: "POST",
+				body: JSON.stringify({
+					reportId: 2,
+					action: "valider",
+					raison: "Action de rejet mal routée.",
+				}),
+			}),
+		).rejects.toMatchObject({ status: 400, code: "VALIDATION_ERROR" });
+	});
+
+	it("refuse une raison trop courte", async () => {
+		await expect(
+			mockRequest("/reports/1", {
+				method: "PATCH",
+				body: JSON.stringify({ statut: "rejete", raison: "court" }),
+			}),
+		).rejects.toMatchObject({ status: 400, code: "VALIDATION_ERROR" });
+	});
+
+	it("refuse un signalement déjà traité", async () => {
+		await expect(
+			mockRequest("/reports/8", {
+				method: "PATCH",
+				body: JSON.stringify({
+					statut: "rejete",
+					raison: "Tentative de rejet d'un signalement déjà traité.",
+				}),
+			}),
+		).rejects.toMatchObject({ status: 409, code: "ALREADY_PROCESSED" });
+	});
+
+	it("renvoie 404 pour un signalement inconnu", async () => {
+		await expect(mockRequest("/reports/9999")).rejects.toMatchObject({
+			status: 404,
+			code: "NOT_FOUND",
+		});
 	});
 });

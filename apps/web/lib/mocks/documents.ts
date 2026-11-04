@@ -61,6 +61,22 @@ export function resetMockReactions(): void {
 	MOCK_REACTIONS.clear();
 }
 
+/** Met à jour le statut éditorial d'un document mock. */
+export function setMockDocumentStatus(
+	id: number,
+	statut: StatutDocument,
+): boolean {
+	const document = MOCK_DOCUMENTS.find((item) => item.id === id);
+
+	if (!document) {
+		return false;
+	}
+
+	document.statut = statut;
+
+	return true;
+}
+
 /** Réaction de l'utilisateur courant pour un document. */
 export function getMockReaction(documentId: number): DocumentReaction {
 	const state = getReactionState(documentId);

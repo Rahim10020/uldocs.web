@@ -21,4 +21,11 @@ export const endpoints = {
 		reaction: (id: number) => `/documents/${id}/reaction`,
 		report: (id: number) => `/documents/${id}/report`,
 	},
+	reports: {
+		list: "/reports",
+		byId: (id: number) => `/reports/${id}`,
+	},
+	moderation: {
+		actions: "/moderation/actions",
+	},
 } as const;

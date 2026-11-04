@@ -24,6 +24,8 @@ export const routes = {
   profileEdit: "/profil/modifier",
   myDocuments: "/profil/documents",
   moderation: "/moderation",
+  moderationReport: (id: string | number) =>
+    `/moderation/${id}` as `/moderation/${string}`,
 
   login: "/connexion",
   register: "/inscription",

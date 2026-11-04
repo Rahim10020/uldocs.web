@@ -1,6 +1,7 @@
 import type {
   LoginPayload,
   RegisterPayload,
+  StatutUtilisateur,
   UpdateProfilePayload,
   Utilisateur,
 } from "shared";
@@ -187,6 +188,39 @@ export function requireMockSession(): Utilisateur {
   }
 
   return user;
+}
+
+export function requireMockModerator(): Utilisateur {
+  const user = requireMockSession();
+
+  if (user.role !== "moderateur" && user.role !== "admin") {
+    throw new ApiError("Accès réservé aux modérateurs", 403, "FORBIDDEN");
+  }
+
+  return user;
+}
+
+/** Met à jour le statut d'un utilisateur mock. */
+export function setMockUserStatus(
+  id: number,
+  statut: StatutUtilisateur,
+): boolean {
+  const user = MOCK_USERS.find((item) => item.id === id);
+
+  if (!user) {
+    return false;
+  }
+
+  user.statut = statut;
+
+  return true;
+}
+
+/** Réinitialise les statuts modifiés par les tests de modération. */
+export function resetMockUserStatuses(): void {
+  for (const user of MOCK_USERS) {
+    user.statut = "actif";
+  }
 }
 
 export function loginMock({ email, motDePasse }: LoginPayload): Utilisateur {

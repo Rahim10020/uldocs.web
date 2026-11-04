@@ -1,9 +1,11 @@
 import type { Faculte, Filiere, Niveau, Semestre, UE } from "./entities.js";
 import type {
+  ActionModeration,
   CategorieFaculte,
   FormatDocument,
   MotifSignalement,
   StatutDocument,
+  StatutSignalement,
   TriDocuments,
   TypeDocument,
   VoteDocument,
@@ -75,6 +77,64 @@ export type UpdateProfilePayload = {
 export type ReportDocumentPayload = {
   motif: MotifSignalement;
   commentaire?: string;
+};
+
+/** Paramètres de GET /reports. */
+export type ReportSearchParams = {
+  statut?: StatutSignalement;
+  motif?: MotifSignalement;
+  page?: number;
+  pageSize?: number;
+};
+
+/** Document résumé joint à un signalement dans la file de modération. */
+export type SignalementDocumentSummary = {
+  id: number;
+  titre: string;
+  format: FormatDocument;
+  statut: StatutDocument;
+};
+
+/** Élément de la file de signalements (GET /reports). */
+export type SignalementListItem = {
+  id: number;
+  document: SignalementDocumentSummary;
+  signaleur: { id: number; nom: string };
+  motif: MotifSignalement;
+  commentaire: string | null;
+  statut: StatutSignalement;
+  dateSignalement: string;
+};
+
+/** Détail complet d'un signalement (GET /reports/:id). */
+export type SignalementDetail = Omit<SignalementListItem, "document"> & {
+  document: SignalementDocumentSummary & {
+    dateUpload: string;
+    nbVues: number;
+    nbTelechargements: number;
+    uploader: { id: number; nom: string };
+  };
+  traitePar: { id: number; nom: string } | null;
+  dateTraitement: string | null;
+  action: {
+    action: ActionModeration;
+    raison: string | null;
+    dateAction: string;
+  } | null;
+  previousReportsCount: number;
+};
+
+/** Corps de POST /moderation/actions. */
+export type ModerationActionPayload = {
+  reportId: number;
+  action: Exclude<ActionModeration, "valider">;
+  raison: string;
+};
+
+/** Corps de PATCH /reports/:id pour rejeter un signalement. */
+export type RejectReportPayload = {
+  statut: "rejete";
+  raison: string;
 };
 
 /**

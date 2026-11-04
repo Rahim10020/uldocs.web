@@ -1,4 +1,6 @@
 import {
+  ACTIONS_MODERATION,
+  type ActionModeration,
   type DocumentSearchParams,
   FORMATS_DOCUMENT,
   type FormatDocument,
@@ -7,6 +9,9 @@ import {
   type MotifSignalement,
   type RegisterPayload,
   type ReportDocumentPayload,
+  type ReportSearchParams,
+  STATUTS_SIGNALEMENT,
+  type StatutSignalement,
   TRIS_DOCUMENTS,
   type TriDocuments,
   TYPES_DOCUMENT,
@@ -28,11 +33,18 @@ import {
   setMockFavorite,
   setMockReaction,
 } from "./documents";
-import { createMockReport } from "./reports";
+import {
+  applyMockModerationAction,
+  createMockReport,
+  getMockReport,
+  listMockReports,
+  rejectMockReport,
+} from "./reports";
 import {
   loginMock,
   logoutMock,
   registerMock,
+  requireMockModerator,
   requireMockSession,
   updateMockProfile,
 } from "./users";
@@ -170,6 +182,31 @@ function parseSearchParams(
   const tri = searchParams.get("tri");
   if (tri && TRIS_DOCUMENTS.includes(tri as TriDocuments)) {
     params.tri = tri as TriDocuments;
+  }
+
+  const page = readNumber(searchParams.get("page"));
+  if (page !== undefined) params.page = page;
+
+  const pageSize = readNumber(searchParams.get("pageSize"));
+  if (pageSize !== undefined) params.pageSize = pageSize;
+
+  return params;
+}
+
+function parseReportSearchParams(
+  searchParams: URLSearchParams,
+): ReportSearchParams {
+  const params: ReportSearchParams = {};
+  const statut = searchParams.get("statut");
+
+  if (statut && STATUTS_SIGNALEMENT.includes(statut as StatutSignalement)) {
+    params.statut = statut as StatutSignalement;
+  }
+
+  const motif = searchParams.get("motif");
+
+  if (motif && MOTIFS_SIGNALEMENT.includes(motif as MotifSignalement)) {
+    params.motif = motif as MotifSignalement;
   }
 
   const page = readNumber(searchParams.get("page"));
@@ -387,6 +424,85 @@ export async function mockRequest(
       documentId: Number(reportMatch[1]),
       signaleurId: user.id,
       payload,
+    });
+  }
+
+  if (method === "GET" && pathname === "/reports") {
+    requireMockModerator();
+    return listMockReports(parseReportSearchParams(searchParams));
+  }
+
+  const reportDetailMatch = /^\/reports\/(\d+)$/.exec(pathname);
+
+  if (method === "GET" && reportDetailMatch) {
+    requireMockModerator();
+    return getMockReport(Number(reportDetailMatch[1]));
+  }
+
+  if (method === "PATCH" && reportDetailMatch) {
+    const moderator = requireMockModerator();
+    const body = readJsonBody<{ statut?: unknown; raison?: unknown }>(init);
+
+    if (body.statut !== "rejete") {
+      throw new ApiError(
+        "Seul le statut « rejete » est accepté",
+        400,
+        "VALIDATION_ERROR",
+      );
+    }
+
+    if (typeof body.raison !== "string") {
+      throw new ApiError("Raison invalide", 400, "VALIDATION_ERROR");
+    }
+
+    return rejectMockReport({
+      moderatorId: moderator.id,
+      reportId: Number(reportDetailMatch[1]),
+      raison: body.raison,
+    });
+  }
+
+  if (method === "POST" && pathname === "/moderation/actions") {
+    const moderator = requireMockModerator();
+    const body = readJsonBody<{
+      reportId?: unknown;
+      action?: unknown;
+      raison?: unknown;
+    }>(init);
+
+    if (
+      typeof body.reportId !== "number" ||
+      !Number.isInteger(body.reportId) ||
+      body.reportId <= 0
+    ) {
+      throw new ApiError(
+        "Identifiant de signalement invalide",
+        400,
+        "VALIDATION_ERROR",
+      );
+    }
+
+    if (
+      typeof body.action !== "string" ||
+      !ACTIONS_MODERATION.includes(body.action as ActionModeration) ||
+      body.action === "valider"
+    ) {
+      throw new ApiError(
+        "Action de modération invalide",
+        400,
+        "VALIDATION_ERROR",
+      );
+    }
+
+    if (typeof body.raison !== "string") {
+      throw new ApiError("Raison invalide", 400, "VALIDATION_ERROR");
+    }
+
+    return applyMockModerationAction({
+      moderatorId: moderator.id,
+      reportId: body.reportId,
+      action: body.action as Exclude<ActionModeration, "valider">,
+      raison: body.raison,
     });
   }
 

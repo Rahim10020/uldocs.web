@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { ModerationContent } from "./components/moderation-content";
+import { ModerationPageSkeleton } from "./components/moderation-skeleton";
+
+export const metadata: Metadata = {
+	title: "Dashboard de modération — ulDocs",
+	description:
+		"Traite les signalements des documents partagés sur ulDocs et applique les décisions de modération.",
+};
+
 export default function ModerationPage() {
-  return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-12">
-      <h1 className="text-2xl font-bold text-black">Dashboard de modération</h1>
-      <p className="mt-2 text-black-60">Cette page sera bientôt disponible.</p>
-    </div>
-  );
+	return (
+		<Suspense fallback={<ModerationPageSkeleton />}>
+			<ModerationContent />
+		</Suspense>
+	);
 }

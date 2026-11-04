@@ -1,6 +1,8 @@
 import type {
+	ActionModeration,
 	CategorieFaculte,
 	FormatDocument,
+	MotifSignalement,
 	Role,
 	StatutDocument,
 	StatutSignalement,
@@ -114,7 +116,7 @@ export type Signalement = {
 	id: number;
 	documentId: number;
 	signaleurId: number;
-	motif: string;
+	motif: MotifSignalement;
 	commentaire: string | null;
 	statut: StatutSignalement;
 	traitePar: number | null;
@@ -128,7 +130,7 @@ export type ModerationAction = {
 	moderateurId: number;
 	documentId: number | null;
 	utilisateurCibleId: number | null;
-	action: string;
+	action: ActionModeration;
 	raison: string | null;
 	dateAction: string;
 };

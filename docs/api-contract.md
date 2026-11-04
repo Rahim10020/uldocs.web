@@ -210,6 +210,63 @@ export type FaculteTree = Faculte & {
 };
 ```
 
+### 4.5 Modération
+
+```ts
+export type ReportSearchParams = {
+  statut?: StatutSignalement;
+  motif?: MotifSignalement;
+  page?: number;
+  pageSize?: number;
+};
+
+export type SignalementDocumentSummary = {
+  id: number;
+  titre: string;
+  format: FormatDocument;
+  statut: StatutDocument;
+};
+
+export type SignalementListItem = {
+  id: number;
+  document: SignalementDocumentSummary;
+  signaleur: { id: number; nom: string };
+  motif: MotifSignalement;
+  commentaire: string | null;
+  statut: StatutSignalement;
+  dateSignalement: string;
+};
+
+export type SignalementDetail = Omit<SignalementListItem, "document"> & {
+  document: SignalementDocumentSummary & {
+    dateUpload: string;
+    nbVues: number;
+    nbTelechargements: number;
+    uploader: { id: number; nom: string };
+  };
+  traitePar: { id: number; nom: string } | null;
+  dateTraitement: string | null;
+  action: {
+    action: ActionModeration;
+    raison: string | null;
+    dateAction: string;
+  } | null;
+  /** Nombre d'autres signalements sur le même document. */
+  previousReportsCount: number;
+};
+
+export type ModerationActionPayload = {
+  reportId: number;
+  action: Exclude<ActionModeration, "valider">;
+  raison: string;
+};
+
+export type RejectReportPayload = {
+  statut: "rejete";
+  raison: string;
+};
+```
+
 ---
 
 ## 5. Endpoints V1
@@ -340,15 +397,34 @@ export type DocumentUpdatePayload = {
 
 ### Modération et administration (phase finale V1)
 
-| Méthode | Chemin                | Sortie                        |
-| ------- | --------------------- | ----------------------------- |
-| `GET`   | `/reports`            | `Paginated<Signalement>`      |
-| `PATCH` | `/reports/:id`        | `Signalement`                 |
-| `POST`  | `/moderation/actions` | `ModerationAction`            |
-| `GET`   | `/admin/stats`        | `AdminStats`                  |
-| `GET`   | `/admin/users`        | `Paginated<Utilisateur>`      |
-| `PATCH` | `/admin/users/:id`    | `Utilisateur`                 |
-| `GET`   | `/admin/documents`    | `Paginated<DocumentListItem>` |
+| Méthode | Chemin                | Entrée                    | Sortie                           |
+| ------- | --------------------- | ------------------------- | -------------------------------- |
+| `GET`   | `/reports`            | `ReportSearchParams`      | `Paginated<SignalementListItem>` |
+| `GET`   | `/reports/:id`        | —                         | `SignalementDetail`              |
+| `PATCH` | `/reports/:id`        | `RejectReportPayload`     | `SignalementDetail`              |
+| `POST`  | `/moderation/actions` | `ModerationActionPayload` | `SignalementDetail`              |
+| `GET`   | `/admin/stats`        | —                         | `AdminStats`                     |
+| `GET`   | `/admin/users`        | `page`, `pageSize`        | `Paginated<Utilisateur>`         |
+| `PATCH` | `/admin/users/:id`    | —                         | `Utilisateur`                    |
+| `GET`   | `/admin/documents`    | `page`, `pageSize`        | `Paginated<DocumentListItem>`    |
+
+- Les endpoints de modération exigent une session avec le rôle `moderateur`
+  ou `admin` (`401` sans session, `403` sinon).
+- `GET /reports` filtre par `statut` et `motif`, trie du plus récent au plus
+  ancien. `total` reflète le nombre de résultats **avant** pagination.
+- `PATCH /reports/:id` rejette un signalement non traité (`ouvert` ou
+  `en_cours`) : `statut` doit valoir `rejete`, `raison` est obligatoire (10 à
+  1000 caractères). Le document reste en ligne et une action `valider` est
+  enregistrée pour l'audit.
+- `POST /moderation/actions` applique une décision à un signalement non traité
+  (`ouvert` ou `en_cours`) : `retirer`, `avertir`, `suspendre` ou `bannir`. La
+  raison est obligatoire (10 à 1000 caractères). Le signalement passe en
+  `traite`.
+  - `retirer` : document → `retire`.
+  - `avertir` : document et uploader inchangés.
+  - `suspendre` : document → `retire`, uploader → `suspendu`.
+  - `bannir` : document → `retire`, uploader → `supprime`.
+- Un signalement déjà `traite` ou `rejete` ne peut plus être modifié (`409`).
 
 ---
 

@@ -1,4 +1,4 @@
-import type { DocumentSearchParams } from "shared";
+import type { DocumentSearchParams, ReportSearchParams } from "shared";
 
 /** Clés TanStack Query : source unique pour lire et invalider le cache. */
 export const queryKeys = {
@@ -20,5 +20,11 @@ export const queryKeys = {
 		mineRoot: ["documents", "mine"] as const,
 		mine: (page: number, pageSize: number) =>
 			["documents", "mine", page, pageSize] as const,
+	},
+	reports: {
+		all: ["reports"] as const,
+		list: (params: ReportSearchParams) => ["reports", "list", params] as const,
+		detail: (id: number) => ["reports", "detail", id] as const,
+		openCount: ["reports", "open-count"] as const,
 	},
 };
