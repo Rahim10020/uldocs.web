@@ -267,6 +267,32 @@ export type RejectReportPayload = {
 };
 ```
 
+### 4.6 Profil public
+
+```ts
+export type PublicUserProfile = {
+  id: number;
+  nom: string;
+  avatarUrl: string | null;
+  faculteId: number | null;
+  filiereId: number | null;
+  niveauId: number | null;
+  points: number;
+  stats: {
+    documents: number;
+    views: number;
+    downloads: number;
+  };
+  rank: {
+    position: number;
+    totalContributors: number;
+  };
+};
+```
+
+Le profil public ne contient **aucune donnée privée** : ni `email`, ni
+`statut`, ni `derniereConnexion`, ni mot de passe.
+
 ---
 
 ## 5. Endpoints V1
@@ -394,6 +420,14 @@ export type DocumentUpdatePayload = {
 | `GET`   | `/users/me`           | —                                                         | `Utilisateur`                 |
 | `PATCH` | `/users/me`           | `{ nom?, faculteId?, filiereId?, niveauId?, avatarUrl? }` | `Utilisateur`                 |
 | `GET`   | `/users/me/documents` | `page`, `pageSize`                                        | `Paginated<DocumentListItem>` |
+| `GET`   | `/users/:id`          | —                                                         | `PublicUserProfile`           |
+| `GET`   | `/users/:id/documents` | `page`, `pageSize`                                       | `Paginated<DocumentListItem>` |
+
+- `GET /users/:id` et `GET /users/:id/documents` sont publics : aucune session
+  n'est requise.
+- Ces endpoints renvoient `404` si l'utilisateur n'existe pas.
+- `GET /users/:id/documents` ne renvoie que les documents `statut = "valide"`,
+  triés du plus récent au plus ancien, comme les autres listes publiques.
 
 ### Modération et administration (phase finale V1)
 

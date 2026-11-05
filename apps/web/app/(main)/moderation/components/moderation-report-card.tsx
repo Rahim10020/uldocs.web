@@ -1,9 +1,11 @@
+import Link from "next/link";
 import type { SignalementListItem } from "shared";
 import { ButtonLink } from "@/components/ui/button";
 import { FormatBadge } from "@/components/ui/format-badge";
 import { formatRelativeTime } from "@/lib/format";
 import { moderationReportHref } from "@/lib/moderation";
 import { MOTIF_SIGNALEMENT_LABELS } from "@/lib/reports";
+import { routes } from "@/lib/routes";
 import { ReportStatus } from "./report-status";
 
 /** Carte d'un signalement dans la file de modération. */
@@ -29,8 +31,13 @@ export function ModerationReportCard({
         <div>
           <dt className="inline">Signalé par : </dt>
           <dd className="inline">
-            {report.signaleur.nom} ·{" "}
-            {formatRelativeTime(report.dateSignalement)}
+            <Link
+              href={routes.profileById(report.signaleur.id)}
+              className="font-medium text-black underline decoration-black-20 underline-offset-2 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+            >
+              {report.signaleur.nom}
+            </Link>{" "}
+            · {formatRelativeTime(report.dateSignalement)}
           </dd>
         </div>
         <div>

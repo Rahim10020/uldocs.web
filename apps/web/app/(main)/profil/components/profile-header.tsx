@@ -1,23 +1,30 @@
 import { Pencil } from "lucide-react";
 import Link from "next/link";
-import type { Utilisateur } from "shared";
 import { ButtonLink } from "@/components/ui/button";
 import { UserAvatar } from "@/components/ui/user-avatar";
 import { routes } from "@/lib/routes";
 
+type ProfileHeaderUser = {
+	nom: string;
+	avatarUrl: string | null;
+};
+
 type ProfileHeaderProps = {
-	user: Utilisateur;
+	user: ProfileHeaderUser;
 	academicLabel: string | null;
 	isAcademicLoading: boolean;
 	rank: { position: number; totalContributors: number };
+	/** Masque les actions réservées au propriétaire du profil. */
+	editable?: boolean;
 };
 
-/** En-tête du profil : identité, cursus et accès à la modification. */
+/** En-tête du profil : identité, cursus et actions du propriétaire. */
 export function ProfileHeader({
 	user,
 	academicLabel,
 	isAcademicLoading,
 	rank,
+	editable = true,
 }: ProfileHeaderProps) {
 	return (
 		<section className="flex items-start justify-between gap-4">
@@ -34,7 +41,7 @@ export function ProfileHeader({
 						<p className="mt-1 text-sm text-black-60 sm:text-base">
 							{academicLabel}
 						</p>
-					) : !isAcademicLoading ? (
+					) : editable && !isAcademicLoading ? (
 						<Link
 							href={routes.profileEdit}
 							className="mt-1 inline-block text-sm font-medium text-primary hover:text-primary-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
@@ -48,15 +55,17 @@ export function ProfileHeader({
 				</div>
 			</div>
 
-			<ButtonLink
-				href={routes.profileEdit}
-				variant="secondary"
-				size="sm"
-				className="shrink-0"
-			>
-				<Pencil aria-hidden className="size-4" />
-				<span className="hidden sm:inline">Modifier</span>
-			</ButtonLink>
+			{editable ? (
+				<ButtonLink
+					href={routes.profileEdit}
+					variant="secondary"
+					size="sm"
+					className="shrink-0"
+				>
+					<Pencil aria-hidden className="size-4" />
+					<span className="hidden sm:inline">Modifier</span>
+				</ButtonLink>
+			) : null}
 		</section>
 	);
 }

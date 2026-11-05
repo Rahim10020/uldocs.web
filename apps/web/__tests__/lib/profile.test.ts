@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { mockAcademic } from "@/lib/mocks/academic";
 import {
+	buildPublicProfileBadges,
 	formatProfileAcademic,
 	parseProfileTab,
 	profileTabHref,
 } from "@/lib/profile";
 import { editProfileSchema } from "@/lib/profile-schema";
+import { routes } from "@/lib/routes";
 
 describe("profil", () => {
 	it("lit l’onglet depuis l’URL", () => {
@@ -46,6 +48,34 @@ describe("profil", () => {
 				niveauId: null,
 			}),
 		).toBeNull();
+	});
+
+	it("construit l'URL d'un profil public", () => {
+		expect(routes.profileById(42)).toBe("/profil/42");
+	});
+
+	it("dérive les badges publics des statistiques", () => {
+		const badges = buildPublicProfileBadges({
+			documents: 3,
+			downloads: 150,
+			rankPosition: 2,
+		});
+
+		expect(badges.map((badge) => badge.id)).toEqual([
+			"premier-upload",
+			"top-du-mois",
+			"cent-telechargements",
+		]);
+	});
+
+	it("n'affiche aucun badge sans contribution", () => {
+		expect(
+			buildPublicProfileBadges({
+				documents: 0,
+				downloads: 0,
+				rankPosition: 8,
+			}),
+		).toEqual([]);
 	});
 });
 

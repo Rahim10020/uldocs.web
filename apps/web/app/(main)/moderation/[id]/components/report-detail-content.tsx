@@ -100,8 +100,13 @@ function ReportDetailView({ report }: { report: SignalementDetail }) {
 					</p>
 					<p>
 						Signalé par :{" "}
-						<span className="text-black">{report.signaleur.nom}</span> ·{" "}
-						{formatRelativeTime(report.dateSignalement)}
+						<Link
+							href={routes.profileById(report.signaleur.id)}
+							className="font-medium text-black underline decoration-black-20 underline-offset-2 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+						>
+							{report.signaleur.nom}
+						</Link>{" "}
+						· {formatRelativeTime(report.dateSignalement)}
 					</p>
 					<p>
 						Commentaire :{" "}

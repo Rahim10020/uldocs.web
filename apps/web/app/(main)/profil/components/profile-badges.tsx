@@ -24,23 +24,29 @@ export function ProfileBadges({ badges }: { badges: ProfileBadge[] }) {
 				</h2>
 			</div>
 
-			<ul className="mt-3 flex flex-wrap gap-2">
-				{badges.map((badge) => {
-					const Icon = BADGE_ICONS[badge.icon];
+			{badges.length === 0 ? (
+				<p className="mt-3 text-sm text-black-60">
+					Aucun badge pour le moment.
+				</p>
+			) : (
+				<ul className="mt-3 flex flex-wrap gap-2">
+					{badges.map((badge) => {
+						const Icon = BADGE_ICONS[badge.icon];
 
-					return (
-						<li
-							key={badge.id}
-							className="inline-flex items-center gap-1.5 rounded-full border border-black-10 bg-white py-1 pr-3 pl-1.5 text-xs font-medium text-black-80"
-						>
-							<span className="flex size-5 items-center justify-center rounded-full bg-surface text-primary">
-								<Icon aria-hidden className="size-3" />
-							</span>
-							{badge.label}
-						</li>
-					);
-				})}
-			</ul>
+						return (
+							<li
+								key={badge.id}
+								className="inline-flex items-center gap-1.5 rounded-full border border-black-10 bg-white py-1 pr-3 pl-1.5 text-xs font-medium text-black-80"
+							>
+								<span className="flex size-5 items-center justify-center rounded-full bg-surface text-primary">
+									<Icon aria-hidden className="size-3" />
+								</span>
+								{badge.label}
+							</li>
+						);
+					})}
+				</ul>
+			)}
 		</section>
 	);
 }

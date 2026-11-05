@@ -642,6 +642,19 @@ export function listMockDocumentsByUploader(
 	return paginate(results, page, pageSize);
 }
 
+/** GET /users/:id/documents — documents validés publiés par un utilisateur. */
+export function listMockPublicDocumentsByUploader(
+	uploaderId: number,
+	page = 1,
+	pageSize = DEFAULT_PAGE_SIZE,
+): Paginated<DocumentListItem> {
+	const results = MOCK_DOCUMENTS.filter(
+		(doc) => doc.uploader.id === uploaderId && doc.statut === "valide",
+	).sort((a, b) => b.dateUpload.localeCompare(a.dateUpload));
+
+	return paginate(results, page, pageSize);
+}
+
 /** GET /documents/favorites — favoris validés de l'utilisateur courant. */
 export function listMockFavoriteDocuments(
 	page = 1,

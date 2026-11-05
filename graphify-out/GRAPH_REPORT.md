@@ -1,22 +1,22 @@
-# Graph Report - uldocs  (2026-11-04)
+# Graph Report - uldocs  (2026-11-05)
 
 ## Corpus Check
-- 269 files · ~180,529 words
+- 279 files · ~182,406 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1297 nodes · 3408 edges · 69 communities (58 shown, 2 thin omitted)
+- 1326 nodes · 3541 edges · 70 communities (59 shown, 2 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 34 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4da0833e`
+- Built from commit: `85267ed0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- react
-- filiere-detail-content.tsx
+- search-filters.tsx
+- academic-navigation.ts
 - container.tsx
 - handlers.ts
 - document-detail.ts
@@ -24,30 +24,30 @@
 - document-card.tsx
 - compilerOptions
 - Contrat d'API — UL Docs
-- use-documents-search.ts
+- documents-content.tsx
 - web/package.json
 - package.json
 - Règles du projet UL Docs
 - shared/package.json
-- profile-content.tsx
-- lucide-react
+- edit-profile-content.tsx
+- cn
 - tasks
-- categories-content.tsx
+- useAcademicTree
 - compilerOptions
 - **Methode de remplissage de la matrice**
 - api/package.json
 - app.ts
 - compilerOptions
-- useSession
-- mocks/academic.ts
+- routes.ts
+- api.ts
 - devDependencies
 - routes/documents.ts
 - lib/reports.ts
-- routes.ts
+- @tanstack/react-query
 - uldocs
-- button.tsx
+- public-profile-content.tsx
 - Product Brief : UL Docs
-- profile-tabs.tsx
+- filiere-detail-content.tsx
 - scripts
 - format.ts
 - copy-pdf-worker.mjs
@@ -57,81 +57,82 @@
 - dependencies
 - server.ts
 - web/AGENTS.md
-- api.ts
-- edit-profile-content.tsx
+- api/reports.ts
+- src/index.ts
 - use-new-document-flow.ts
 - register-screen.tsx
 - ue-documents-content.tsx
-- src/index.ts
+- api/documents.ts
 - report-detail-content.tsx
-- PdfViewer
+- category-detail-content.tsx
 - moderation-content.tsx
 - moderation-report-card.tsx
 - document-detail-page.tsx
-- new-document-flow.tsx
-- moderation.ts
+- academic-content.test.ts
+- use-download-document.ts
 - AuthSelect
-- DocumentReportDialog
-- cn
-- Button
-- app/layout.tsx
+- react
+- OnboardingFlow
+- pdf-viewer.tsx
+- utils.ts
+- search-pagination.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 99 edges
-2. `react` - 64 edges
-3. `lucide-react` - 57 edges
-4. `routes` - 46 edges
-5. `mockRequest()` - 34 edges
-6. `ApiError` - 33 edges
-7. `Container()` - 30 edges
-8. `next` - 29 edges
-9. `useNewDocumentFlow()` - 25 edges
-10. `Button()` - 24 edges
+2. `react` - 66 edges
+3. `lucide-react` - 59 edges
+4. `routes` - 49 edges
+5. `mockRequest()` - 37 edges
+6. `ApiError` - 34 edges
+7. `Container()` - 31 edges
+8. `next` - 31 edges
+9. `useAcademicTree()` - 26 edges
+10. `apiFetch()` - 26 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `PageThumbnail()` --calls--> `cn()`  [EXTRACTED]
+  apps/web/app/(main)/documents/[id]/components/page-thumbnail-rail.tsx → apps/web/lib/utils.ts
+- `PreviewFallback()` --calls--> `cn()`  [EXTRACTED]
+  apps/web/app/(main)/documents/[id]/components/pdf-viewer.tsx → apps/web/lib/utils.ts
+- `PdfPageSkeleton()` --calls--> `cn()`  [EXTRACTED]
+  apps/web/app/(main)/documents/[id]/components/pdf-viewer.tsx → apps/web/lib/utils.ts
+- `SimilarDocumentCard()` --calls--> `formatRating()`  [EXTRACTED]
+  apps/web/app/(main)/documents/[id]/components/similar-documents.tsx → apps/web/lib/format.ts
 - `NewDocumentAuthGate()` --calls--> `withNextPath()`  [EXTRACTED]
   apps/web/app/(main)/documents/nouveau/components/new-document-flow.tsx → apps/web/lib/next-path.ts
-- `TypeFilterRow()` --calls--> `cn()`  [EXTRACTED]
-  apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx → apps/web/lib/utils.ts
-- `TypeChip()` --calls--> `cn()`  [EXTRACTED]
-  apps/web/app/(main)/matieres/[id]/components/ue-type-chips.tsx → apps/web/lib/utils.ts
-- `TabLink()` --calls--> `cn()`  [EXTRACTED]
-  apps/web/app/(main)/profil/components/profile-tabs.tsx → apps/web/lib/utils.ts
-- `GridContent()` --calls--> `cn()`  [EXTRACTED]
-  apps/web/components/shared/document-card.tsx → apps/web/lib/utils.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (69 total, 2 thin omitted)
+## Communities (70 total, 2 thin omitted)
 
-### Community 0 - "react"
+### Community 0 - "search-filters.tsx"
 Cohesion: 0.12
-Nodes (17): SearchFiltersProps, SheetOptions, ConfirmCancelDialog(), getFocusableElements(), handleKeyDown(), TypeFilterRow(), UeFilters(), TypeChip() (+9 more)
+Nodes (16): SearchFilters(), SearchFiltersProps, SheetOptions, FiliereFilters(), TypeFilterRow(), TypeChip(), UeTypeChips(), SearchSelect() (+8 more)
 
-### Community 1 - "filiere-detail-content.tsx"
-Cohesion: 0.06
-Nodes (43): CategoryDetailContent(), CategoryDetailSkeleton(), SKELETON_KEYS, CategoryPageProps, metadata, SearchFilters(), FiliereDetailContent(), FiliereDetailSkeleton() (+35 more)
+### Community 1 - "academic-navigation.ts"
+Cohesion: 0.20
+Nodes (13): useFiliereFilters(), AcademicFiliere, AcademicNiveau, AcademicSemestre, FiliereContext, listFiliereSemestres(), UeContext, FiliereFiltersState (+5 more)
 
 ### Community 2 - "container.tsx"
-Cohesion: 0.11
-Nodes (19): ContributeSection(), FAQ_ITEMS, FaqSection(), HomeContent(), EmptyResults(), SUGGESTIONS, metadata, CategorySection() (+11 more)
+Cohesion: 0.15
+Nodes (10): ContributeSection(), FAQ_ITEMS, FaqSection(), Hero(), HomeContent(), CategorySection(), HeaderShell(), AccordionItem (+2 more)
 
 ### Community 3 - "handlers.ts"
 Cohesion: 0.05
-Nodes (92): request(), ApiError, getDocumentFormat(), getUeContext(), getUeContextByName(), mockAcademic, BASE_UPLOAD, buildDocuments() (+84 more)
+Nodes (91): ApiError, getUeContext(), getUeContextByName(), BASE_UPLOAD, buildDocuments(), compare(), createMockDocument(), CreateMockDocumentInput (+83 more)
 
 ### Community 4 - "document-detail.ts"
-Cohesion: 0.17
-Nodes (18): DocumentReaction(), vote(), ReactionVariant, VOTES, ReactionVariables, useDocumentReaction(), setDocumentReaction(), applyReaction() (+10 more)
+Cohesion: 0.11
+Nodes (23): DocumentReaction(), vote(), ReactionVariant, VOTES, PageStepper(), commit(), PagePicker(), commit() (+15 more)
 
 ### Community 5 - "biome.json"
 Cohesion: 0.08
 Nodes (25): source, assist, actions, enabled, css, parser, files, ignoreUnknown (+17 more)
 
 ### Community 6 - "document-card.tsx"
-Cohesion: 0.16
-Nodes (11): SIMILAR_SKELETON_KEYS, CardVariant, DocumentCard(), DocumentCardProps, GridContent(), DocumentStatusBadge(), STATUS_STYLES, UploadedDocumentCard() (+3 more)
+Cohesion: 0.14
+Nodes (16): SIMILAR_SKELETON_KEYS, SimilarDocumentCard(), SimilarDocuments(), CardVariant, DocumentCardProps, GridContent(), RatingMeta(), DocumentStatusBadge() (+8 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.11
@@ -139,11 +140,11 @@ Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModu
 
 ### Community 8 - "Contrat d'API — UL Docs"
 Cohesion: 0.10
-Nodes (19): 1. Conventions, 2. Mapping SQL → API, 3. Enums (valeurs figées), 4.1 `DocumentListItem`, 4.2 `DocumentDetail`, 4.3 `DocumentSearchParams`, 4.4 Arbre académique, 4.5 Modération (+11 more)
+Nodes (20): 1. Conventions, 2. Mapping SQL → API, 3. Enums (valeurs figées), 4.1 `DocumentListItem`, 4.2 `DocumentDetail`, 4.3 `DocumentSearchParams`, 4.4 Arbre académique, 4.5 Modération (+12 more)
 
-### Community 9 - "use-documents-search.ts"
-Cohesion: 0.20
-Nodes (21): DocumentsContent(), DocumentsSearchState, FILTER_KEYS, niveauxOf(), parseDocumentsSearchState(), sortNiveaux(), sortSemestres(), useDocumentsSearch() (+13 more)
+### Community 9 - "documents-content.tsx"
+Cohesion: 0.16
+Nodes (24): DocumentsContent(), DocumentSection(), DocumentSectionProps, DocumentsSearchState, FILTER_KEYS, niveauxOf(), parseDocumentsSearchState(), sortNiveaux() (+16 more)
 
 ### Community 10 - "web/package.json"
 Cohesion: 0.04
@@ -161,21 +162,21 @@ Nodes (18): 📐 Architecture frontend (`apps/web`), 🤖 Astuces de workflow IA
 Cohesion: 0.12
 Nodes (15): devDependencies, typescript, vitest, exports, typescript, vitest, main, name (+7 more)
 
-### Community 14 - "profile-content.tsx"
-Cohesion: 0.12
-Nodes (16): BADGE_ICONS, ProfileBadges(), ProfileContent(), ProfileDetails(), ProfileHeader(), ProfileHeaderProps, ProfileLocked(), PROFILE_STAT_SKELETON_KEYS (+8 more)
+### Community 14 - "edit-profile-content.tsx"
+Cohesion: 0.05
+Nodes (47): BADGE_ICONS, ProfileBadges(), ProfileContent(), ProfileDetails(), DocumentsQuery, PROFILE_GRID_SKELETON_KEYS, ProfileDocumentGrid(), ProfileEmptyState (+39 more)
 
-### Community 15 - "lucide-react"
-Cohesion: 0.20
-Nodes (11): DocumentActionBar(), DocumentDownloadButton(), DownloadVariant, DocumentFavoriteRow(), DocumentOptionsSheet(), DocumentShareButton(), ShareVariant, DownloadButton() (+3 more)
+### Community 15 - "cn"
+Cohesion: 0.17
+Nodes (15): DocumentActionBar(), DocumentDownloadButton(), DownloadVariant, DocumentFavoriteRow(), DocumentMobileBar(), DocumentShareButton(), ShareVariant, Breadcrumb() (+7 more)
 
 ### Community 16 - "tasks"
 Cohesion: 0.13
 Nodes (14): dependsOn, outputs, dependsOn, cache, persistent, $schema, tasks, build (+6 more)
 
-### Community 17 - "categories-content.tsx"
-Cohesion: 0.17
-Nodes (10): CategoriesContent(), CATEGORY_TYPE_LABELS, CATEGORY_TYPE_OPTIONS, SKELETON_KEYS, metadata, SearchSelect(), handleKeyDown(), selectOption() (+2 more)
+### Community 17 - "useAcademicTree"
+Cohesion: 0.16
+Nodes (13): CategoriesContent(), CATEGORY_TYPE_LABELS, CATEGORY_TYPE_OPTIONS, SKELETON_KEYS, metadata, CategoryCard(), CategoryCardSkeleton(), ICONS (+5 more)
 
 ### Community 18 - "compilerOptions"
 Cohesion: 0.13
@@ -197,13 +198,13 @@ Nodes (8): errorHandler(), documentsRouter, healthRouter, router, ErrorResponse,
 Cohesion: 0.17
 Nodes (11): compilerOptions, esModuleInterop, lib, module, moduleResolution, outDir, rootDir, skipLibCheck (+3 more)
 
-### Community 23 - "useSession"
-Cohesion: 0.21
-Nodes (10): DesktopAccountMenu(), Footer(), Header(), HeaderShell(), MobileMenu(), UserAvatar(), useLogout(), useSession() (+2 more)
+### Community 23 - "routes.ts"
+Cohesion: 0.06
+Nodes (38): AuthMobileTopBar(), RegisterSuccess(), NewDocumentAuthGate(), NewDocumentFlow(), metadata, FavoritesContent(), FavoritesList(), SKELETON_KEYS (+30 more)
 
-### Community 24 - "mocks/academic.ts"
-Cohesion: 0.09
-Nodes (23): AcademicBuild, buildAcademicData(), built, contextsByUeName, createSemestres(), MockFiliere, MockNiveau, MockSemestre (+15 more)
+### Community 24 - "api.ts"
+Cohesion: 0.07
+Nodes (43): AcademicBuild, buildAcademicData(), built, contextsByUeName, createSemestres(), MockFiliere, MockNiveau, MockSemestre (+35 more)
 
 ### Community 25 - "devDependencies"
 Cohesion: 0.22
@@ -214,36 +215,36 @@ Cohesion: 0.36
 Nodes (7): getReaction(), getState(), reactions, ReactionState, setReaction(), DocumentReaction, VOTES_DOCUMENT
 
 ### Community 27 - "lib/reports.ts"
-Cohesion: 0.15
-Nodes (20): ModerationFilters(), ModerationFiltersProps, ModerationDecisionForm(), useModerationForm(), MODERATION_DECISION_LABELS, MODERATION_DECISION_OPTIONS, MODERATION_REASON_MAX_LENGTH, MODERATION_REASON_MIN_LENGTH (+12 more)
+Cohesion: 0.16
+Nodes (19): ModerationDecisionForm(), useModerationForm(), MODERATION_DECISION_LABELS, MODERATION_DECISION_OPTIONS, MODERATION_REASON_MAX_LENGTH, MODERATION_REASON_MIN_LENGTH, ModerationDecisionFormOutput, ModerationDecisionFormValues (+11 more)
 
-### Community 28 - "routes.ts"
-Cohesion: 0.19
-Nodes (8): Hero(), HeaderSearch(), PRESERVED_KEYS, SearchBar(), SearchBarProps, FOOTER_LINKS, MOBILE_NAV_LINKS, routes
+### Community 28 - "@tanstack/react-query"
+Cohesion: 0.23
+Nodes (11): ModerationDashboard(), ReportDetail(), useOpenReportsCount(), useReport(), useReports(), getReport(), listReports(), queryKeys (+3 more)
 
 ### Community 29 - "uldocs"
 Cohesion: 0.25
 Nodes (7): Adding a new type, AI/LLM Guidelines, Commands, Getting started, Shared types, Structure, uldocs
 
-### Community 30 - "button.tsx"
-Cohesion: 0.13
-Nodes (12): FavoritesContent(), FavoritesList(), SKELETON_KEYS, metadata, ButtonLink(), ButtonLinkProps, ButtonProps, ButtonSize (+4 more)
+### Community 30 - "public-profile-content.tsx"
+Cohesion: 0.27
+Nodes (10): PublicProfileContent(), PublicProfileView(), usePublicProfileSummary(), usePublicUserProfile(), usePublicUserDocuments(), getPublicUserProfile(), listPublicUserDocuments(), buildPublicProfileBadges() (+2 more)
 
 ### Community 31 - "Product Brief : UL Docs"
 Cohesion: 0.29
 Nodes (6): 🚫 Ce que nous ne sommes PAS (Non-objectifs), 🎯 La Vision, 🔄 Le Parcours Utilisateur (Le Flow Idéal), 💡 Les Principes Directeurs (UX & Produit), 👥 Les Utilisateurs Cibles, Product Brief : UL Docs
 
-### Community 32 - "profile-tabs.tsx"
-Cohesion: 0.15
-Nodes (13): ProfileTabContent(), DocumentsQuery, EmptyState, PROFILE_GRID_SKELETON_KEYS, ProfileTabs(), TabLink(), MyDocumentsPage(), formatProfileAcademic() (+5 more)
+### Community 32 - "filiere-detail-content.tsx"
+Cohesion: 0.21
+Nodes (9): FiliereDetailContent(), FiliereDetailSkeleton(), SKELETON_KEYS, FilierePageProps, metadata, AcademicNotFound(), ErrorPanel(), findFiliere() (+1 more)
 
 ### Community 33 - "scripts"
 Cohesion: 0.33
 Nodes (6): scripts, build, dev, start, test, test:watch
 
 ### Community 34 - "format.ts"
-Cohesion: 0.19
-Nodes (14): DocumentTop(), SimilarDocumentCard(), ReportDetailView(), ProfileStats(), ProfileStatsProps, DownloadsMeta(), RatingMeta(), SearchListContent() (+6 more)
+Cohesion: 0.22
+Nodes (12): DocumentTop(), ReportDetailView(), ProfileStats(), ProfileStatsProps, DownloadsMeta(), SearchListContent(), formatCount(), formatDate() (+4 more)
 
 ### Community 35 - "copy-pdf-worker.mjs"
 Cohesion: 0.33
@@ -265,97 +266,101 @@ Nodes (4): Backend (`apps/api`), Dépendances autorisées du projet, Frontend (`
 Cohesion: 0.50
 Nodes (4): dependencies, cors, express, shared
 
-### Community 42 - "api.ts"
-Cohesion: 0.12
-Nodes (24): ApiResponse, DocumentCreatePayload, DocumentReactionPayload, PaginatedResponse, RejectReportPayload, SignalementDocumentSummary, Document, Enseignant (+16 more)
+### Community 42 - "api/reports.ts"
+Cohesion: 0.31
+Nodes (7): ModerationDecisionInput, useModerationDecision(), endpoints, applyModerationAction(), rejectReport(), ModerationActionPayload, RejectReportPayload
 
-### Community 43 - "edit-profile-content.tsx"
-Cohesion: 0.16
-Nodes (11): EditProfileContent(), EditProfileForm(), EditProfilePanel(), metadata, useUpdateProfile(), AcademicSelection, ProfileAcademicInfo, resolveAcademicSelection() (+3 more)
+### Community 43 - "src/index.ts"
+Cohesion: 0.24
+Nodes (10): EditProfileForm(), useRegister(), useUpdateProfile(), getMe(), getSession(), login(), register(), updateProfile() (+2 more)
 
 ### Community 44 - "use-new-document-flow.ts"
-Cohesion: 0.05
-Nodes (46): UploadStep(), getUploadErrorMessage(), UploadDocumentsVariables, UploadMetadata, useCreateDocuments(), createDefaultValues(), mergeCreated(), useNewDocumentFlow() (+38 more)
+Cohesion: 0.06
+Nodes (47): NewDocumentForm(), UploadStep(), getUploadErrorMessage(), UploadDocumentsVariables, UploadMetadata, useCreateDocuments(), createDefaultValues(), mergeCreated() (+39 more)
 
 ### Community 48 - "register-screen.tsx"
-Cohesion: 0.05
-Nodes (45): AuthDialog(), getFocusableElements(), handleKeyDown(), AuthDialogProps, AuthLink(), AuthMobileTopBar(), AuthModal(), ForgotPasswordScreen() (+37 more)
+Cohesion: 0.06
+Nodes (37): AuthLink(), AuthModal(), ForgotPasswordScreen(), LoginForm(), LoginScreen(), RegisterForm(), EMPTY_DRAFT, RegisterScreen() (+29 more)
 
 ### Community 49 - "ue-documents-content.tsx"
-Cohesion: 0.13
-Nodes (14): UeDocumentsContent(), UeDocumentsSkeleton(), UeDocumentsEmpty(), MatierePageProps, metadata, AcademicPageHeaderSkeleton(), DocumentResults(), DocumentResultsSkeleton() (+6 more)
+Cohesion: 0.12
+Nodes (16): metadata, UeDocumentsContent(), UeDocumentsSkeleton(), UeDocumentsEmpty(), UeFilters(), MatierePageProps, metadata, AcademicPageHeader() (+8 more)
 
-### Community 50 - "src/index.ts"
-Cohesion: 0.08
-Nodes (47): DownloadVariables, saveFile(), DocumentsCache, FavoriteVariables, patchCache(), removeFromFavorites(), useFavoriteDocument(), useFavoriteDocuments() (+39 more)
+### Community 50 - "api/documents.ts"
+Cohesion: 0.15
+Nodes (21): DocumentsCache, FavoriteVariables, patchCache(), removeFromFavorites(), useFavoriteDocument(), useReportDocument(), apiFetch(), apiFetchPaginated() (+13 more)
 
 ### Community 51 - "report-detail-content.tsx"
-Cohesion: 0.18
-Nodes (9): ModerationAccess(), ReportDecisionSummary(), ReportDetail(), ReportDetailContent(), ReportDetailSkeleton(), metadata, ModerationReportPageProps, useReport() (+1 more)
+Cohesion: 0.23
+Nodes (6): ReportDecisionSummary(), ReportDetailContent(), ReportDetailSkeleton(), metadata, ModerationReportPageProps, SignalementDetail
 
-### Community 57 - "PdfViewer"
-Cohesion: 0.24
-Nodes (6): PageStepper(), commit(), PagePicker(), commit(), PdfViewer(), clampPage()
+### Community 57 - "category-detail-content.tsx"
+Cohesion: 0.22
+Nodes (8): CategoryDetailContent(), CategoryDetailSkeleton(), SKELETON_KEYS, CategoryPageProps, metadata, AcademicLinkCard(), AcademicLinkCardSkeleton(), findFaculte()
 
 ### Community 58 - "moderation-content.tsx"
-Cohesion: 0.21
-Nodes (8): ModerationContent(), ModerationDashboard(), ModerationCardsSkeleton(), ModerationPageSkeleton(), metadata, useOpenReportsCount(), useReportsSearch(), useReports()
+Cohesion: 0.13
+Nodes (14): ModerationAccess(), ModerationContent(), ModerationFilters(), ModerationFiltersProps, ModerationCardsSkeleton(), ModerationPageSkeleton(), metadata, FILTER_KEYS (+6 more)
 
 ### Community 60 - "moderation-report-card.tsx"
-Cohesion: 0.28
-Nodes (7): ModerationReportCard(), ReportStatus(), STATUS_TONES, moderationReportHref(), MOTIF_SIGNALEMENT_LABELS, STATUT_SIGNALEMENT_LABELS, StatutSignalement
+Cohesion: 0.38
+Nodes (5): ModerationReportCard(), ReportStatus(), STATUS_TONES, moderationReportHref(), SignalementListItem
 
 ### Community 61 - "document-detail-page.tsx"
-Cohesion: 0.12
-Nodes (15): DocumentDetailPage(), DocumentDetailSkeleton(), SIMILAR_SKELETON_KEYS, DocumentMobileBar(), DocumentPreview(), PdfViewer, VIEWER_THUMBNAIL_SKELETON_KEYS, SimilarDocuments() (+7 more)
+Cohesion: 0.14
+Nodes (13): DocumentDetailPage(), DocumentDetailSkeleton(), SIMILAR_SKELETON_KEYS, DocumentPreview(), PdfViewer, VIEWER_THUMBNAIL_SKELETON_KEYS, DocumentPageProps, useDocument() (+5 more)
 
-### Community 62 - "new-document-flow.tsx"
-Cohesion: 0.29
-Nodes (4): NewDocumentAuthGate(), NewDocumentFlow(), NewDocumentForm(), metadata
+### Community 62 - "academic-content.test.ts"
+Cohesion: 0.31
+Nodes (9): FACULTE_DESCRIPTIONS, FALLBACK_DESCRIPTION, FILIERE_DESCRIPTIONS, getFaculteDescription(), getFiliereDescription(), getUeDescription(), UE_DESCRIPTIONS, filieres (+1 more)
 
-### Community 63 - "moderation.ts"
-Cohesion: 0.33
-Nodes (6): FILTER_KEYS, MODERATION_PAGE_SIZE, ModerationSearchState, parseModerationSearchState(), readMotifSignalement(), readStatutSignalement()
+### Community 63 - "use-download-document.ts"
+Cohesion: 0.48
+Nodes (5): DownloadButton(), DownloadVariables, saveFile(), useDownloadDocument(), downloadDocument()
 
 ### Community 64 - "AuthSelect"
 Cohesion: 0.39
 Nodes (7): AuthSelect(), handleKeyDown(), openList(), selectActiveOption(), selectOption(), updatePlacement(), getShouldOpenUp()
 
-### Community 65 - "DocumentReportDialog"
-Cohesion: 0.47
-Nodes (5): DocumentReportDialog(), getFocusableElements(), handleKeyDown(), useReportDocument(), reportDocument()
+### Community 65 - "react"
+Cohesion: 0.16
+Nodes (15): AuthDialog(), getFocusableElements(), handleKeyDown(), AuthDialogProps, DocumentOptionsSheet(), DocumentReportDialog(), getFocusableElements(), handleKeyDown() (+7 more)
 
-### Community 67 - "cn"
-Cohesion: 0.12
-Nodes (22): PageThumbnail(), PageThumbnailRail(), PageThumbnailRailSkeleton(), THUMBNAIL_SKELETON_KEYS, PdfToolbar(), PAGE_WIDTH_CLASS, pageElementId(), PdfPage() (+14 more)
-
-### Community 68 - "Button"
-Cohesion: 0.25
-Nodes (9): ClassificationStep(), DetailsStep(), SuccessStep(), AuthSelectOption, AuthSelectProps, Button(), LoadingDots(), NewDocumentFlowController (+1 more)
-
-### Community 76 - "app/layout.tsx"
+### Community 66 - "OnboardingFlow"
 Cohesion: 0.40
-Nodes (3): metadata, satoshi, Providers()
+Nodes (3): OnboardingFlow(), handleContinue(), handleFinish()
+
+### Community 67 - "pdf-viewer.tsx"
+Cohesion: 0.11
+Nodes (13): PageThumbnail(), PageThumbnailRail(), PageThumbnailRailSkeleton(), THUMBNAIL_SKELETON_KEYS, PdfToolbar(), PAGE_WIDTH_CLASS, pageElementId(), PdfPage() (+5 more)
+
+### Community 68 - "utils.ts"
+Cohesion: 0.15
+Nodes (14): Step, STEP_CONTENT, STEPS, EmptyResults(), SUGGESTIONS, ClassificationStep(), DetailsStep(), SuccessStep() (+6 more)
+
+### Community 69 - "search-pagination.tsx"
+Cohesion: 0.50
+Nodes (3): getPageItems(), PageItem, SearchPagination()
 
 ## Knowledge Gaps
-- **380 isolated node(s):** `name`, `private`, `type`, `dev`, `build` (+375 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 495 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **383 isolated node(s):** `name`, `private`, `type`, `dev`, `build` (+378 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 499 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `react` connect `react` to `filiere-detail-content.tsx`, `container.tsx`, `use-documents-search.ts`, `web/package.json`, `profile-content.tsx`, `lucide-react`, `categories-content.tsx`, `useSession`, `lib/reports.ts`, `routes.ts`, `button.tsx`, `use-new-document-flow.ts`, `register-screen.tsx`, `ue-documents-content.tsx`, `src/index.ts`, `report-detail-content.tsx`, `moderation-content.tsx`, `document-detail-page.tsx`, `moderation.ts`, `cn`, `Button`, `app/layout.tsx`?**
-  _High betweenness centrality (0.102) - this node is a cross-community bridge._
-- **Why does `cn()` connect `cn` to `react`, `container.tsx`, `document-detail.ts`, `document-card.tsx`, `lucide-react`, `categories-content.tsx`, `useSession`, `lib/reports.ts`, `routes.ts`, `button.tsx`, `profile-tabs.tsx`, `use-new-document-flow.ts`, `register-screen.tsx`, `ue-documents-content.tsx`, `PdfViewer`, `moderation-report-card.tsx`, `AuthSelect`, `DocumentReportDialog`, `Button`?**
-  _High betweenness centrality (0.046) - this node is a cross-community bridge._
-- **Why does `lucide-react` connect `lucide-react` to `react`, `filiere-detail-content.tsx`, `container.tsx`, `document-detail.ts`, `document-card.tsx`, `web/package.json`, `profile-content.tsx`, `categories-content.tsx`, `useSession`, `lib/reports.ts`, `routes.ts`, `button.tsx`, `profile-tabs.tsx`, `format.ts`, `edit-profile-content.tsx`, `use-new-document-flow.ts`, `register-screen.tsx`, `ue-documents-content.tsx`, `moderation-content.tsx`, `document-detail-page.tsx`, `new-document-flow.tsx`, `cn`, `Button`?**
-  _High betweenness centrality (0.038) - this node is a cross-community bridge._
+- **Why does `react` connect `react` to `search-filters.tsx`, `academic-navigation.ts`, `container.tsx`, `documents-content.tsx`, `web/package.json`, `edit-profile-content.tsx`, `cn`, `useAcademicTree`, `routes.ts`, `@tanstack/react-query`, `public-profile-content.tsx`, `filiere-detail-content.tsx`, `use-new-document-flow.ts`, `register-screen.tsx`, `ue-documents-content.tsx`, `report-detail-content.tsx`, `category-detail-content.tsx`, `moderation-content.tsx`, `document-detail-page.tsx`, `pdf-viewer.tsx`, `utils.ts`, `search-pagination.tsx`?**
+  _High betweenness centrality (0.096) - this node is a cross-community bridge._
+- **Why does `next` connect `register-screen.tsx` to `filiere-detail-content.tsx`, `academic-navigation.ts`, `document-detail.ts`, `documents-content.tsx`, `web/package.json`, `edit-profile-content.tsx`, `cn`, `ue-documents-content.tsx`, `useAcademicTree`, `report-detail-content.tsx`, `routes.ts`, `category-detail-content.tsx`, `moderation-content.tsx`?**
+  _High betweenness centrality (0.044) - this node is a cross-community bridge._
+- **Why does `cn()` connect `cn` to `search-filters.tsx`, `container.tsx`, `document-detail.ts`, `document-card.tsx`, `edit-profile-content.tsx`, `useAcademicTree`, `routes.ts`, `use-new-document-flow.ts`, `register-screen.tsx`, `ue-documents-content.tsx`, `category-detail-content.tsx`, `moderation-report-card.tsx`, `use-download-document.ts`, `AuthSelect`, `react`, `OnboardingFlow`, `pdf-viewer.tsx`, `utils.ts`, `search-pagination.tsx`?**
+  _High betweenness centrality (0.041) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `type` to the rest of the system?**
-  _380 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `react` be split into smaller, more focused modules?**
-  _Cohesion score 0.1206896551724138 - nodes in this community are weakly interconnected._
-- **Should `filiere-detail-content.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.06393442622950819 - nodes in this community are weakly interconnected._
-- **Should `container.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.1064102564102564 - nodes in this community are weakly interconnected._
+  _383 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `search-filters.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.1225071225071225 - nodes in this community are weakly interconnected._
+- **Should `handlers.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.05227781926811053 - nodes in this community are weakly interconnected._
+- **Should `document-detail.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.11088709677419355 - nodes in this community are weakly interconnected._

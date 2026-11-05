@@ -21,6 +21,10 @@ export const endpoints = {
 		reaction: (id: number) => `/documents/${id}/reaction`,
 		report: (id: number) => `/documents/${id}/report`,
 	},
+	users: {
+		publicProfile: (id: number) => `/users/${id}`,
+		publicDocuments: (id: number) => `/users/${id}/documents`,
+	},
 	reports: {
 		list: "/reports",
 		byId: (id: number) => `/reports/${id}`,
