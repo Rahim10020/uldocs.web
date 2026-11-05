@@ -1,14 +1,12 @@
-import { Container } from "@/components/ui/container";
+import type { Metadata } from "next";
+import { CharterContent } from "./components/charter-content";
+
+export const metadata: Metadata = {
+  title: "Charte de contribution — ulDocs",
+  description:
+    "Découvre les règles de contribution d'ulDocs et les engagements à respecter pour partager des documents sur la plateforme.",
+};
 
 export default function CharterPage() {
-	return (
-		<Container className="max-w-3xl py-12">
-			<h1 className="text-2xl font-bold text-black">Charte de contribution</h1>
-			<p className="mt-2 text-black-60">
-				Le texte de la charte sera publié ici. En contribuant, vous certifiez
-				détenir les droits sur le document partagé et respecter les règles de la
-				communauté.
-			</p>
-		</Container>
-	);
+  return <CharterContent />;
 }
