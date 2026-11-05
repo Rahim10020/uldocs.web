@@ -33,7 +33,7 @@ export function ModerationReportCard({
           <dd className="inline">
             <Link
               href={routes.profileById(report.signaleur.id)}
-              className="font-medium text-black underline decoration-black-20 underline-offset-2 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+              className="font-medium text-black-80 lg:text-black-70 underline decoration-black-60 lg:decoration-black-50 underline-offset-2 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
             >
               {report.signaleur.nom}
             </Link>{" "}
