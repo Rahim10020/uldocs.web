@@ -126,7 +126,12 @@ function ReportDetailView({ report }: { report: SignalementDetail }) {
           <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-black-70">
             <li>
               Ajouté par{" "}
-              <span className="text-black">{report.document.uploader.nom}</span>{" "}
+              <Link
+                href={routes.profileById(report.document.uploader.id)}
+                className="font-medium text-black-80 lg:text-black-60 hover:text-black underline decoration-black-60 lg:decoration-black-20 hover:decoration-black-60 underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+              >
+                {report.document.uploader.nom}
+              </Link>{" "}
               le {formatDate(report.document.dateUpload)}
             </li>
             <li>
