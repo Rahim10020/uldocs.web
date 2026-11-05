@@ -4,6 +4,14 @@ la meilleure maniere de le faire
 --tester les sheet sur vrai telephone mobile
 -- suggestions lors de la recherche
 
+--- Compte modérateur mock :
+    - Email : sandrine.houngbo@etu.univ-lome.tg
+    - Mot de passe : uldocs2026
+    Compte admin, si besoin :
+    - Email : admin@uldocs.tg
+    - Mot de passe : uldocs2026
+    Ces identifiants viennent de apps/web/lib/mocks/users.ts et ne concernent que les mocks.
+
 --Il y a deux façons de faire :
 
 La méthode "facile" : Tu stockes le PDF complet sur R2, et c'est react-pdf côté frontend qui 
