@@ -85,6 +85,7 @@ function ReportDetailView({ report }: { report: SignalementDetail }) {
           </div>
           <Link
             href={routes.document(report.document.id)}
+            target="_blank"
             className="mt-2 inline-block text-sm font-medium text-black-80 lg:text-black-60 hover:text-black underline decoration-black-60 lg:decoration-black-20 hover:decoration-black-60 underline-offset-4 transition-colors"
           >
             Voir le document
