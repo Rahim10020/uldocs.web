@@ -40,3 +40,6 @@ mais qui n'a pas cursor-pointer et tu vas le mettre. fais un plan. les balises L
 n'ont pas besoin de cursor-pointer tu sais non ?
 
 -- checker profil et dashboard de moderation.
+
+-- on enleve l'email du modal de modification de profil. ca va maintenant se dans 
+la partie securite de parametres
