@@ -39,7 +39,7 @@ export function AdminSidebar() {
 	return (
 		<aside
 			className={cn(
-				"sticky top-14 hidden h-[calc(100vh-3.5rem)] shrink-0 flex-col border-r border-black-10 bg-white lg:flex",
+				"hidden h-full shrink-0 flex-col border-r border-black-10 bg-white lg:flex",
 				collapsed ? "w-16" : "w-56",
 			)}
 		>

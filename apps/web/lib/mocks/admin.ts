@@ -150,12 +150,14 @@ function buildSeries(metric: MetricKey, period: AdminStatsPeriod): number[] {
 
 	const series: number[] = [];
 	let previous = start;
+	let cumulative = 0;
 
 	for (const [index, weight] of weights.entries()) {
+		cumulative += weight;
 		const isLast = index === points - 1;
 		const value = isLast
 			? total
-			: Math.round(start + (gain * weight) / weightSum);
+			: Math.round(start + (gain * cumulative) / weightSum);
 
 		previous = Math.max(previous, value);
 		series.push(previous);

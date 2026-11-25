@@ -59,6 +59,16 @@ describe("mocks admin", () => {
 		}
 	});
 
+	it("fait progresser la courbe jusqu'au total sans pic final", () => {
+		const points = getMockAdminStats("30d").evolution;
+		const first = points[0]?.telechargements ?? 0;
+		const penultimate = points.at(-2)?.telechargements ?? 0;
+		const last = points.at(-1)?.telechargements ?? 0;
+
+		expect(penultimate - first).toBeGreaterThan((last - first) * 0.5);
+		expect(penultimate).toBeLessThanOrEqual(last);
+	});
+
 	it("trie le journal du plus récent au plus ancien et pagine", () => {
 		const page = listMockAudit({ page: 1, pageSize: 5 });
 
