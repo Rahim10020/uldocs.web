@@ -58,14 +58,14 @@ export function AdminSidebar() {
               title={collapsed ? item.label : undefined}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "flex h-10 items-center gap-3 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
+                "flex h-12 items-center gap-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
                 collapsed ? "justify-center px-0" : "px-3",
                 active
                   ? "text-primary font-bold"
-                  : "text-black-70 hover:bg-black-5 hover:text-black",
+                  : "text-black-70 hover:text-black",
               )}
             >
-              <Icon aria-hidden className="size-5 shrink-0" />
+              <Icon aria-hidden className="size-6 shrink-0" />
               <span className={collapsed ? "sr-only" : "truncate"}>
                 {item.label}
               </span>
@@ -84,14 +84,14 @@ export function AdminSidebar() {
           aria-expanded={!collapsed}
           title={collapsed ? "Déplier la navigation" : "Replier la navigation"}
           className={cn(
-            "flex h-10 w-full cursor-pointer items-center gap-3 rounded-lg text-sm font-medium text-black-60 transition-colors hover:bg-black-5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
+            "flex h-10 w-full cursor-pointer items-center gap-3 text-sm font-medium text-black-60 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40",
             collapsed ? "justify-center px-0" : "px-3",
           )}
         >
           {collapsed ? (
-            <ChevronsRight aria-hidden className="size-5 shrink-0" />
+            <ChevronsRight aria-hidden className="size-6 shrink-0" />
           ) : (
-            <ChevronsLeft aria-hidden className="size-5 shrink-0" />
+            <ChevronsLeft aria-hidden className="size-6 shrink-0" />
           )}
           <span className={collapsed ? "sr-only" : "truncate"}>Replier</span>
         </button>
