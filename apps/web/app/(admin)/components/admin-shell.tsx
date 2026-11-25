@@ -9,25 +9,25 @@ import { AdminSidebar } from "./admin-sidebar";
 
 /** Garde d'accès et structure commune des pages d'administration. */
 export function AdminShell({ children }: { children: ReactNode }) {
-	const { user, isLoading, isAdmin } = useSession();
+  const { user, isLoading, isAdmin } = useSession();
 
-	if (isLoading) {
-		return <AdminShellSkeleton />;
-	}
+  if (isLoading) {
+    return <AdminShellSkeleton />;
+  }
 
-	if (!isAdmin) {
-		return <AdminAccess authenticated={Boolean(user)} />;
-	}
+  if (!isAdmin) {
+    return <AdminAccess authenticated={Boolean(user)} />;
+  }
 
-	return (
-		<div className="flex h-dvh flex-col overflow-hidden bg-surface">
-			<AdminHeader />
-			<div className="flex min-h-0 flex-1 overflow-hidden">
-				<AdminSidebar />
-				<main className="min-w-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-					{children}
-				</main>
-			</div>
-		</div>
-	);
+  return (
+    <div className="grid h-dvh grid-rows-[3.5rem_minmax(0,1fr)] overflow-hidden bg-white">
+      <AdminHeader />
+      <div className="flex min-h-0 overflow-hidden">
+        <AdminSidebar />
+        <main className="min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-contain px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
 }

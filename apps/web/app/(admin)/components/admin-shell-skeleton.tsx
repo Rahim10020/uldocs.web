@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 /** Squelette du shell admin pendant le chargement de la session. */
 export function AdminShellSkeleton() {
 	return (
-		<div className="flex h-dvh flex-col overflow-hidden bg-surface">
+		<div className="grid h-dvh grid-rows-[3.5rem_minmax(0,1fr)] overflow-hidden bg-surface">
 			<div className="flex h-14 items-center gap-3 border-b border-black-10 bg-white px-4 sm:gap-4 sm:px-6 lg:px-8">
 				<Skeleton className="size-9 lg:hidden" />
 				<Skeleton className="h-5 w-28" />
@@ -11,10 +11,10 @@ export function AdminShellSkeleton() {
 				<Skeleton className="ml-auto size-9 rounded-full" />
 			</div>
 
-			<div className="flex min-h-0 flex-1 overflow-hidden">
+			<div className="flex min-h-0 overflow-hidden">
 				<aside
 					aria-hidden
-					className="hidden h-full w-56 shrink-0 border-r border-black-10 bg-white p-3 lg:block"
+					className="hidden h-full min-h-0 w-56 shrink-0 overflow-hidden border-r border-black-10 bg-white p-3 lg:block"
 				>
 					<div className="space-y-2">
 						{Array.from(
@@ -26,7 +26,7 @@ export function AdminShellSkeleton() {
 					</div>
 				</aside>
 
-				<main className="min-w-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+				<main className="min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 lg:p-8">
 					<Skeleton className="h-8 w-56" />
 					<Skeleton className="mt-2 h-4 w-80 max-w-full" />
 
