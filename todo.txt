@@ -43,3 +43,5 @@ n'ont pas besoin de cursor-pointer tu sais non ?
 
 -- on enleve l'email du modal de modification de profil. ca va maintenant se dans 
 la partie securite de parametres
+
+-- plus de demande de plus de precision.
