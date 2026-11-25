@@ -31,6 +31,8 @@ export const routes = {
 
 	admin: "/admin",
 	adminModeration: "/admin/moderation",
+	adminModerationReport: (id: string | number) =>
+		`/admin/moderation/${id}` as `/admin/moderation/${string}`,
 	adminUsers: "/admin/utilisateurs",
 	adminDocuments: "/admin/documents",
 	adminTree: "/admin/arborescence",

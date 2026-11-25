@@ -3,13 +3,22 @@
 import { Button, ButtonLink } from "@/components/ui/button";
 import { useModerationForm } from "@/hooks/use-moderation-form";
 import {
+	type ModerationContext,
+	moderationDashboardHref,
+} from "@/lib/moderation";
+import {
 	MODERATION_DECISION_OPTIONS,
 	MODERATION_REASON_MAX_LENGTH,
 } from "@/lib/reports";
-import { routes } from "@/lib/routes";
 
 /** Formulaire de décision d'un signalement encore ouvert. */
-export function ModerationDecisionForm({ reportId }: { reportId: number }) {
+export function ModerationDecisionForm({
+	reportId,
+	context,
+}: {
+	reportId: number;
+	context: ModerationContext;
+}) {
 	const { form, mutation, onSubmit } = useModerationForm(reportId);
 	const {
 		register,
@@ -103,7 +112,7 @@ export function ModerationDecisionForm({ reportId }: { reportId: number }) {
 				>
 					{mutation.isPending ? "Envoi…" : "Confirmer l'action"}
 				</Button>
-				<ButtonLink href={routes.moderation} variant="secondary">
+				<ButtonLink href={moderationDashboardHref(context)} variant="secondary">
 					Annuler
 				</ButtonLink>
 			</div>

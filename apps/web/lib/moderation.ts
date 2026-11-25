@@ -7,6 +7,8 @@ import { routes } from "./routes";
 /** Taille de page de la file de modération. */
 export const MODERATION_PAGE_SIZE = 6;
 
+export type ModerationContext = "admin" | "general";
+
 export type ModerationSearchState = {
 	statut?: StatutSignalement;
 	motif?: MotifSignalement;
@@ -24,7 +26,21 @@ export function parseModerationSearchState(
 	};
 }
 
-/** URL du détail d'un signalement. */
-export function moderationReportHref(id: number): Route {
-	return routes.moderationReport(id) as Route;
+/** URL du tableau de modération dans le contexte courant. */
+export function moderationDashboardHref(context: ModerationContext): Route {
+	return (
+		context === "admin" ? routes.adminModeration : routes.moderation
+	) as Route;
+}
+
+/** URL du détail d'un signalement dans le contexte courant. */
+export function moderationReportHref(
+	id: number,
+	context: ModerationContext,
+): Route {
+	return (
+		context === "admin"
+			? routes.adminModerationReport(id)
+			: routes.moderationReport(id)
+	) as Route;
 }

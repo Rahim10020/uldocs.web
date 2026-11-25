@@ -1842,9 +1842,9 @@
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/components/admin-header.tsx": {
-    "mtime": 1795608116.808582,
-    "seen": 1795608579.1607537,
-    "ast_hash": "6bd428ad825d9d2d24d46e0452279f8d",
+    "mtime": 1795610012.3835232,
+    "seen": 1795610029.1530323,
+    "ast_hash": "a7b8d6a827451cbdf4bcb0e407a42135",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/components/admin-mobile-menu.tsx": {
@@ -1866,27 +1866,27 @@
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/components/admin-shell-skeleton.tsx": {
-    "mtime": 1795608511.79271,
-    "seen": 1795608579.1608896,
-    "ast_hash": "83f1c5461cf51a55e5795a59d9ee7d36",
+    "mtime": 1795609870.5790825,
+    "seen": 1795610029.1531746,
+    "ast_hash": "4ddaf7f9fe8d64a81fdaf9301b0991fe",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/components/admin-shell.tsx": {
-    "mtime": 1795608970.8807578,
-    "seen": 1795609149.3523166,
-    "ast_hash": "a185f3474a360299e2926f88bdb2ae62",
+    "mtime": 1795609870.5780823,
+    "seen": 1795610029.153176,
+    "ast_hash": "8773bb7c25339b040f6bae1dad40406a",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/components/admin-sidebar.tsx": {
-    "mtime": 1795608533.6400557,
-    "seen": 1795608579.1608927,
-    "ast_hash": "08c8caa4a931219677e000dbdd8d8bdd",
+    "mtime": 1795609870.5790825,
+    "seen": 1795610029.1531775,
+    "ast_hash": "a838f4f191493b8a2d3e857d42543d1a",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/layout.tsx": {
-    "mtime": 1795606647.895921,
-    "seen": 1795607033.897876,
-    "ast_hash": "7bb967abbdb949e99928be22abb141c9",
+    "mtime": 1795609191.0717118,
+    "seen": 1795609204.9159334,
+    "ast_hash": "ef3bfd5b77eb00d5297e43a2437b7873",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/profil/parametres/components/account-settings-placeholder.tsx": {

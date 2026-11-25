@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function AdminModerationPage() {
 	return (
 		<Suspense fallback={<ModerationPageSkeleton />}>
-			<ModerationContent />
+			<ModerationContent context="admin" />
 		</Suspense>
 	);
 }

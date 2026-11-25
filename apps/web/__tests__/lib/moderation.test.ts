@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { parseModerationSearchState } from "@/lib/moderation";
+import {
+	moderationDashboardHref,
+	moderationReportHref,
+	parseModerationSearchState,
+} from "@/lib/moderation";
 
 describe("filtres de modération", () => {
 	it("lit les filtres valides et la page", () => {
@@ -24,5 +28,17 @@ describe("filtres de modération", () => {
 			motif: undefined,
 			page: 1,
 		});
+	});
+});
+
+describe("routes de modération", () => {
+	it("garde les détails dans le contexte admin quand il est sélectionné", () => {
+		expect(moderationReportHref(42, "admin")).toBe("/admin/moderation/42");
+		expect(moderationDashboardHref("admin")).toBe("/admin/moderation");
+	});
+
+	it("conserve les routes générales pour la modération classique", () => {
+		expect(moderationReportHref(42, "general")).toBe("/moderation/42");
+		expect(moderationDashboardHref("general")).toBe("/moderation");
 	});
 });
