@@ -7,3 +7,4 @@ export const instant = false;
 export default function AdminLayout({ children }: { children: ReactNode }) {
 	return <AdminShell>{children}</AdminShell>;
 }
+	
