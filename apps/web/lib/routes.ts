@@ -23,10 +23,19 @@ export const routes = {
 	profile: "/profil",
 	profileById: (id: string | number) => `/profil/${id}` as `/profil/${string}`,
 	profileEdit: "/profil/modifier",
+	profileSettings: "/profil/parametres",
 	myDocuments: "/profil/documents",
 	moderation: "/moderation",
 	moderationReport: (id: string | number) =>
 		`/moderation/${id}` as `/moderation/${string}`,
+
+	admin: "/admin",
+	adminModeration: "/admin/moderation",
+	adminUsers: "/admin/utilisateurs",
+	adminDocuments: "/admin/documents",
+	adminTree: "/admin/arborescence",
+	adminAudit: "/admin/journal-audit",
+	adminSearch: "/admin/recherche",
 
 	login: "/connexion",
 	register: "/inscription",

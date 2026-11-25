@@ -11,6 +11,16 @@ export function formatCount(value: number): string {
   return `${String(compact).replace(".", ",")}k`;
 }
 
+/** Nombre entier avec séparateurs français, ex. « 12 400 ». */
+export function formatNumber(value: number): string {
+  return new Intl.NumberFormat("fr-FR").format(value);
+}
+
+/** Nombre signé, ex. « +12 » ou « -3 ». */
+export function formatSignedNumber(value: number): string {
+  return `${value >= 0 ? "+" : ""}${formatNumber(value)}`;
+}
+
 /** Note moyenne avec une décimale, au format français. */
 export function formatRating(value: number): string {
   return value.toFixed(1).replace(".", ",");

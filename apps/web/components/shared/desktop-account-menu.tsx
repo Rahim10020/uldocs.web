@@ -3,7 +3,9 @@
 import {
   ChevronDown,
   FolderDown,
+  LayoutDashboard,
   LogOut,
+  Settings,
   ShieldCheck,
   UserRound,
 } from "lucide-react";
@@ -17,7 +19,7 @@ import { getRoleLabel } from "@/lib/user";
 
 /** Menu du compte dans le header desktop, selon l'état de la session. */
 export function DesktopAccountMenu() {
-  const { user, isLoading, isModerator } = useSession();
+  const { user, isLoading, isModerator, isAdmin } = useSession();
   const logoutMutation = useLogout();
   const [open, setOpen] = useState(false);
   const menuId = useId();
@@ -135,6 +137,14 @@ export function DesktopAccountMenu() {
                   Votre compte
                 </Link>
                 <Link
+                  href={routes.profileSettings}
+                  onClick={closeMenu}
+                  className="inline-flex items-center gap-2 rounded-sm px-3 py-2.5 text-base text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                >
+                  <Settings aria-hidden className="size-4" />
+                  Paramètres
+                </Link>
+                <Link
                   href={routes.myDocuments}
                   onClick={closeMenu}
                   className="inline-flex items-center gap-2 rounded-sm px-3 py-2.5 text-base text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
@@ -142,7 +152,16 @@ export function DesktopAccountMenu() {
                   <FolderDown aria-hidden className="size-4" />
                   Imports &amp; Téléchargements
                 </Link>
-                {isModerator ? (
+                {isAdmin ? (
+                  <Link
+                    href={routes.admin}
+                    onClick={closeMenu}
+                    className="inline-flex items-center gap-2 rounded-sm px-3 py-2.5 text-base text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                  >
+                    <LayoutDashboard aria-hidden className="size-4" />
+                    Administration
+                  </Link>
+                ) : isModerator ? (
                   <Link
                     href={routes.moderation}
                     onClick={closeMenu}

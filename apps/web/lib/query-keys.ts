@@ -1,4 +1,10 @@
-import type { DocumentSearchParams, ReportSearchParams } from "shared";
+import type {
+	AdminSearchParams,
+	AdminStatsPeriod,
+	AuditSearchParams,
+	DocumentSearchParams,
+	ReportSearchParams,
+} from "shared";
 
 /** Clés TanStack Query : source unique pour lire et invalider le cache. */
 export const queryKeys = {
@@ -31,5 +37,15 @@ export const queryKeys = {
 		list: (params: ReportSearchParams) => ["reports", "list", params] as const,
 		detail: (id: number) => ["reports", "detail", id] as const,
 		openCount: ["reports", "open-count"] as const,
+	},
+	admin: {
+		all: ["admin"] as const,
+		stats: (period: AdminStatsPeriod) => ["admin", "stats", period] as const,
+		auditRoot: ["admin", "audit"] as const,
+		audit: (params: AuditSearchParams) =>
+			["admin", "audit", "list", params] as const,
+		users: (params: AdminSearchParams) => ["admin", "users", params] as const,
+		documents: (params: AdminSearchParams) =>
+			["admin", "documents", params] as const,
 	},
 };

@@ -75,6 +75,32 @@ export const ACTIONS_MODERATION = [
 ] as const;
 export type ActionModeration = (typeof ACTIONS_MODERATION)[number];
 
+/** Actions consignées dans le journal d'audit. */
+export const ACTIONS_AUDIT = [
+  "document_cree",
+  "document_modifie",
+  "document_retire",
+  "signalement_traite",
+  "utilisateur_averti",
+  "utilisateur_suspendu",
+  "utilisateur_banni",
+  "role_modifie",
+] as const;
+export type AuditAction = (typeof ACTIONS_AUDIT)[number];
+
+/** Type d'entité visée par une entrée du journal d'audit. */
+export const TYPES_CIBLE_AUDIT = [
+  "document",
+  "utilisateur",
+  "signalement",
+  "systeme",
+] as const;
+export type AuditTargetType = (typeof TYPES_CIBLE_AUDIT)[number];
+
+/** Périodes proposées par le graphique d'administration. */
+export const PERIODES_STATS_ADMIN = ["7d", "30d", "12m"] as const;
+export type AdminStatsPeriod = (typeof PERIODES_STATS_ADMIN)[number];
+
 /** Ordre de tri des résultats de recherche. */
 export const TRIS_DOCUMENTS = [
   "pertinence",

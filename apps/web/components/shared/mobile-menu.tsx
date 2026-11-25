@@ -3,8 +3,10 @@
 import {
   Bookmark,
   FolderDown,
+  LayoutDashboard,
   LogOut,
   Menu,
+  Settings,
   ShieldCheck,
   Upload,
   UserRound,
@@ -27,7 +29,7 @@ export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const panelId = useId();
-  const { user, isLoading, isModerator } = useSession();
+  const { user, isLoading, isModerator, isAdmin } = useSession();
   const logoutMutation = useLogout();
   const roleLabel = user ? getRoleLabel(user.role) : null;
 
@@ -166,6 +168,14 @@ export function MobileMenu() {
                       Votre compte
                     </Link>
                     <Link
+                      href={routes.profileSettings}
+                      onClick={closeMenu}
+                      className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-base font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                    >
+                      <Settings aria-hidden className="size-4" />
+                      Paramètres
+                    </Link>
+                    <Link
                       href={routes.myDocuments}
                       onClick={closeMenu}
                       className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-base font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
@@ -173,7 +183,16 @@ export function MobileMenu() {
                       <FolderDown aria-hidden className="size-4" />
                       Imports &amp; Téléchargements
                     </Link>
-                    {isModerator ? (
+                    {isAdmin ? (
+                      <Link
+                        href={routes.admin}
+                        onClick={closeMenu}
+                        className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-base font-medium text-black transition-colors hover:bg-black-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-40"
+                      >
+                        <LayoutDashboard aria-hidden className="size-4" />
+                        Administration
+                      </Link>
+                    ) : isModerator ? (
                       <Link
                         href={routes.moderation}
                         onClick={closeMenu}

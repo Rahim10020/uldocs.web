@@ -32,4 +32,10 @@ export const endpoints = {
 	moderation: {
 		actions: "/moderation/actions",
 	},
+	admin: {
+		stats: "/admin/stats",
+		audit: "/admin/audit",
+		users: "/admin/users",
+		documents: "/admin/documents",
+	},
 } as const;

@@ -200,6 +200,16 @@ export function requireMockModerator(): Utilisateur {
   return user;
 }
 
+export function requireMockAdmin(): Utilisateur {
+  const user = requireMockSession();
+
+  if (user.role !== "admin") {
+    throw new ApiError("Accès réservé aux administrateurs", 403, "FORBIDDEN");
+  }
+
+  return user;
+}
+
 /** Met à jour le statut d'un utilisateur mock. */
 export function setMockUserStatus(
   id: number,

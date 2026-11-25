@@ -1,4 +1,4 @@
-import type { Role } from "shared";
+import type { Role, StatutUtilisateur } from "shared";
 
 /** Prénom affiché dans les menus et messages de bienvenue. */
 export function getFirstName(nom: string): string {
@@ -21,3 +21,15 @@ export function getRoleLabel(role: Role) {
 			return null;
 	}
 }
+
+/** Libellé complet du rôle, y compris pour les étudiants. */
+export function getFullRoleLabel(role: Role): string {
+	return getRoleLabel(role) ?? "Étudiant";
+}
+
+/** Libellés français des statuts de compte. */
+export const STATUT_UTILISATEUR_LABELS: Record<StatutUtilisateur, string> = {
+	actif: "Actif",
+	suspendu: "Suspendu",
+	supprime: "Supprimé",
+};

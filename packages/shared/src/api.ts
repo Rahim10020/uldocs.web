@@ -1,6 +1,8 @@
 import type { Faculte, Filiere, Niveau, Semestre, UE } from "./entities.js";
 import type {
   ActionModeration,
+  AuditAction,
+  AuditTargetType,
   CategorieFaculte,
   FormatDocument,
   MotifSignalement,
@@ -257,4 +259,63 @@ export type FaculteTree = Faculte & {
       })[];
     })[];
   })[];
+};
+
+/** Point d'une série cumulée du graphique d'administration. */
+export type AdminStatsPoint = {
+  date: string;
+  utilisateurs: number;
+  documents: number;
+  telechargements: number;
+  signalements: number;
+};
+
+/** Réponse de GET /admin/stats. */
+export type AdminStats = {
+  utilisateurs: {
+    total: number;
+    actifs: number;
+    nouveauxCetteSemaine: number;
+  };
+  documents: {
+    total: number;
+    nouveauxCetteSemaine: number;
+  };
+  telechargements: {
+    total: number;
+    cetteSemaine: number;
+  };
+  signalements: {
+    enAttente: number;
+  };
+  /** Séries cumulées, du plus ancien au plus récent. */
+  evolution: AdminStatsPoint[];
+};
+
+/** Entrée du journal d'audit (GET /admin/audit). */
+export type AuditEntry = {
+  id: number;
+  acteur: { id: number; nom: string } | null;
+  action: AuditAction;
+  cible: {
+    type: AuditTargetType;
+    id: number | null;
+    libelle: string | null;
+  };
+  details: string | null;
+  dateAction: string;
+};
+
+/** Paramètres de GET /admin/audit. */
+export type AuditSearchParams = {
+  action?: AuditAction;
+  page?: number;
+  pageSize?: number;
+};
+
+/** Paramètres des recherches admin (utilisateurs et documents). */
+export type AdminSearchParams = {
+  q?: string;
+  page?: number;
+  pageSize?: number;
 };

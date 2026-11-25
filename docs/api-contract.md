@@ -293,6 +293,86 @@ export type PublicUserProfile = {
 Le profil public ne contient **aucune donnée privée** : ni `email`, ni
 `statut`, ni `derniereConnexion`, ni mot de passe.
 
+### 4.7 Administration
+
+```ts
+export type AdminStatsPeriod = "7d" | "30d" | "12m";
+
+export type AdminStatsPoint = {
+  /** Date ISO du point, du plus ancien au plus récent. */
+  date: string;
+  utilisateurs: number;
+  documents: number;
+  telechargements: number;
+  signalements: number;
+};
+
+export type AdminStats = {
+  utilisateurs: {
+    total: number;
+    actifs: number;
+    nouveauxCetteSemaine: number;
+  };
+  documents: {
+    total: number;
+    nouveauxCetteSemaine: number;
+  };
+  telechargements: {
+    total: number;
+    cetteSemaine: number;
+  };
+  signalements: {
+    enAttente: number;
+  };
+  evolution: AdminStatsPoint[];
+};
+
+export type AuditAction =
+  | "document_cree"
+  | "document_modifie"
+  | "document_retire"
+  | "signalement_traite"
+  | "utilisateur_averti"
+  | "utilisateur_suspendu"
+  | "utilisateur_banni"
+  | "role_modifie";
+
+export type AuditTargetType =
+  | "document"
+  | "utilisateur"
+  | "signalement"
+  | "systeme";
+
+export type AuditEntry = {
+  id: number;
+  acteur: { id: number; nom: string } | null;
+  action: AuditAction;
+  cible: {
+    type: AuditTargetType;
+    id: number | null;
+    libelle: string | null;
+  };
+  details: string | null;
+  dateAction: string;
+};
+
+export type AuditSearchParams = {
+  action?: AuditAction;
+  page?: number;
+  pageSize?: number;
+};
+
+export type AdminSearchParams = {
+  q?: string;
+  page?: number;
+  pageSize?: number;
+};
+```
+
+Les points de `evolution` sont **cumulés** : le dernier point de la période
+correspond au total affiché dans les cartes. Le graphique n'affiche qu'une
+métrique à la fois et se base sur ces séries.
+
 ---
 
 ## 5. Endpoints V1
@@ -437,13 +517,25 @@ export type DocumentUpdatePayload = {
 | `GET`   | `/reports/:id`        | —                         | `SignalementDetail`              |
 | `PATCH` | `/reports/:id`        | `RejectReportPayload`     | `SignalementDetail`              |
 | `POST`  | `/moderation/actions` | `ModerationActionPayload` | `SignalementDetail`              |
-| `GET`   | `/admin/stats`        | —                         | `AdminStats`                     |
-| `GET`   | `/admin/users`        | `page`, `pageSize`        | `Paginated<Utilisateur>`         |
-| `PATCH` | `/admin/users/:id`    | —                         | `Utilisateur`                    |
-| `GET`   | `/admin/documents`    | `page`, `pageSize`        | `Paginated<DocumentListItem>`    |
+| `GET`   | `/admin/stats`        | `AdminStatsPeriod`        | `AdminStats`                     |
+| `GET`   | `/admin/audit`        | `AuditSearchParams`       | `Paginated<AuditEntry>`          |
+| `GET`   | `/admin/users`        | `AdminSearchParams`       | `Paginated<Utilisateur>`         |
+| `PATCH` | `/admin/users/:id`    | `{ statut, raison }`      | `Utilisateur`                    |
+| `GET`   | `/admin/documents`    | `AdminSearchParams`       | `Paginated<DocumentListItem>`    |
 
 - Les endpoints de modération exigent une session avec le rôle `moderateur`
   ou `admin` (`401` sans session, `403` sinon).
+- Les endpoints `/admin/*` exigent le rôle `admin` (`401` sans session, `403`
+  sinon).
+- `GET /admin/stats` accepte `period=7d|30d|12m` (défaut : `30d`). Les totaux
+  proviennent des données réelles ; `evolution` contient des séries cumulées
+  sur la période.
+- `GET /admin/audit` trie du plus récent au plus ancien, filtre par `action`
+  et pagine avec `page` / `pageSize`.
+- `GET /admin/users` et `GET /admin/documents` acceptent `q` et cherchent
+  respectivement sur le nom/email et sur le titre/UE/uploader. Contrairement
+  aux listes publiques, `/admin/documents` renvoie **tous** les statuts.
+
 - `GET /reports` filtre par `statut` et `motif`, trie du plus récent au plus
   ancien. `total` reflète le nombre de résultats **avant** pagination.
 - `PATCH /reports/:id` rejette un signalement non traité (`ouvert` ou

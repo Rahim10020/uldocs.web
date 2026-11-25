@@ -21,5 +21,6 @@ export function useSession() {
 		isAuthenticated: user !== null,
 		isLoading: query.isPending,
 		isModerator: user?.role === "moderateur" || user?.role === "admin",
+		isAdmin: user?.role === "admin",
 	};
 }

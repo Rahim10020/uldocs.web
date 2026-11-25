@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, X } from "lucide-react";
+import type { Route } from "next";
 import { useEffect, useRef, useState } from "react";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,10 @@ type SearchBarProps = {
   placeholder?: string;
   variant?: "header" | "hero";
   defaultValue?: string;
+  /** Page cible du formulaire (documents par défaut). */
+  action?: Route;
+  /** Libellé accessible du champ de recherche. */
+  ariaLabel?: string;
   /** Filtres conservés lors d'une nouvelle recherche (page exclue). */
   hiddenParams?: Record<string, string>;
 };
@@ -20,6 +25,8 @@ export function SearchBar({
   placeholder = "Recherche",
   variant = "header",
   defaultValue = "",
+  action = routes.documents,
+  ariaLabel = "Rechercher un document",
   hiddenParams,
 }: SearchBarProps) {
   const [value, setValue] = useState(defaultValue);
@@ -38,7 +45,7 @@ export function SearchBar({
 
   return (
     <search className={cn("block w-full", className)}>
-      <form action={routes.documents} method="get" className="relative w-full">
+      <form action={action} method="get" className="relative w-full">
         {Object.entries(hiddenParams ?? {}).map(([name, hiddenValue]) => (
           <input key={name} type="hidden" name={name} value={hiddenValue} />
         ))}
@@ -47,7 +54,7 @@ export function SearchBar({
           ref={inputRef}
           type="search"
           name="q"
-          aria-label="Rechercher un document"
+          aria-label={ariaLabel}
           placeholder={placeholder}
           autoComplete="off"
           enterKeyHint="search"

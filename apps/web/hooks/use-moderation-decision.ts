@@ -39,6 +39,7 @@ export function useModerationDecision() {
 			await Promise.all([
 				queryClient.invalidateQueries({ queryKey: queryKeys.reports.all }),
 				queryClient.invalidateQueries({ queryKey: queryKeys.documents.all }),
+				queryClient.invalidateQueries({ queryKey: queryKeys.admin.all }),
 			]);
 		},
 	});

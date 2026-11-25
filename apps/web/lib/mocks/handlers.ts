@@ -1,6 +1,11 @@
 import {
+	ACTIONS_AUDIT,
 	ACTIONS_MODERATION,
 	type ActionModeration,
+	type AdminSearchParams,
+	type AdminStatsPeriod,
+	type AuditAction,
+	type AuditSearchParams,
 	type DocumentSearchParams,
 	FORMATS_DOCUMENT,
 	type FormatDocument,
@@ -24,6 +29,12 @@ import { ApiError } from "../api/errors";
 import { getDocumentFormat, MAX_FILE_SIZE_BYTES } from "../document-upload";
 import { getUeContext, mockAcademic } from "./academic";
 import {
+	getMockAdminStats,
+	listMockAudit,
+	searchMockAdminDocuments,
+	searchMockUsers,
+} from "./admin";
+import {
 	createMockDocument,
 	getMockDocument,
 	listMockDocumentsByUploader,
@@ -46,6 +57,7 @@ import {
 	loginMock,
 	logoutMock,
 	registerMock,
+	requireMockAdmin,
 	requireMockModerator,
 	requireMockSession,
 	updateMockProfile,
@@ -220,6 +232,49 @@ function parseReportSearchParams(
 	return params;
 }
 
+function parseAdminStatsPeriod(value: string | null): AdminStatsPeriod {
+	if (value === "7d" || value === "12m") {
+		return value;
+	}
+
+	return "30d";
+}
+
+function parseAuditSearchParams(
+	searchParams: URLSearchParams,
+): AuditSearchParams {
+	const params: AuditSearchParams = {};
+	const action = searchParams.get("action");
+
+	if (action && ACTIONS_AUDIT.includes(action as AuditAction)) {
+		params.action = action as AuditAction;
+	}
+
+	const page = readNumber(searchParams.get("page"));
+	if (page !== undefined) params.page = page;
+
+	const pageSize = readNumber(searchParams.get("pageSize"));
+	if (pageSize !== undefined) params.pageSize = pageSize;
+
+	return params;
+}
+
+function parseAdminSearchParams(
+	searchParams: URLSearchParams,
+): AdminSearchParams {
+	const params: AdminSearchParams = {};
+	const q = readString(searchParams.get("q"));
+	if (q !== undefined) params.q = q;
+
+	const page = readNumber(searchParams.get("page"));
+	if (page !== undefined) params.page = page;
+
+	const pageSize = readNumber(searchParams.get("pageSize"));
+	if (pageSize !== undefined) params.pageSize = pageSize;
+
+	return params;
+}
+
 export async function mockRequest(
 	path: string,
 	init?: RequestInit,
@@ -257,6 +312,28 @@ export async function mockRequest(
 
 	if (method === "POST" && pathname === "/auth/forgot-password") {
 		return undefined;
+	}
+
+	if (method === "GET" && pathname === "/admin/stats") {
+		requireMockAdmin();
+		return getMockAdminStats(
+			parseAdminStatsPeriod(searchParams.get("period")),
+		);
+	}
+
+	if (method === "GET" && pathname === "/admin/audit") {
+		requireMockAdmin();
+		return listMockAudit(parseAuditSearchParams(searchParams));
+	}
+
+	if (method === "GET" && pathname === "/admin/users") {
+		requireMockAdmin();
+		return searchMockUsers(parseAdminSearchParams(searchParams));
+	}
+
+	if (method === "GET" && pathname === "/admin/documents") {
+		requireMockAdmin();
+		return searchMockAdminDocuments(parseAdminSearchParams(searchParams));
 	}
 
 	const publicUserDocumentsMatch = /^\/users\/(\d+)\/documents$/.exec(pathname);
