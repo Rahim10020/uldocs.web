@@ -6,6 +6,7 @@ import {
 	FileX,
 	ShieldCheck,
 	TriangleAlert,
+	UserCheck,
 	UserCog,
 	UserX,
 } from "lucide-react";
@@ -21,6 +22,7 @@ export const AUDIT_ACTION_LABELS: Record<AuditAction, string> = {
 	signalement_traite: "a traité",
 	utilisateur_averti: "a averti",
 	utilisateur_suspendu: "a suspendu",
+	utilisateur_reactive: "a réactivé",
 	utilisateur_banni: "a banni",
 	role_modifie: "a changé le rôle de",
 };
@@ -32,6 +34,7 @@ export const AUDIT_ACTION_ICONS: Record<AuditAction, LucideIcon> = {
 	signalement_traite: ShieldCheck,
 	utilisateur_averti: TriangleAlert,
 	utilisateur_suspendu: UserX,
+	utilisateur_reactive: UserCheck,
 	utilisateur_banni: Ban,
 	role_modifie: UserCog,
 };

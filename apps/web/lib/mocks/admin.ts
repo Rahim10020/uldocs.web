@@ -3,15 +3,20 @@ import type {
 	AdminStats,
 	AdminStatsPeriod,
 	AdminStatsPoint,
+	AdminUserListItem,
+	AdminUserSearchParams,
+	AdminUserUpdatePayload,
+	AuditAction,
 	AuditEntry,
 	AuditSearchParams,
 	DocumentListItem,
 	Paginated,
-	Utilisateur,
 } from "shared";
+import { STATUTS_UTILISATEUR } from "shared";
+import { ApiError } from "../api/errors";
 import { MOCK_DOCUMENTS } from "./documents";
 import { listMockReports } from "./reports";
-import { MOCK_USERS } from "./users";
+import { MOCK_USERS, requireMockAdmin } from "./users";
 
 /**
  * Statistiques et journal d'audit de démonstration.
@@ -74,11 +79,15 @@ function normalize(value: string): string {
 		.trim();
 }
 
-function paginate<T>(items: T[], params: AdminSearchParams): Paginated<T> {
+function paginate<T>(
+	items: T[],
+	params: { page?: number; pageSize?: number },
+	defaultPageSize = DEFAULT_PAGE_SIZE,
+): Paginated<T> {
 	const page = Math.max(1, params.page ?? 1);
 	const pageSize = Math.min(
 		MAX_PAGE_SIZE,
-		Math.max(1, params.pageSize ?? DEFAULT_PAGE_SIZE),
+		Math.max(1, params.pageSize ?? defaultPageSize),
 	);
 	const start = (page - 1) * pageSize;
 
@@ -338,6 +347,39 @@ const AUDIT_ENTRIES: AuditEntry[] = [
 	},
 ];
 
+const INITIAL_AUDIT_ENTRIES = [...AUDIT_ENTRIES];
+const INITIAL_ADMIN_USER_STATE = new Map(
+	MOCK_USERS.map((user) => [user.id, { role: user.role, statut: user.statut }]),
+);
+
+/** Réinitialise les mutations admin mockées entre les tests. */
+export function resetMockAdminState(): void {
+	for (const user of MOCK_USERS) {
+		const initial = INITIAL_ADMIN_USER_STATE.get(user.id);
+
+		if (initial) {
+			user.role = initial.role;
+			user.statut = initial.statut;
+		}
+	}
+
+	AUDIT_ENTRIES.splice(0, AUDIT_ENTRIES.length, ...INITIAL_AUDIT_ENTRIES);
+}
+
+function buildAdminUserList(): AdminUserListItem[] {
+	const uploadCounts = new Map<number, number>();
+
+	for (const document of MOCK_DOCUMENTS) {
+		const userId = document.uploader.id;
+		uploadCounts.set(userId, (uploadCounts.get(userId) ?? 0) + 1);
+	}
+
+	return MOCK_USERS.map((user) => ({
+		...user,
+		nbDocumentsUploades: uploadCounts.get(user.id) ?? 0,
+	}));
+}
+
 /** GET /admin/audit — journal paginé, trié du plus récent au plus ancien. */
 export function listMockAudit(
 	params: AuditSearchParams = {},
@@ -362,23 +404,173 @@ export function listMockAudit(
 
 /** GET /admin/users — recherche sur le nom et l'email. */
 export function searchMockUsers(
-	params: AdminSearchParams = {},
-): Paginated<Utilisateur> {
+	params: AdminUserSearchParams = {},
+): Paginated<AdminUserListItem> {
 	const query = params.q ? normalize(params.q) : "";
-	const filtered = MOCK_USERS.filter((user) => {
-		if (!query) {
-			return true;
-		}
+	const filtered = buildAdminUserList()
+		.filter((user) => {
+			if (params.role && user.role !== params.role) {
+				return false;
+			}
 
-		return (
-			normalize(user.nom).includes(query) ||
-			normalize(user.email).includes(query)
+			if (params.statut && user.statut !== params.statut) {
+				return false;
+			}
+
+			if (
+				params.contribution === "contributeur" &&
+				user.nbDocumentsUploades === 0
+			) {
+				return false;
+			}
+
+			if (
+				params.contribution === "utilisateur" &&
+				user.nbDocumentsUploades > 0
+			) {
+				return false;
+			}
+
+			if (!query) {
+				return true;
+			}
+
+			return (
+				normalize(user.nom).includes(query) ||
+				normalize(user.email).includes(query)
+			);
+		})
+		.sort(
+			(a, b) =>
+				b.dateInscription.localeCompare(a.dateInscription) || b.id - a.id,
 		);
-	}).sort(
-		(a, b) => b.dateInscription.localeCompare(a.dateInscription) || b.id - a.id,
+
+	return paginate(filtered, params, 8);
+}
+
+/** PATCH /admin/users/:id — mutation simulée et inscrite à l'audit. */
+export function updateMockAdminUser(
+	id: number,
+	payload: AdminUserUpdatePayload,
+): AdminUserListItem {
+	const actor = requireMockAdmin();
+	const target = MOCK_USERS.find((user) => user.id === id);
+
+	if (!target) {
+		throw new ApiError("Utilisateur introuvable", 404, "NOT_FOUND");
+	}
+
+	if (target.id === actor.id || target.role === "admin") {
+		throw new ApiError(
+			"Les actions sur soi-même ou un administrateur sont interdites",
+			403,
+			"FORBIDDEN",
+		);
+	}
+
+	if (!payload || typeof payload !== "object") {
+		throw new ApiError(
+			"Payload de modification invalide",
+			400,
+			"VALIDATION_ERROR",
+		);
+	}
+
+	const hasRole = "role" in payload && payload.role !== undefined;
+	const hasStatus = "statut" in payload && payload.statut !== undefined;
+	const hasUnknownKey = Object.keys(payload).some(
+		(key) => !["role", "statut", "raison"].includes(key),
 	);
 
-	return paginate(filtered, params);
+	if (
+		typeof payload.raison !== "string" ||
+		hasRole === hasStatus ||
+		hasUnknownKey ||
+		(hasRole && payload.role !== "moderateur") ||
+		(hasStatus && !STATUTS_UTILISATEUR.includes(payload.statut))
+	) {
+		throw new ApiError(
+			"Payload de modification invalide",
+			400,
+			"VALIDATION_ERROR",
+		);
+	}
+
+	const reason = payload.raison.trim();
+
+	if (reason.length < 10 || reason.length > 1000) {
+		throw new ApiError(
+			"La raison doit contenir entre 10 et 1000 caractères",
+			400,
+			"VALIDATION_ERROR",
+		);
+	}
+
+	let action: AuditAction;
+	let details: string;
+
+	if (hasRole && payload.role === "moderateur") {
+		if (target.role !== "etudiant" || target.statut !== "actif") {
+			throw new ApiError(
+				"Seul un étudiant actif peut devenir modérateur",
+				409,
+				"CONFLICT",
+			);
+		}
+
+		target.role = "moderateur";
+		action = "role_modifie";
+		details = `Passage du rôle « étudiant » à « modérateur ». Motif : ${reason}`;
+	} else if (hasStatus && "statut" in payload) {
+		const nextStatus = payload.statut;
+		const canReactivate =
+			nextStatus === "actif" && target.statut === "suspendu";
+		const canSuspend = nextStatus === "suspendu" && target.statut === "actif";
+		const canBan = nextStatus === "supprime" && target.statut !== "supprime";
+
+		if (!canReactivate && !canSuspend && !canBan) {
+			throw new ApiError(
+				"Cette transition de statut n'est pas autorisée",
+				409,
+				"CONFLICT",
+			);
+		}
+
+		target.statut = nextStatus;
+
+		if (nextStatus === "suspendu") {
+			action = "utilisateur_suspendu";
+			details = `Compte suspendu. Motif : ${reason}`;
+		} else if (nextStatus === "supprime") {
+			action = "utilisateur_banni";
+			details = `Compte banni. Motif : ${reason}`;
+		} else {
+			action = "utilisateur_reactive";
+			details = `Compte réactivé. Motif : ${reason}`;
+		}
+	} else {
+		throw new ApiError(
+			"Une seule modification est requise",
+			400,
+			"VALIDATION_ERROR",
+		);
+	}
+
+	AUDIT_ENTRIES.push({
+		id: Math.max(0, ...AUDIT_ENTRIES.map((entry) => entry.id)) + 1,
+		acteur: { id: actor.id, nom: actor.nom },
+		action,
+		cible: { type: "utilisateur", id: target.id, libelle: target.nom },
+		details,
+		dateAction: new Date().toISOString(),
+	});
+
+	return (
+		buildAdminUserList().find((user) => user.id === target.id) ?? {
+			...target,
+			nbDocumentsUploades: 0,
+		}
+	);
 }
 
 /** GET /admin/documents — recherche sur le titre, l'UE et l'uploader. */

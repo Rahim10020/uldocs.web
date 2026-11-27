@@ -66,13 +66,16 @@ Colonnes non exposées : `mot_de_passe_hash`, `ip`.
 
 ## 3. Enums (valeurs figées)
 
-Ces valeurs sont contraintes en base par des `CHECK` et doivent être
-utilisées telles quelles côté TypeScript (`packages/shared/src/enums.ts`).
+Les valeurs persistées sont contraintes en base par des `CHECK`; les
+catégories calculées ne sont pas stockées. Les constantes TypeScript de
+`packages/shared/src/enums.ts` sont la source unique de ces valeurs.
 
 ```ts
 export type CategorieFaculte = "faculte" | "ecole" | "institut";
 export type Role = "etudiant" | "moderateur" | "admin";
 export type StatutUtilisateur = "actif" | "suspendu" | "supprime";
+export const CATEGORIES_CONTRIBUTION = ["utilisateur", "contributeur"] as const;
+export type CategorieContribution = (typeof CATEGORIES_CONTRIBUTION)[number];
 export type StatutDocument = "en_attente" | "valide" | "signale" | "retire";
 
 export type TypeDocument =
@@ -334,6 +337,7 @@ export type AuditAction =
   | "signalement_traite"
   | "utilisateur_averti"
   | "utilisateur_suspendu"
+  | "utilisateur_reactive"
   | "utilisateur_banni"
   | "role_modifie";
 
@@ -367,6 +371,24 @@ export type AdminSearchParams = {
   page?: number;
   pageSize?: number;
 };
+
+export type AdminUserListItem = Utilisateur & {
+  /** Nombre total de documents uploadés par ce compte, tous statuts confondus. */
+  nbDocumentsUploades: number;
+};
+
+export type AdminUserSearchParams = {
+  q?: string;
+  role?: Role;
+  contribution?: CategorieContribution;
+  statut?: StatutUtilisateur;
+  page?: number;
+  pageSize?: number;
+};
+
+export type AdminUserUpdatePayload =
+  | { role: "moderateur"; statut?: never; raison: string }
+  | { statut: StatutUtilisateur; role?: never; raison: string };
 ```
 
 Les points de `evolution` sont **cumulés** : le dernier point de la période
@@ -519,8 +541,8 @@ export type DocumentUpdatePayload = {
 | `POST`  | `/moderation/actions` | `ModerationActionPayload` | `SignalementDetail`              |
 | `GET`   | `/admin/stats`        | `AdminStatsPeriod`        | `AdminStats`                     |
 | `GET`   | `/admin/audit`        | `AuditSearchParams`       | `Paginated<AuditEntry>`          |
-| `GET`   | `/admin/users`        | `AdminSearchParams`       | `Paginated<Utilisateur>`         |
-| `PATCH` | `/admin/users/:id`    | `{ statut, raison }`      | `Utilisateur`                    |
+| `GET`   | `/admin/users`        | `AdminUserSearchParams`   | `Paginated<AdminUserListItem>`   |
+| `PATCH` | `/admin/users/:id`    | `AdminUserUpdatePayload`  | `AdminUserListItem`              |
 | `GET`   | `/admin/documents`    | `AdminSearchParams`       | `Paginated<DocumentListItem>`    |
 
 - Les endpoints de modération exigent une session avec le rôle `moderateur`
@@ -532,9 +554,30 @@ export type DocumentUpdatePayload = {
   sur la période.
 - `GET /admin/audit` trie du plus récent au plus ancien, filtre par `action`
   et pagine avec `page` / `pageSize`.
-- `GET /admin/users` et `GET /admin/documents` acceptent `q` et cherchent
-  respectivement sur le nom/email et sur le titre/UE/uploader. Contrairement
-  aux listes publiques, `/admin/documents` renvoie **tous** les statuts.
+- `GET /admin/users` accepte `q`, `role`, `contribution`, `statut`, `page` et
+  `pageSize`. Les filtres se combinent en `AND`; `q` cherche dans le nom et
+  l'email. Le tri est du plus récent au plus ancien. `pageSize` vaut 8 par
+  défaut, avec un maximum de 50.
+- `contribution=utilisateur` signifie `nbDocumentsUploades = 0`;
+  `contribution=contributeur` signifie `nbDocumentsUploades >= 1`. La
+  contribution est indépendante du rôle : un modérateur ou un administrateur
+  peut aussi être contributeur. Le compte « utilisateur » de la maquette est
+  un étudiant sans document uploadé.
+- `nbDocumentsUploades` compte tous les documents rattachés à l'uploader, quel
+  que soit leur statut.
+- `GET /admin/documents` accepte `q` et cherche sur le titre/UE/uploader.
+  Contrairement aux listes publiques, `/admin/documents` renvoie **tous** les
+  statuts.
+- `PATCH /admin/users/:id` accepte exactement une opération : promouvoir un
+  compte étudiant actif au rôle `moderateur`, ou modifier son `statut`.
+  `raison` est obligatoire (10 à 1000 caractères) et l'action est inscrite au
+  journal d'audit. `statut=supprime` correspond à un bannissement dans
+  l'interface admin; seul un compte `suspendu` peut être réactivé (`actif`).
+  Les actions correspondantes sont `role_modifie`, `utilisateur_suspendu`,
+  `utilisateur_reactive` et `utilisateur_banni`.
+  L'endpoint répond `403` si l'acteur vise son propre compte ou un compte
+  `admin`, et `409` si la transition de rôle/statut est invalide. Il répond
+  `404` si l'utilisateur n'existe pas.
 
 - `GET /reports` filtre par `statut` et `motif`, trie du plus récent au plus
   ancien. `total` reflète le nombre de résultats **avant** pagination.

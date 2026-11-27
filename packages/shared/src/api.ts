@@ -1,13 +1,23 @@
-import type { Faculte, Filiere, Niveau, Semestre, UE } from "./entities.js";
+import type {
+  Faculte,
+  Filiere,
+  Niveau,
+  Semestre,
+  UE,
+  Utilisateur,
+} from "./entities.js";
 import type {
   ActionModeration,
   AuditAction,
   AuditTargetType,
+  CategorieContribution,
   CategorieFaculte,
   FormatDocument,
   MotifSignalement,
+  Role,
   StatutDocument,
   StatutSignalement,
+  StatutUtilisateur,
   TriDocuments,
   TypeDocument,
   VoteDocument,
@@ -313,9 +323,29 @@ export type AuditSearchParams = {
   pageSize?: number;
 };
 
-/** Paramètres des recherches admin (utilisateurs et documents). */
+/** Paramètres de GET /admin/documents. */
 export type AdminSearchParams = {
   q?: string;
   page?: number;
   pageSize?: number;
 };
+
+/** Élément de liste admin enrichi avec le nombre total d'uploads. */
+export type AdminUserListItem = Utilisateur & {
+  nbDocumentsUploades: number;
+};
+
+/** Paramètres de GET /admin/users. */
+export type AdminUserSearchParams = {
+  q?: string;
+  role?: Role;
+  contribution?: CategorieContribution;
+  statut?: StatutUtilisateur;
+  page?: number;
+  pageSize?: number;
+};
+
+/** Modification admin : exactement un changement par requête. */
+export type AdminUserUpdatePayload =
+  | { role: "moderateur"; statut?: never; raison: string }
+  | { statut: StatutUtilisateur; role?: never; raison: string };

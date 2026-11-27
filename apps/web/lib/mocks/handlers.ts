@@ -4,8 +4,12 @@ import {
 	type ActionModeration,
 	type AdminSearchParams,
 	type AdminStatsPeriod,
+	type AdminUserSearchParams,
+	type AdminUserUpdatePayload,
 	type AuditAction,
 	type AuditSearchParams,
+	CATEGORIES_CONTRIBUTION,
+	type CategorieContribution,
 	type DocumentSearchParams,
 	FORMATS_DOCUMENT,
 	type FormatDocument,
@@ -15,8 +19,12 @@ import {
 	type RegisterPayload,
 	type ReportDocumentPayload,
 	type ReportSearchParams,
+	ROLES,
+	type Role,
 	STATUTS_SIGNALEMENT,
+	STATUTS_UTILISATEUR,
 	type StatutSignalement,
+	type StatutUtilisateur,
 	TRIS_DOCUMENTS,
 	type TriDocuments,
 	TYPES_DOCUMENT,
@@ -33,6 +41,7 @@ import {
 	listMockAudit,
 	searchMockAdminDocuments,
 	searchMockUsers,
+	updateMockAdminUser,
 } from "./admin";
 import {
 	createMockDocument,
@@ -275,6 +284,36 @@ function parseAdminSearchParams(
 	return params;
 }
 
+function parseAdminUserSearchParams(
+	searchParams: URLSearchParams,
+): AdminUserSearchParams {
+	const params: AdminUserSearchParams = {};
+	const q = readString(searchParams.get("q"));
+	const role = readString(searchParams.get("role"));
+	const contribution = readString(searchParams.get("contribution"));
+	const statut = readString(searchParams.get("statut"));
+
+	if (q !== undefined) params.q = q;
+	if (role && ROLES.includes(role as Role)) params.role = role as Role;
+	if (
+		contribution &&
+		CATEGORIES_CONTRIBUTION.includes(contribution as CategorieContribution)
+	) {
+		params.contribution = contribution as CategorieContribution;
+	}
+	if (statut && STATUTS_UTILISATEUR.includes(statut as StatutUtilisateur)) {
+		params.statut = statut as StatutUtilisateur;
+	}
+
+	const page = readNumber(searchParams.get("page"));
+	if (page !== undefined) params.page = page;
+
+	const pageSize = readNumber(searchParams.get("pageSize"));
+	if (pageSize !== undefined) params.pageSize = pageSize;
+
+	return params;
+}
+
 export async function mockRequest(
 	path: string,
 	init?: RequestInit,
@@ -316,9 +355,7 @@ export async function mockRequest(
 
 	if (method === "GET" && pathname === "/admin/stats") {
 		requireMockAdmin();
-		return getMockAdminStats(
-			parseAdminStatsPeriod(searchParams.get("period")),
-		);
+		return getMockAdminStats(parseAdminStatsPeriod(searchParams.get("period")));
 	}
 
 	if (method === "GET" && pathname === "/admin/audit") {
@@ -328,7 +365,16 @@ export async function mockRequest(
 
 	if (method === "GET" && pathname === "/admin/users") {
 		requireMockAdmin();
-		return searchMockUsers(parseAdminSearchParams(searchParams));
+		return searchMockUsers(parseAdminUserSearchParams(searchParams));
+	}
+
+	const adminUserMatch = /^\/admin\/users\/(\d+)$/.exec(pathname);
+
+	if (method === "PATCH" && adminUserMatch) {
+		return updateMockAdminUser(
+			Number(adminUserMatch[1]),
+			readJsonBody<AdminUserUpdatePayload>(init),
+		);
 	}
 
 	if (method === "GET" && pathname === "/admin/documents") {

@@ -2,11 +2,13 @@ import type {
 	AdminSearchParams,
 	AdminStats,
 	AdminStatsPeriod,
+	AdminUserListItem,
+	AdminUserSearchParams,
+	AdminUserUpdatePayload,
 	AuditEntry,
 	AuditSearchParams,
 	DocumentListItem,
 	Paginated,
-	Utilisateur,
 } from "shared";
 import { apiFetch, apiFetchPaginated } from "./client";
 import { endpoints } from "./endpoints";
@@ -46,16 +48,32 @@ export function listAudit(
 
 /** GET /admin/users */
 export function listAdminUsers(
-	params: AdminSearchParams = {},
-): Promise<Paginated<Utilisateur>> {
+	params: AdminUserSearchParams = {},
+): Promise<Paginated<AdminUserListItem>> {
 	const query = toQuery({
 		q: params.q,
+		role: params.role,
+		contribution: params.contribution,
+		statut: params.statut,
 		page: params.page,
 		pageSize: params.pageSize,
 	});
 	const search = query ? `?${query}` : "";
 
-	return apiFetchPaginated<Utilisateur>(`${endpoints.admin.users}${search}`);
+	return apiFetchPaginated<AdminUserListItem>(
+		`${endpoints.admin.users}${search}`,
+	);
+}
+
+/** PATCH /admin/users/:id */
+export function updateAdminUser(
+	id: number,
+	payload: AdminUserUpdatePayload,
+): Promise<AdminUserListItem> {
+	return apiFetch<AdminUserListItem>(`${endpoints.admin.users}/${id}`, {
+		method: "PATCH",
+		body: JSON.stringify(payload),
+	});
 }
 
 /** GET /admin/documents */

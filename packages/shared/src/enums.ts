@@ -1,7 +1,8 @@
 /**
  * Valeurs figées du domaine.
  * Chaque tableau est la source unique des options d'UI (filtres, selects).
- * Les valeurs sont contraintes en base par des CHECK (docs/database.sql).
+ * Les valeurs persistées sont contraintes en base par des CHECK
+ * (docs/database.sql); les catégories calculées ne sont pas persistées.
  */
 
 /** Catégorie d'une entité académique (table FACULTE). */
@@ -15,6 +16,10 @@ export type Role = (typeof ROLES)[number];
 /** Statut d'un compte utilisateur. */
 export const STATUTS_UTILISATEUR = ["actif", "suspendu", "supprime"] as const;
 export type StatutUtilisateur = (typeof STATUTS_UTILISATEUR)[number];
+
+/** Statut de contribution dérivé du nombre de documents uploadés. */
+export const CATEGORIES_CONTRIBUTION = ["utilisateur", "contributeur"] as const;
+export type CategorieContribution = (typeof CATEGORIES_CONTRIBUTION)[number];
 
 /** Statut éditorial d'un document. */
 export const STATUTS_DOCUMENT = [
@@ -83,6 +88,7 @@ export const ACTIONS_AUDIT = [
   "signalement_traite",
   "utilisateur_averti",
   "utilisateur_suspendu",
+  "utilisateur_reactive",
   "utilisateur_banni",
   "role_modifie",
 ] as const;

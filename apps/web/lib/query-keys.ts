@@ -1,6 +1,7 @@
 import type {
 	AdminSearchParams,
 	AdminStatsPeriod,
+	AdminUserSearchParams,
 	AuditSearchParams,
 	DocumentSearchParams,
 	ReportSearchParams,
@@ -40,11 +41,14 @@ export const queryKeys = {
 	},
 	admin: {
 		all: ["admin"] as const,
+		statsRoot: ["admin", "stats"] as const,
 		stats: (period: AdminStatsPeriod) => ["admin", "stats", period] as const,
 		auditRoot: ["admin", "audit"] as const,
 		audit: (params: AuditSearchParams) =>
 			["admin", "audit", "list", params] as const,
-		users: (params: AdminSearchParams) => ["admin", "users", params] as const,
+		usersRoot: ["admin", "users"] as const,
+		users: (params: AdminUserSearchParams) =>
+			["admin", "users", params] as const,
 		documents: (params: AdminSearchParams) =>
 			["admin", "documents", params] as const,
 	},

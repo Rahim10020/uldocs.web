@@ -7,7 +7,11 @@ import {
 } from "@/lib/mocks/admin";
 import { MOCK_DOCUMENTS, resetMockDocuments } from "@/lib/mocks/documents";
 import { resetMockReports } from "@/lib/mocks/reports";
-import { MOCK_USERS, resetMockAuth } from "@/lib/mocks/users";
+import {
+	MOCK_USERS,
+	resetMockAuth,
+	setMockUserStatus,
+} from "@/lib/mocks/users";
 
 describe("mocks admin", () => {
 	beforeEach(() => {
@@ -119,5 +123,52 @@ describe("mocks admin", () => {
 		expect(page.data).toHaveLength(3);
 		expect(page.pageSize).toBe(3);
 		expect(page.total).toBe(MOCK_USERS.length);
+	});
+
+	it("renvoie 8 utilisateurs par défaut avec leur nombre d'uploads", () => {
+		const page = searchMockUsers();
+		const user = page.data.find((item) => item.id === 3);
+		const expectedUploads = MOCK_DOCUMENTS.filter(
+			(document) => document.uploader.id === 3,
+		).length;
+
+		expect(page.data).toHaveLength(8);
+		expect(page.pageSize).toBe(8);
+		expect(user?.nbDocumentsUploades).toBe(expectedUploads);
+	});
+
+	it("filtre les utilisateurs par rôle et contribution", () => {
+		const admins = searchMockUsers({ role: "admin", pageSize: 50 });
+		const contributors = searchMockUsers({
+			contribution: "contributeur",
+			pageSize: 50,
+		});
+		const simpleUsers = searchMockUsers({
+			contribution: "utilisateur",
+			pageSize: 50,
+		});
+
+		expect(admins.total).toBe(1);
+		expect(admins.data[0]?.id).toBe(8);
+		expect(contributors.total).toBeGreaterThan(0);
+		expect(
+			contributors.data.every((user) => user.nbDocumentsUploades > 0),
+		).toBe(true);
+		expect(
+			simpleUsers.data.every((user) => user.nbDocumentsUploades === 0),
+		).toBe(true);
+	});
+
+	it("combine le filtre de statut avec la recherche", () => {
+		setMockUserStatus(6, "suspendu");
+
+		const result = searchMockUsers({
+			q: "komlan",
+			statut: "suspendu",
+			pageSize: 50,
+		});
+
+		expect(result.total).toBe(1);
+		expect(result.data[0]?.id).toBe(6);
 	});
 });

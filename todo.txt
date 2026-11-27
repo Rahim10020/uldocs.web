@@ -46,17 +46,8 @@ la partie securite de parametres
 
 -- plus de demande de plus de precision.
 
- GET /admin 200 in 53ms (next.js: 4ms, application-code: 49ms)
-Error: Route "/admin": Could not validate that a segment in your UI has instant navigation.
-
-This segment was dropped from rendering. Issues that would prevent instant navigation will go undetected.
-
-Dropped segment:
-  apps/web/app/(admin)/admin/page.tsx
-
-Ways to fix this:
-  - [render] Render the dropped segment
-  - [ignore] Set `export const instant = false` to opt the dropped segment out of instant-navigation validation
-
-Learn more: https://nextjs.org/docs/messages/instant-unrendered-segment
-    at ignore-listed frames
+-- ecoute moi tres bien. c'est bien ce que tu viens de faire mais pourquoi tu n'utilises pas les 
+composants qui sont deja la (recherche et les selects) avec leur design et tu recree d'autres? 
+je n'aime pas cette facon de travailler. tu vas faire il va y avoir des incoherences dans le 
+projet et ne veux pas de doublons ni des trucs fait deux fois qui vont me rendre la maintenance 
+difficile. fais moi un bon plan pour corriger tout ca.

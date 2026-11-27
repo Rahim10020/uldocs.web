@@ -16,9 +16,9 @@
   --color-surface: #faf9f5;
   --color-black: #0a1118;
   --color-primary: #0069ca;
-  --color-success: #255b25;
+  --color-success: #2f9e44;
   --color-warning: #e36414;
-  --color-error: #c62828;
+  --color-error: #e03131;
 
   /*
 	 * Alpha primary : ce sont des opacités de #0069ca, pas des nuances.

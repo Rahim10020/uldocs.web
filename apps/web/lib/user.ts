@@ -31,5 +31,5 @@ export function getFullRoleLabel(role: Role): string {
 export const STATUT_UTILISATEUR_LABELS: Record<StatutUtilisateur, string> = {
 	actif: "Actif",
 	suspendu: "Suspendu",
-	supprime: "Supprimé",
+	supprime: "Banni",
 };
