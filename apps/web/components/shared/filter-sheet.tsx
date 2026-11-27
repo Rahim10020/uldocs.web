@@ -5,6 +5,22 @@ import { type ReactNode, useEffect, useId, useRef } from "react";
 import { useBodyScrollLock } from "@/hooks/use-body-scroll-lock";
 import { cn } from "@/lib/utils";
 
+/** Champ libellé d'une feuille de filtres. */
+export function FilterField({
+	label,
+	children,
+}: {
+	label: string;
+	children: ReactNode;
+}) {
+	return (
+		<div className="space-y-1.5">
+			<span className="text-sm font-medium text-black-80">{label}</span>
+			{children}
+		</div>
+	);
+}
+
 /** Feuille plein écran utilisée par les filtres sur mobile. */
 export function FilterSheet({
 	open,
@@ -12,6 +28,7 @@ export function FilterSheet({
 	title = "Filtres",
 	children,
 	footer,
+	breakpoint = "lg",
 	className,
 }: {
 	open: boolean;
@@ -19,6 +36,8 @@ export function FilterSheet({
 	title?: string;
 	children: ReactNode;
 	footer?: ReactNode;
+	/** Palier à partir duquel la feuille est masquée au profit des filtres desktop. */
+	breakpoint?: "lg" | "xl";
 	className?: string;
 }) {
 	const titleId = useId();
@@ -60,7 +79,10 @@ export function FilterSheet({
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={titleId}
-			className="fixed inset-0 z-60 lg:hidden"
+			className={cn(
+				"fixed inset-0 z-60",
+				breakpoint === "xl" ? "xl:hidden" : "lg:hidden",
+			)}
 		>
 			<button
 				type="button"

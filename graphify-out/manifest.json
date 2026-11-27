@@ -264,9 +264,9 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/components/search-filters.tsx": {
-    "mtime": 1793915798.5578806,
-    "seen": 1795607033.899384,
-    "ast_hash": "48f8c64813c9d45af5d18c26bcad2d6c",
+    "mtime": 1795787708.3912945,
+    "seen": 1795787734.3704445,
+    "ast_hash": "ed4ee98dbc4f6f011dfc3327713f3382",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/documents/nouveau/page.tsx": {
@@ -468,9 +468,9 @@
     "semantic_hash": ""
   },
   "apps/web/components/ui/search-bar.tsx": {
-    "mtime": 1795606536.5213447,
-    "seen": 1795607033.901587,
-    "ast_hash": "b99a912a522b2e57b4b9a817e890e3c7",
+    "mtime": 1795787438.1187475,
+    "seen": 1795787734.3751736,
+    "ast_hash": "92022f4ec0d925604b6a61edf9054284",
     "semantic_hash": ""
   },
   "apps/web/components/ui/search-select.tsx": {
@@ -756,9 +756,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793915798.5248802,
-    "seen": 1795607033.9045553,
-    "ast_hash": "15cb50fd494c28ec5fae5e7b9a09a036",
+    "mtime": 1795787412.6793942,
+    "seen": 1795787734.3796706,
+    "ast_hash": "6e90c9fa651a735b2e9fc24529eeb708",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -828,9 +828,9 @@
     "semantic_hash": ""
   },
   "todo.txt": {
-    "mtime": 1795607821.4739985,
-    "seen": 1795608579.174098,
-    "ast_hash": "df3944401adf5a701d69bcfc08a58f4b",
+    "mtime": 1795786638.0511944,
+    "seen": 1795787734.3801093,
+    "ast_hash": "d7cd4e7882f36bb7b6b3d4c3b1083261",
     "semantic_hash": ""
   },
   "apps/web/public/downloads/art-de-la-guerre-sun-tzu.pdf": {
@@ -936,9 +936,9 @@
     "semantic_hash": ""
   },
   "apps/web/app/(main)/matieres/[id]/components/ue-filters.tsx": {
-    "mtime": 1793915798.5638807,
-    "seen": 1795607033.899976,
-    "ast_hash": "7f99b5c9b66e66202bb29831b23f6c8b",
+    "mtime": 1795787708.3892944,
+    "seen": 1795787734.371428,
+    "ast_hash": "b365827e4d5a2b53e8fa1a41509dff8b",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/matieres/[id]/components/ue-type-chips.tsx": {
@@ -978,9 +978,9 @@
     "semantic_hash": ""
   },
   "apps/web/components/shared/filter-sheet.tsx": {
-    "mtime": 1793915798.589881,
-    "seen": 1795607033.9010262,
-    "ast_hash": "2df8072458e54b0d745ea56e49710a81",
+    "mtime": 1795787682.8209724,
+    "seen": 1795787734.374298,
+    "ast_hash": "48e9181ddac51fd50fb2d130bec160c5",
     "semantic_hash": ""
   },
   "apps/web/components/shared/search-pagination.tsx": {
@@ -1236,9 +1236,9 @@
     "semantic_hash": ""
   },
   "apps/web/lib/user.ts": {
-    "mtime": 1795622257.2433734,
-    "seen": 1795623169.044826,
-    "ast_hash": "918d625b3cb0a38ce56a8b8c459068fa",
+    "mtime": 1795787708.3862944,
+    "seen": 1795787734.378922,
+    "ast_hash": "7e3f677e58f9d8e073582331a5746deb",
     "semantic_hash": ""
   },
   "apps/web/types/auth.ts": {
@@ -1800,9 +1800,9 @@
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/admin/recherche/components/admin-search-results.tsx": {
-    "mtime": 1795606948.794391,
-    "seen": 1795607033.8978488,
-    "ast_hash": "f928a1f58325f94480a982588f72e9b7",
+    "mtime": 1795787650.7855656,
+    "seen": 1795787734.3672135,
+    "ast_hash": "3cc51f4d9b850c3cc902c70d72892aff",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/admin/recherche/components/admin-search-skeleton.tsx": {
@@ -1884,9 +1884,9 @@
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/layout.tsx": {
-    "mtime": 1795620835.4393423,
-    "seen": 1795623169.0304017,
-    "ast_hash": "26bb7f39019ea79b4e8d8ccbd3e4f99b",
+    "mtime": 1795623712.413714,
+    "seen": 1795787734.3680294,
+    "ast_hash": "e4495ffb9b9e53af315a278f25ab8c58",
     "semantic_hash": ""
   },
   "apps/web/app/(main)/profil/parametres/components/account-settings-placeholder.tsx": {
@@ -1908,9 +1908,9 @@
     "semantic_hash": ""
   },
   "apps/web/hooks/use-admin-search.ts": {
-    "mtime": 1795622046.6595123,
-    "seen": 1795623169.041729,
-    "ast_hash": "5f65481e272f368e884f81fe3c58f731",
+    "mtime": 1795787633.0583389,
+    "seen": 1795787734.3754582,
+    "ast_hash": "bab65553dc945246b2fc8dd2aa5d948f",
     "semantic_hash": ""
   },
   "apps/web/hooks/use-admin-stats.ts": {
@@ -1962,9 +1962,9 @@
     "semantic_hash": ""
   },
   "apps/web/__tests__/lib/admin-users.test.ts": {
-    "mtime": 1795622557.0049608,
-    "seen": 1795623169.0261154,
-    "ast_hash": "a3fc1ef2f8820120b29c4a02ab244e2d",
+    "mtime": 1795787708.3862944,
+    "seen": 1795787734.365537,
+    "ast_hash": "623c6b3dadea09545d646b65f9eee740",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/admin/utilisateurs/components/admin-user-action-dialog.tsx": {
@@ -1980,15 +1980,15 @@
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/admin/utilisateurs/components/admin-users-content.tsx": {
-    "mtime": 1795623081.7247555,
-    "seen": 1795623169.029405,
-    "ast_hash": "d8a62ba3b4797404ba6409e16ab4c5df",
+    "mtime": 1795787708.3992946,
+    "seen": 1795787734.3674672,
+    "ast_hash": "5358c2b5ecb9215e3bf540d38dc6f5e8",
     "semantic_hash": ""
   },
   "apps/web/app/(admin)/admin/utilisateurs/components/admin-users-skeleton.tsx": {
-    "mtime": 1795622635.5172102,
-    "seen": 1795623169.0294075,
-    "ast_hash": "a19b7186f34b7a7434df145fbb748701",
+    "mtime": 1795787583.546698,
+    "seen": 1795787734.3674715,
+    "ast_hash": "d94521ded2396e2cbd7cbbccaed778e3",
     "semantic_hash": ""
   },
   "apps/web/hooks/use-admin-user-update.ts": {
@@ -1998,9 +1998,9 @@
     "semantic_hash": ""
   },
   "apps/web/lib/admin-users.ts": {
-    "mtime": 1795622729.4838285,
-    "seen": 1795623169.0434918,
-    "ast_hash": "b3cbc89c88d0486e52ffbca5df94ff03",
+    "mtime": 1795787450.7479215,
+    "seen": 1795787734.3772798,
+    "ast_hash": "b13b41c019d3b66055296e5cd8b9230b",
     "semantic_hash": ""
   },
   "admin-dashboard_utilisateurs-mobile.png": {
@@ -2019,6 +2019,36 @@
     "mtime": 1795620779.6919494,
     "seen": 1795623169.046134,
     "ast_hash": "1a2592d23b3783151d85a73d47d2f411",
+    "semantic_hash": ""
+  },
+  "apps/web/app/(admin)/admin/utilisateurs/components/admin-users-filters.tsx": {
+    "mtime": 1795787682.8209724,
+    "seen": 1795787734.3674693,
+    "ast_hash": "02ad929defd91f374604f2015344506a",
+    "semantic_hash": ""
+  },
+  "apps/web/components/shared/filter-button.tsx": {
+    "mtime": 1795787429.8236327,
+    "seen": 1795787734.3742957,
+    "ast_hash": "39ee91f8ced0b3766d764b826b16abe6",
+    "semantic_hash": ""
+  },
+  "apps/web/components/shared/reset-filters-button.tsx": {
+    "mtime": 1795787510.6697345,
+    "seen": 1795787734.3745763,
+    "ast_hash": "cf15cfac115b0a4c22b90f6a995f259b",
+    "semantic_hash": ""
+  },
+  "apps/web/components/ui/search-input.tsx": {
+    "mtime": 1795787429.8226328,
+    "seen": 1795787734.3751757,
+    "ast_hash": "792bce17c0e9f4b656dde3c4316bf64d",
+    "semantic_hash": ""
+  },
+  "apps/web/hooks/use-admin-users-search.ts": {
+    "mtime": 1795787708.3932946,
+    "seen": 1795787734.3755474,
+    "ast_hash": "c41193fcf9dc43136b17f5651a00a684",
     "semantic_hash": ""
   }
 }

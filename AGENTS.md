@@ -186,6 +186,48 @@ doivent être écrites ici, pas dans ce fichier généré.
 - Composant propre à un écran → `app/<route>/components/`.
 - Sous-composant petit et utilisé une seule fois → peut rester inline.
 
+## 🔁 Réutilisation avant création (règle absolue)
+
+Avant de créer un composant, un hook, un libellé, une liste d'options, un
+formateur ou un comportement d'interaction, **cherche d'abord s'il existe déjà**.
+Ne réimplémente jamais localement ce qui est déjà partagé.
+
+1. **Chercher** dans `components/ui/`, `components/shared/`, `lib/`, `hooks/` et
+   les `components/` des routes existantes. Chercher le comportement (select,
+   recherche, pagination, badge, modal, dropdown) et pas seulement le nom.
+2. **Réutiliser** le composant ou l'utilitaire tel quel s'il correspond.
+3. S'il ne correspond pas tout à fait, **l'étendre avec une prop** ou extraire
+   la partie commune. Ne jamais copier-coller une variante locale.
+4. Ne créer un nouveau fichier que si rien n'existe. Dans ce cas, indiquer dans
+   la réponse ce qui a été cherché et pourquoi la création est nécessaire.
+5. Les libellés et options de domaine vivent dans `lib/user.ts`,
+   `lib/document-labels.ts` et `lib/reports.ts`, et sont **dérivés** des
+   constantes de `packages/shared`. Ne jamais recopier une liste ou un
+   `Record<Enum, string>` ailleurs.
+
+Briques partagées à connaître :
+
+- Recherche : `components/ui/search-bar.tsx` (navigation) et
+  `components/ui/search-input.tsx` (champ contrôlé).
+- Selects : `components/ui/search-select.tsx` (filtres) et
+  `components/ui/auth-select.tsx` (formulaires).
+- Filtres mobile : `components/shared/filter-sheet.tsx` et
+  `components/shared/filter-button.tsx`.
+- Listes : `components/shared/search-pagination.tsx`,
+  `components/shared/search-results-header.tsx`.
+- Primitives : `Button`, `Skeleton`, `UserAvatar`, `Container`.
+
+Anti-exemples interdits :
+
+- Un `<select>` natif quand `SearchSelect` existe.
+- Un champ de recherche recodé quand `SearchInput` / `SearchBar` existe.
+- Un `ROLE_LABELS` local quand `getFullRoleLabel` existe.
+- Une poignée de couleurs de statut recopiée dans deux fichiers.
+- Une liste `["etudiant", "moderateur", "admin"]` écrite à la main.
+
+Règle de vigilance : dès qu'une deuxième copie d'un style, d'un comportement
+ou d'une map de libellés apparaît, **arrête-toi et factorise**.
+
 ## 🪝 Hooks personnalisés
 
 - Extraire dans un hook dès qu'un écran gère un état non trivial, des effets de

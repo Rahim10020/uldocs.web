@@ -1,18 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-/** Chargement fidèle des filtres et des résultats utilisateurs. */
+/** Chargement fidèle des résultats utilisateurs. */
 export function AdminUsersSkeleton() {
 	return (
-		<div role="status" className="mt-6">
+		<div role="status" className="mt-4">
 			<span className="sr-only">Chargement des utilisateurs</span>
-			<div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(16rem,1fr)_12rem_12rem_12rem]">
-				<Skeleton className="h-11 w-full sm:col-span-2 xl:col-span-1" />
-				<Skeleton className="h-11 w-full" />
-				<Skeleton className="h-11 w-full" />
-				<Skeleton className="h-11 w-full" />
-			</div>
-
-			<div className="mt-6 hidden xl:block">
+			<div className="hidden xl:block">
 				{Array.from({ length: 8 }, (_, index) => `user-row-${index}`).map(
 					(key) => (
 						<div
@@ -31,7 +24,7 @@ export function AdminUsersSkeleton() {
 				)}
 			</div>
 
-			<div className="mt-6 space-y-3 xl:hidden">
+			<div className="mt-4 space-y-3 xl:hidden">
 				{Array.from({ length: 4 }, (_, index) => `user-card-${index}`).map(
 					(key) => (
 						<div

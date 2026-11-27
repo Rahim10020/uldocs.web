@@ -6,11 +6,15 @@ import { listAdminDocuments, listAdminUsers } from "@/lib/api/admin";
 import { queryKeys } from "@/lib/query-keys";
 
 /** Recherche admin dans les comptes utilisateurs. */
-export function useAdminUsers(params: AdminUserSearchParams = {}) {
+export function useAdminUsers(
+	params: AdminUserSearchParams = {},
+	{ enabled = true }: { enabled?: boolean } = {},
+) {
 	return useQuery({
 		queryKey: queryKeys.admin.users(params),
 		queryFn: () => listAdminUsers(params),
 		placeholderData: keepPreviousData,
+		enabled,
 	});
 }
 
